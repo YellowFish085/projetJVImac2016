@@ -1,17 +1,23 @@
 fileFormatVersion: 2
-guid: bcfda7086e1b9344a84594d1b5a1bc60
-timeCreated: 1481243226
+guid: 93651386fac41074bbcf57fb38625203
+timeCreated: 1481494161
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Camera
+    100002: //RootNode
+    100004: curved_pipe
+    100006: Lamp
+    400000: Camera
+    400002: //RootNode
+    400004: curved_pipe
+    400006: Lamp
+    2300000: curved_pipe
+    2300002: //RootNode
+    3300000: curved_pipe
+    3300002: //RootNode
     4300000: curved_pipe
-    7400000: Default Take
-    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +76,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

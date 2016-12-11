@@ -1,17 +1,23 @@
 fileFormatVersion: 2
-guid: d08fd9139cdc1ec43962d5788473d409
-timeCreated: 1481243228
+guid: f69fd60af385d264d8f3e33da3077432
+timeCreated: 1481493786
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: SheetOfMetal
-    7400000: Default Take
-    9500000: //RootNode
+    100000: Camera
+    100002: Lamp
+    100004: Pipe
+    100006: //RootNode
+    400000: Camera
+    400002: Lamp
+    400004: Pipe
+    400006: //RootNode
+    2300000: Pipe
+    2300002: //RootNode
+    3300000: Pipe
+    3300002: //RootNode
+    4300000: Pipe
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +76,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

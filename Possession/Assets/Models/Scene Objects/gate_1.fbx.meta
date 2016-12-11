@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 161cd83e254536947b711fff3d9ebde2
-timeCreated: 1481243219
+guid: d411d151107d4fc45923c3c5d9c65213
+timeCreated: 1481495081
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,9 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: IronStruct
-    7400000: Default Take
-    9500000: //RootNode
+    4300000: Gate
   materials:
     importMaterials: 1
     materialName: 0
@@ -70,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
