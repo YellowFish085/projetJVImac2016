@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 namespace Possession {
@@ -10,6 +11,8 @@ namespace Possession {
 		private static GameManager _instance;
 
 		private static object _lock = new object();
+
+		private Hashtable levelsList = new Hashtable();
 
 		public static GameManager Instance
 		{
@@ -44,6 +47,8 @@ namespace Possession {
 
 							DontDestroyOnLoad(singleton);
 
+							_instance.Init ();
+
 							Debug.Log("[Singleton] An instance of " + typeof(GameManager) + 
 								" is needed in the scene, so '" + singleton +
 								"' was created with DontDestroyOnLoad.");
@@ -70,6 +75,20 @@ namespace Possession {
 			applicationIsQuitting = true;
 		}
 
+		private void Init () {
+			_instance.RetrieveLevels ();
 
+		}
+
+		private void RetrieveLevels () {
+			var numScenes = SceneManager.sceneCount;
+
+			for (int i=0; i < numScenes; ++i)
+			{
+				levelsList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
+			}
+
+			Debug.Log("List levels size : " + levelsList.Count);
+		}
 	}
 } // namespace Possession
