@@ -6,8 +6,9 @@ namespace Possession {
 
 	public class GameManager : MonoBehaviour
 	{
-		enum State {PAUSE, IN_GAME, MAIN_MENU};
+		public enum State {PAUSE, IN_GAME, MAIN_MENU};
 
+		private State _state;
 		private static GameManager _instance;
 
 		private static object _lock = new object();
