@@ -10,10 +10,8 @@ namespace Possession {
 
 		private State _state;
 		private static GameManager _instance;
-
 		private static object _lock = new object();
-
-		private Hashtable levelsList = new Hashtable();
+		private Hashtable _levelList = new Hashtable();
 
 		public static GameManager Instance
 		{
@@ -86,10 +84,10 @@ namespace Possession {
 
 			for (int i=0; i < numScenes; ++i)
 			{
-				levelsList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
+				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
 			}
 
-			Debug.Log("List levels size : " + levelsList.Count);
+			Debug.Log("List levels size : " + _levelList.Count);
 		}
 	}
 } // namespace Possession
