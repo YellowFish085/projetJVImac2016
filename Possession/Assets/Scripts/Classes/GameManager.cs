@@ -12,6 +12,7 @@ namespace Possession {
 		private static GameManager _instance;
 		private static object _lock = new object();
 		private Hashtable _levelList = new Hashtable();
+		private Player _player;
 
 		public static GameManager Instance
 		{
