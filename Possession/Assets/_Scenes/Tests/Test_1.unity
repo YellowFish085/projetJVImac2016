@@ -2685,6 +2685,7 @@ GameObject:
   - 114: {fileID: 1209016241}
   - 114: {fileID: 1209016240}
   - 114: {fileID: 1209016244}
+  - 114: {fileID: 1209016245}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2953,6 +2954,29 @@ MonoBehaviour:
   dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
   dx11BokehScale: 1.2
   dx11BokehIntensity: 2.5
+--- !u!114 &1209016245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209016235}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88a26a276b4e47619ce2c5adad33fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monochrome: 1
+  grainIntensityMin: 0.1
+  grainIntensityMax: 0.2
+  grainSize: 0.5
+  scratchIntensityMin: 0.05
+  scratchIntensityMax: 0.25
+  scratchFPS: 10
+  scratchJitter: 0.01
+  grainTexture: {fileID: 2800000, guid: ffa9c02760c2b4e8eb9814ec06c4b05b, type: 3}
+  scratchTexture: {fileID: 2800000, guid: 6205c27cc031f4e66b8ea90d1bfaa158, type: 3}
+  shaderRGB: {fileID: 4800000, guid: 5d7f4c401ae8946bcb0d6ff68a9e7466, type: 3}
+  shaderYUV: {fileID: 4800000, guid: 0e447868506ba49f0a73235b8a8b647a, type: 3}
 --- !u!1001 &1215840416
 Prefab:
   m_ObjectHideFlags: 0
