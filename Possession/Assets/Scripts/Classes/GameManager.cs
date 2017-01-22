@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Possession {
 
@@ -11,8 +12,9 @@ namespace Possession {
 		private State _state;
 		private static GameManager _instance;
 		private static object _lock = new object();
-		private Hashtable _levelList = new Hashtable();
-		private Player _player;
+        //private Hashtable _levelList = new Hashtable();
+        private List<string> _levelList = new List<string>();
+        private Player _player;
 		private Camera _camera;
 
 		public static GameManager Instance
@@ -97,7 +99,7 @@ namespace Possession {
                     string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
                     name = name.Substring(0, name.Length - 6);
                     Debug.Log("sceneName = " + name);
-                    _levelList.Add(name, i);
+                    _levelList.Add(name);
                     ++i;
                 }
             }
