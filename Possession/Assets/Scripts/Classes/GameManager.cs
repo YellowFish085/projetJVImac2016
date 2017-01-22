@@ -82,14 +82,27 @@ namespace Possession {
 		}
 
 		private void RetrieveLevels () {
-			var numScenes = SceneManager.sceneCount;
+            /*var numScenes = SceneManager.sceneCount;  // Work only if the scene is loaded in the current.
 
 			for (int i=0; i < numScenes; ++i)
 			{
 				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
-			}
+			}*/
+            int i = 0;
+            foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
+            {
+                if (S.enabled)
+                {
+                    string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
+                    name = name.Substring(0, name.Length - 6);
+                    Debug.Log("sceneName = " + name);
+                    _levelList.Add(name, i);
+                    ++i;
+                }
+            }
 
-			Debug.Log("List levels size : " + _levelList.Count);
+
+            Debug.Log("List levels size : " + _levelList.Count);
 		}
 	}
 } // namespace Possession
