@@ -88,6 +88,7 @@ namespace Possession {
 			{
 				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
 			}*/
+
             int i = 0;
             foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
             {
@@ -101,8 +102,25 @@ namespace Possession {
                 }
             }
 
-
             Debug.Log("List levels size : " + _levelList.Count);
 		}
-	}
+
+        /* Scene Managment */
+        public void LoadScene(string sceneName)
+        {
+            Debug.Log("Load = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (!sceneToLoad.isLoaded)
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        }
+
+        public void UnloadScene(string sceneName)
+        {
+            Debug.Log("Unload = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (sceneToLoad.isLoaded)
+                SceneManager.UnloadSceneAsync(sceneName);
+        }
+        /* --------------- */
+    }
 } // namespace Possession
