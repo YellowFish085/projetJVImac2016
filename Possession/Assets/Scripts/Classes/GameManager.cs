@@ -14,6 +14,7 @@ namespace Possession {
 		private static object _lock = new object();
         //private Hashtable _levelList = new Hashtable();
         private List<string> _levelList = new List<string>();
+        private Scene _currentLevel;
         private Player _player;
 		private Camera _camera;
 
@@ -108,6 +109,11 @@ namespace Possession {
 		}
 
         /* Scene Managment */
+        public void setCurrentLevel(string sceneName)
+        {
+            //_currentLevel
+        }
+
         public void LoadScene(string sceneName)
         {
             Debug.Log("Load = " + sceneName);
@@ -122,6 +128,11 @@ namespace Possession {
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (sceneToLoad.isLoaded)
                 SceneManager.UnloadSceneAsync(sceneName);
+        }
+
+        public Scene GetScene(string sceneName)
+        {
+            return SceneManager.GetSceneByName(sceneName);
         }
         /* --------------- */
     }
