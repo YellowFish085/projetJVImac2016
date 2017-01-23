@@ -35,6 +35,11 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
+        if (grounded && magnitude == 0 && GetComponent<Rigidbody2D>().velocity.x != 0)
+        {
+            StopX();
+        }
+
         if (grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(magnitude * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
@@ -49,6 +54,12 @@ public class ZombieMovement : MonoBehaviour {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
     }
+
+    private void StopX()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(30, GetComponent<Rigidbody2D>().velocity.y);
+    }
+
     private bool IsGrounded()
     {
         return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
