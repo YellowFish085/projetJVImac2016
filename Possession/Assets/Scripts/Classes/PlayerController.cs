@@ -19,5 +19,8 @@ public class PlayerController : MonoBehaviour {
         {
             activeZombie.Jump();
         }
+
+        float h = Input.GetAxisRaw("Horizontal");
+        activeZombie.Move(h);
 	}
 }
