@@ -18,16 +18,16 @@ public class ZombieMovement : MonoBehaviour {
         grounded = IsGrounded();
     }
 
-    public bool IsGrounded()
-    {
-        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-    }
-
     public void Jump()
     {
         if (grounded)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 }
