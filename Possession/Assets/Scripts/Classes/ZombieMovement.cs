@@ -7,8 +7,6 @@ public class ZombieMovement : MonoBehaviour {
 
     private bool grounded = false;
     private Transform groundCheck;
-    private Vector3 lastPosition = Vector3.zero;
-    private float speed = 0f;
 
     private void Awake()
     {
@@ -18,20 +16,6 @@ public class ZombieMovement : MonoBehaviour {
     private void Update()
     {
         grounded = IsGrounded();
-    }
-
-    private void FixedUpdate()
-    {
-        speed = (transform.position - lastPosition).magnitude;
-        lastPosition = transform.position;
-    }
-
-    void OnGUI()
-    {
-        //TODO : remove debug info
-        GUI.Label(new Rect(10, 10, 100, 20), speed.ToString());
-        GUI.Label(new Rect(10, 30, 100, 20), (IsGrounded() ? "grounded" : "not grounded"));
-        GUI.Label(new Rect(10, 50, 100, 20), groundCheck.position.ToString());
     }
 
     public bool IsGrounded()
