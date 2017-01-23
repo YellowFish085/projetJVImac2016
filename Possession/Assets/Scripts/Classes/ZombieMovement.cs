@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ZombieMovement : MonoBehaviour {
     public float jumpForce;
+    public float lateralAirborneAcceleration;
+    public float maxSpeed;
 
     private bool grounded = false;
     private Transform groundCheck;
@@ -26,6 +28,27 @@ public class ZombieMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Méthode appelée par le PlayerController. 
+    /// Le mouvement est fait pour être arcade et pas chiant, aka 0 inertie sauf dans les sauts.
+    /// </summary>
+    /// <param name="magnitude">Axe du stick/bouton pressé</param>
+    public void Move(float magnitude)
+    {
+        if (grounded)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(magnitude * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.right * magnitude * lateralAirborneAcceleration);
+        }
+
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+        }
+    }
     private bool IsGrounded()
     {
         return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
