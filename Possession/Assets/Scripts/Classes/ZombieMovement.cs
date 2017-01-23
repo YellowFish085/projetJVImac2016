@@ -7,8 +7,6 @@ public class ZombieMovement : MonoBehaviour {
 
     private bool grounded = false;
     private Transform groundCheck;
-    private bool jump = false;
-
     private Vector3 lastPosition = Vector3.zero;
     private float speed = 0f;
 
@@ -26,11 +24,6 @@ public class ZombieMovement : MonoBehaviour {
     {
         speed = (transform.position - lastPosition).magnitude;
         lastPosition = transform.position;
-
-        if (jump)
-        {
-            jump = false;
-        }
     }
 
     void OnGUI()
