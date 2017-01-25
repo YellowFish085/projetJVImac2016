@@ -35,6 +35,11 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
+        if (magnitude != 0)
+        {
+            Flip(magnitude);
+        }
+
         if (grounded && magnitude == 0 && GetComponent<Rigidbody2D>().velocity.x != 0)
         {
             StopX();
@@ -63,5 +68,12 @@ public class ZombieMovement : MonoBehaviour {
     private bool IsGrounded()
     {
         return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+    }
+
+    private void Flip(float lateralAcceleration)
+    {
+		Vector3 currentScale = transform.localScale;
+		currentScale.x = Mathf.Sign(lateralAcceleration);
+		transform.localScale = currentScale;
     }
 }
