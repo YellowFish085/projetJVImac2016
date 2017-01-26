@@ -87,6 +87,11 @@ namespace Possession {
 
 		private void RetrieveLevels () {
             int i = 0;
+            /*
+            Debug.Log("SceneManager.sceneCount : " + SceneManager.sceneCount);
+            for(int j = 0; j < SceneManager.sceneCount; j++)
+                Debug.Log("-Scene Name : " + SceneManager.GetSceneAt(j).name + " -- " + SceneManager.GetSceneAt(j).isLoaded);
+            */
             foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
             {
                 if (S.enabled)
