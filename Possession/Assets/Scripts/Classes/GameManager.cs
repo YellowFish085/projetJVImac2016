@@ -108,16 +108,22 @@ namespace Possession {
 		}
 
         /* Scene Managment */
-        public void setCurrentLevel(string sceneName)
+        public void SetCurrentLevel(string sceneName)
         {
-            //_currentLevel
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to SET the current scene, but you don't give the scene's name");
+                return;
+            }
+            _currentLevel = SceneManager.GetSceneByName(sceneName);
+            Debug.Log("Current Scene : " + _currentLevel.name);
         }
 
         public void LoadScene(string sceneName)
         {
             if (String.IsNullOrEmpty(sceneName))
             {
-                Debug.Log("WARNING: you try to LOAD a scene, but you do give the scene's name");
+                Debug.Log("WARNING: you try to LOAD a scene, but you don't give the scene's name");
                 return;
             }
 
@@ -131,7 +137,7 @@ namespace Possession {
         {
             if (String.IsNullOrEmpty(sceneName))
             {
-                Debug.Log("WARNING: you try to UNLOAD a scene, but you do give the scene's name");
+                Debug.Log("WARNING: you try to UNLOAD a scene, but you don't give the scene's name");
                 return;
             }
 

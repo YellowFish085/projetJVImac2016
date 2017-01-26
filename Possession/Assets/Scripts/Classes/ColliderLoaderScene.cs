@@ -20,7 +20,7 @@ namespace Possession
             {
                 GameManager gm = GameManager.Instance;
                 var levelComponent = levelObject.GetComponent<Level>();
-                Debug.Log("Current : " + levelComponent.GetNameCurrentName());
+                gm.SetCurrentLevel(levelComponent.GetNameCurrentName());
 
                 string nextNameScene = levelComponent.nextLevel;
                 string previousNameScene = levelComponent.previousLevel;
