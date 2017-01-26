@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -85,13 +86,6 @@ namespace Possession {
 		}
 
 		private void RetrieveLevels () {
-            /*var numScenes = SceneManager.sceneCount;  // Work only if the scene is loaded in the current.
-
-			for (int i=0; i < numScenes; ++i)
-			{
-				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
-			}*/
-
             int i = 0;
             foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
             {
@@ -116,6 +110,12 @@ namespace Possession {
 
         public void LoadScene(string sceneName)
         {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to LOAD a scene, but you do give the scene's name");
+                return;
+            }
+
             Debug.Log("Load = " + sceneName);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (!sceneToLoad.isLoaded)
@@ -124,6 +124,12 @@ namespace Possession {
 
         public void UnloadScene(string sceneName)
         {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to UNLOAD a scene, but you do give the scene's name");
+                return;
+            }
+
             Debug.Log("Unload = " + sceneName);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (sceneToLoad.isLoaded)
