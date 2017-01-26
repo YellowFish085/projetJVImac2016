@@ -11,7 +11,7 @@ namespace Possession
     {
         public GameObject levelObject;
 
-        public string whoVerify = "Player"; // In future replace by Player _currentPuppet.
+        public string whoVerify = "Player"; // TODO : In future replace by Player _currentPuppet.
 
         void OnTriggerEnter2D(Collider2D col)
         {
