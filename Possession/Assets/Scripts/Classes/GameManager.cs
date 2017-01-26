@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Possession {
 
@@ -11,8 +12,10 @@ namespace Possession {
 		private State _state;
 		private static GameManager _instance;
 		private static object _lock = new object();
-		private Hashtable _levelList = new Hashtable();
-		private Player _player;
+        //private Hashtable _levelList = new Hashtable();
+        private List<string> _levelList = new List<string>();
+        private Scene _currentLevel;
+        private Player _player;
 		private Camera _camera;
 
 		public static GameManager Instance
@@ -82,14 +85,55 @@ namespace Possession {
 		}
 
 		private void RetrieveLevels () {
-			var numScenes = SceneManager.sceneCount;
+            /*var numScenes = SceneManager.sceneCount;  // Work only if the scene is loaded in the current.
 
 			for (int i=0; i < numScenes; ++i)
 			{
 				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
-			}
+			}*/
 
-			Debug.Log("List levels size : " + _levelList.Count);
+            int i = 0;
+            foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
+            {
+                if (S.enabled)
+                {
+                    string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
+                    name = name.Substring(0, name.Length - 6);
+                    Debug.Log("sceneName = " + name);
+                    _levelList.Add(name);
+                    ++i;
+                }
+            }
+
+            Debug.Log("List levels size : " + _levelList.Count);
 		}
-	}
+
+        /* Scene Managment */
+        public void setCurrentLevel(string sceneName)
+        {
+            //_currentLevel
+        }
+
+        public void LoadScene(string sceneName)
+        {
+            Debug.Log("Load = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (!sceneToLoad.isLoaded)
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        }
+
+        public void UnloadScene(string sceneName)
+        {
+            Debug.Log("Unload = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (sceneToLoad.isLoaded)
+                SceneManager.UnloadSceneAsync(sceneName);
+        }
+
+        public Scene GetScene(string sceneName)
+        {
+            return SceneManager.GetSceneByName(sceneName);
+        }
+        /* --------------- */
+    }
 } // namespace Possession
