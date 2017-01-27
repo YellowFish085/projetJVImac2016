@@ -11,15 +11,16 @@ namespace Possession
     {
         public GameObject levelObject;
 
-        public string whoVerify = "Player";
+        public string whoVerify = "Player"; // TODO : In future replace by Player _currentPuppet.
 
-        void OnTriggerEnter(Collider col)
+        void OnTriggerEnter2D(Collider2D col)
         {
+            Debug.Log(this.name + " Collid with " + col.gameObject.name);
             if (col.gameObject.name == whoVerify)
             {
                 GameManager gm = GameManager.Instance;
                 var levelComponent = levelObject.GetComponent<Level>();
-                Debug.Log("Current : " + levelComponent.GetNameCurrentName());
+                gm.SetCurrentLevel(levelComponent.GetNameCurrentName());
 
                 string nextNameScene = levelComponent.nextLevel;
                 string previousNameScene = levelComponent.previousLevel;

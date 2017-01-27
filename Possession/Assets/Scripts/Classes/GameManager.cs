@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -85,14 +86,12 @@ namespace Possession {
 		}
 
 		private void RetrieveLevels () {
-            /*var numScenes = SceneManager.sceneCount;  // Work only if the scene is loaded in the current.
-
-			for (int i=0; i < numScenes; ++i)
-			{
-				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
-			}*/
-
             int i = 0;
+            /*
+            Debug.Log("SceneManager.sceneCount : " + SceneManager.sceneCount);
+            for(int j = 0; j < SceneManager.sceneCount; j++)
+                Debug.Log("-Scene Name : " + SceneManager.GetSceneAt(j).name + " -- " + SceneManager.GetSceneAt(j).isLoaded);
+            */
             foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
             {
                 if (S.enabled)
@@ -109,13 +108,25 @@ namespace Possession {
 		}
 
         /* Scene Managment */
-        public void setCurrentLevel(string sceneName)
+        public void SetCurrentLevel(string sceneName)
         {
-            //_currentLevel
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to SET the current scene, but you don't give the scene's name");
+                return;
+            }
+            _currentLevel = SceneManager.GetSceneByName(sceneName);
+            Debug.Log("Current Scene : " + _currentLevel.name);
         }
 
         public void LoadScene(string sceneName)
         {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to LOAD a scene, but you don't give the scene's name");
+                return;
+            }
+
             Debug.Log("Load = " + sceneName);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (!sceneToLoad.isLoaded)
@@ -124,6 +135,12 @@ namespace Possession {
 
         public void UnloadScene(string sceneName)
         {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to UNLOAD a scene, but you don't give the scene's name");
+                return;
+            }
+
             Debug.Log("Unload = " + sceneName);
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (sceneToLoad.isLoaded)

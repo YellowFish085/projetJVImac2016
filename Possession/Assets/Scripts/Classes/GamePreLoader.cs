@@ -9,5 +9,6 @@ public class GamePreLoader : MonoBehaviour {
 	void Awake () {
 		GameManager gm = GameManager.Instance;
         gm.LoadScene(initialScene);
+        gm.SetCurrentLevel(initialScene);
     }
 }
