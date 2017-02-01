@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public ZombieMovement activeZombie;
+    public GameObject scientist;
 
     private void Awake()
     {
