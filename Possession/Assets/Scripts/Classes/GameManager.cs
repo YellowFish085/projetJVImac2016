@@ -150,6 +150,16 @@ namespace Possession {
         {
             return SceneManager.GetSceneByName(sceneName);
         }
+
+        public void SetState(State state)
+        {
+            _state = state;
+        }
+
+        public State GetState()
+        {
+            return _state;
+        }
         /* --------------- */
     }
 } // namespace Possession
