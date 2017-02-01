@@ -10,5 +10,6 @@ public class GamePreLoader : MonoBehaviour {
         GameManager gm = GameManager.Instance;
         gm.LoadScene(initialScene);
         gm.SetCurrentLevel(initialScene);
+        gm.SetState(GameManager.State.IN_GAME);
     }
 }
