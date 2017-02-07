@@ -81,6 +81,7 @@ namespace Possession {
 		}
 
 		private void Init () {
+			_state = State.IN_GAME;
 			_instance.RetrieveLevels ();
 
 		}
@@ -152,5 +153,17 @@ namespace Possession {
             return SceneManager.GetSceneByName(sceneName);
         }
         /* --------------- */
+
+		/* State */
+		public void setState(State state)
+		{
+			_state = state;
+		}
+
+		public State getState()
+		{
+			return _state;
+		}
+		/* ----- */
     }
 } // namespace Possession
