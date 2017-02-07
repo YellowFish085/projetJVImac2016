@@ -19,13 +19,13 @@ namespace Possession
 			return currentLevelName;
 		}
 
-		public void write () {
+		public void save () {
 			currentLevelName = GameManager.Instance.GetCurrentLevel ().name;
 			File.WriteAllText (Application.dataPath + "/backup.json", JsonUtility.ToJson(this));
 			Debug.Log ("Backup file write to " + Application.dataPath);
 		}
 
-		public void read () {
+		public void load () {
 			string filePath = Application.dataPath + "/backup.json";
 			if (File.Exists (filePath)) {
 				JsonUtility.FromJson<SaveManager>(filePath);
