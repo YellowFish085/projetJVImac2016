@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-
+using Possession;
 
 public class StartOptions : MonoBehaviour {
 
@@ -32,6 +32,11 @@ public class StartOptions : MonoBehaviour {
 
 		//Get a reference to PlayMusic attached to UI object
 		playMusic = GetComponent<PlayMusic> ();
+
+		//Set time.timescale to 0, this will cause animations and physics to stop updating
+		Time.timeScale = 0;
+		// Update GameManager state
+		GameManager.Instance.setState (GameManager.State.MAIN_MENU);
 	}
 
 
@@ -118,6 +123,11 @@ public class StartOptions : MonoBehaviour {
 		animMenuAlpha.SetTrigger ("fade");
 		Invoke("HideDelayed", fadeAlphaAnimationClip.length);
 		Debug.Log ("Game started in same scene! Put your game starting stuff here.");
+
+		//Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed
+		Time.timeScale = 1;
+		// Update GameManager state
+		GameManager.Instance.setState (GameManager.State.IN_GAME);
 	}
 
 

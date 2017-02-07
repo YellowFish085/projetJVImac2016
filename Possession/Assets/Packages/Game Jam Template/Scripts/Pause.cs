@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Possession;
 
 public class Pause : MonoBehaviour {
 
@@ -42,6 +43,8 @@ public class Pause : MonoBehaviour {
 		isPaused = true;
 		//Set time.timescale to 0, this will cause animations and physics to stop updating
 		Time.timeScale = 0;
+		// Update GameManager state
+		GameManager.Instance.setState (GameManager.State.PAUSE);
 		//call the ShowPausePanel function of the ShowPanels script
 		showPanels.ShowPausePanel ();
 	}
@@ -53,6 +56,8 @@ public class Pause : MonoBehaviour {
 		isPaused = false;
 		//Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed
 		Time.timeScale = 1;
+		// Update GameManager state
+		GameManager.Instance.setState (GameManager.State.IN_GAME);
 		//call the HidePausePanel function of the ShowPanels script
 		showPanels.HidePausePanel ();
 	}
