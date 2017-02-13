@@ -5,13 +5,12 @@ using System.IO;
 
 namespace Possession
 {
-	public class SaveManager  {
+	public class SaveManager {
 
 		public string currentLevelName;
 
 		public SaveManager () {
-			
-			Debug.Log (GetCurrentLevelName ());
+			// Debug.Log (GetCurrentLevelName ());
 		}
 
 		public string GetCurrentLevelName()
@@ -28,7 +27,8 @@ namespace Possession
 		public void Load () {
 			string filePath = Application.dataPath + "/backup.json";
 			if (File.Exists (filePath)) {
-				JsonUtility.FromJson<SaveManager>(filePath);
+				string dataSaved = File.ReadAllText (filePath);
+				JsonUtility.FromJsonOverwrite(dataSaved, this );
 			} else
 			{
 				Debug.Log ("No backup file");

@@ -89,7 +89,20 @@ namespace Possession {
 			_state = State.MAIN_MENU;
 			_instance.RetrieveLevels ();
 			_saveManager = new SaveManager ();
+			InitFromSaveManager ();
 		}
+
+		private void InitFromSaveManager () {
+			_saveManager.Load ();
+			if (!String.IsNullOrEmpty (_saveManager.GetCurrentLevelName ())) {
+				SetCurrentLevel (_saveManager.GetCurrentLevelName ());
+			} else {
+				Debug.Log ("Init from default level");
+			}
+
+			// TODO : Improve initialization with more data and do a better verification
+		}
+			
 
 		private void RetrieveLevels () {
             int i = 0;
