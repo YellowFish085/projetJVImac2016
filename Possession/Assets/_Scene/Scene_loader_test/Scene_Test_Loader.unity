@@ -232,6 +232,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2034804735}
+  smoothingMove: 5
+  smoothingMoveEnd: 0.5
+  deltaXToCurrent: 0
+  deltaYToCurrent: 4
 --- !u!1001 &301322971
 Prefab:
   m_ObjectHideFlags: 0
@@ -282,6 +286,10 @@ Prefab:
     - target: {fileID: 4322061951176382, guid: 6bbd33e117ea98048938f0226c85a3d4, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881383585763732, guid: 6bbd33e117ea98048938f0226c85a3d4, type: 2}
+      propertyPath: m_TagString
+      value: Scientific
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bbd33e117ea98048938f0226c85a3d4, type: 2}
