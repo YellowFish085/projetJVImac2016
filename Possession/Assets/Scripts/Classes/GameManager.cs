@@ -81,8 +81,7 @@ namespace Possession {
 		}
 
 		private void Init () {
-			_instance.RetrieveLevels ();
-
+            RetrieveLevels ();
             _loaderScene = SceneManager.GetSceneByName("GameLoaderScene");
 		}
 
@@ -159,6 +158,7 @@ namespace Possession {
         {
             return _state;
         }
+
         /* --------------- */
     }
 } // namespace Possession
