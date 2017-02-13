@@ -98,6 +98,8 @@ namespace Possession {
 			} else {
 				Debug.Log ("Init from default level");
 			}
+
+			// TODO : Improve initialization with more data and do a better verification
 		}
 			
 
