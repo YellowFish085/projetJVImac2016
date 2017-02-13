@@ -18,6 +18,9 @@ namespace Possession {
         private Scene _currentLevel;
         private Player _player;
 		private Camera _camera;
+		private SaveManager _saveManager;
+
+
 
 		public static GameManager Instance
 		{
@@ -83,6 +86,7 @@ namespace Possession {
 		private void Init () {
 			_state = State.IN_GAME;
 			_instance.RetrieveLevels ();
+			_saveManager = new SaveManager ();
 
 		}
 
@@ -157,7 +161,11 @@ namespace Possession {
 		{
 			return _currentLevel;
 		}
-        /* --------------- */
+        
+		public SaveManager GetSaveManager()
+		{
+			return _saveManager;
+		}
 
 		/* State */
 		public void setState(State state)

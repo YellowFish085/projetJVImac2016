@@ -5,11 +5,11 @@ using System.IO;
 
 namespace Possession
 {
-	public class SaveManager : MonoBehaviour {
+	public class SaveManager  {
 
 		public string currentLevelName;
 
-		void Start () {
+		public SaveManager () {
 			
 			Debug.Log (GetCurrentLevelName ());
 		}
@@ -19,13 +19,13 @@ namespace Possession
 			return currentLevelName;
 		}
 
-		public void save () {
+		public void Save () {
 			currentLevelName = GameManager.Instance.GetCurrentLevel ().name;
 			File.WriteAllText (Application.dataPath + "/backup.json", JsonUtility.ToJson(this));
 			Debug.Log ("Backup file write to " + Application.dataPath);
 		}
 
-		public void load () {
+		public void Load () {
 			string filePath = Application.dataPath + "/backup.json";
 			if (File.Exists (filePath)) {
 				JsonUtility.FromJson<SaveManager>(filePath);
