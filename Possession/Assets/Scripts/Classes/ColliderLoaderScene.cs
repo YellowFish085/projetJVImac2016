@@ -11,20 +11,21 @@ namespace Possession
     {
         public GameObject levelObject;
 
-        public string tagToVerify = "Scientific";
+        public string whoVerify = "Player"; // TODO : In future replace by Player _currentPuppet.
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.tag == tagToVerify)
+            Debug.Log(this.name + " Collid with " + col.gameObject.name);
+            if (col.gameObject.name == whoVerify)
             {
                 GameManager gm = GameManager.Instance;
                 var levelComponent = levelObject.GetComponent<Level>();
                 gm.SetCurrentLevel(levelComponent.GetNameCurrentName());
-                //gm.GetSaveManager().Save(); // TODO : uncommented after merge save branch.
 
                 string nextNameScene = levelComponent.nextLevel;
                 string previousNameScene = levelComponent.previousLevel;
 
+                Debug.Log("Next : " + nextNameScene + " -- previous : " + previousNameScene);
                 // Ask to load the necessary scene.
                 this.AskToLoad(nextNameScene, previousNameScene);
 
@@ -35,7 +36,7 @@ namespace Possession
                 Level previousLevel = this.GetLevelComponent(previousScene);
                 string nNext = (nextLevel != null) ? nextLevel.nextLevel : "";
                 string pPrevious = (previousLevel != null) ? previousLevel.previousLevel : "";
-
+                Debug.Log("NextNext : " + nNext + " -- PreviousPrevious : " + pPrevious);
                 this.AskToUnload(nNext, pPrevious);
             }
         }

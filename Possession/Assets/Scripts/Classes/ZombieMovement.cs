@@ -35,6 +35,7 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
+        Debug.Log("Move");
         if (magnitude != 0)
         {
             Flip(magnitude);
