@@ -4,7 +4,11 @@ using Possession;
 
 public class GamePreLoader : MonoBehaviour {
 
-	void Awake () {
-		GameManager gm = GameManager.Instance;
-	}
+    public string initialScene;
+
+    void Awake () {
+        GameManager gm = GameManager.Instance;
+        gm.LoadScene(initialScene);
+        gm.SetCurrentLevel(initialScene);
+    }
 }

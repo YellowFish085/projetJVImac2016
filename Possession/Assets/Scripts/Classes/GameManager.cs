@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Possession {
 
@@ -11,9 +13,14 @@ namespace Possession {
 		private State _state;
 		private static GameManager _instance;
 		private static object _lock = new object();
-		private Hashtable _levelList = new Hashtable();
-		private Player _player;
+        private List<string> _levelList = new List<string>();
+        private Scene _currentLevel;
+        private Scene _loaderScene;
+        private Player _player;
 		private Camera _camera;
+		private SaveManager _saveManager;
+
+
 
 		public static GameManager Instance
 		{
@@ -77,19 +84,110 @@ namespace Possession {
 		}
 
 		private void Init () {
-			_instance.RetrieveLevels ();
+            RetrieveLevels ();
+            GameObject rootNode = GameObject.Find("RootNode");
+            _loaderScene = rootNode.scene;
 
+			_state = State.MAIN_MENU;
+			_instance.RetrieveLevels ();
+			_saveManager = new SaveManager ();
+			InitFromSaveManager ();
 		}
 
-		private void RetrieveLevels () {
-			var numScenes = SceneManager.sceneCount;
-
-			for (int i=0; i < numScenes; ++i)
-			{
-				_levelList.Add(SceneManager.GetSceneAt(i).name, SceneManager.GetSceneAt(i));
+		private void InitFromSaveManager () {
+			_saveManager.Load ();
+			if (!String.IsNullOrEmpty (_saveManager.GetCurrentLevelName ())) {
+				SetCurrentLevel (_saveManager.GetCurrentLevelName ());
+			} else {
+				Debug.Log ("Init from default level");
 			}
 
-			Debug.Log("List levels size : " + _levelList.Count);
+			// TODO : Improve initialization with more data and do a better verification
 		}
-	}
+			
+
+		private void RetrieveLevels () {
+            int i = 0;
+            foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
+            {
+                if (S.enabled)
+                {
+                    string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
+                    name = name.Substring(0, name.Length - 6);
+                    _levelList.Add(name);
+                    ++i;
+                }
+            }
+		}
+
+        /* Scene Managment */
+        public void SetCurrentLevel(string sceneName)
+        {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to SET the current scene, but you don't give the scene's name");
+                return;
+            }
+            _currentLevel = SceneManager.GetSceneByName(sceneName);
+            Debug.Log("Current Scene : " + _currentLevel.name);
+        }
+
+        public void LoadScene(string sceneName)
+        {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to LOAD a scene, but you don't give the scene's name");
+                return;
+            }
+
+            Debug.Log("Load = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (!sceneToLoad.isLoaded)
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        }
+
+        public void UnloadScene(string sceneName)
+        {
+            if (String.IsNullOrEmpty(sceneName))
+            {
+                Debug.Log("WARNING: you try to UNLOAD a scene, but you don't give the scene's name");
+                return;
+            }
+
+            Debug.Log("Unload = " + sceneName);
+            Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
+            if (sceneToLoad.isLoaded)
+                SceneManager.UnloadSceneAsync(sceneName);
+        }
+
+        public Scene GetScene(string sceneName)
+        {
+            return SceneManager.GetSceneByName(sceneName);
+        }
+        
+        public Scene GetLoaderScene()
+        {
+            return _loaderScene;
+        }
+
+        public void SetState(State state)
+        {
+            _state = state;
+        }
+
+        public State GetState()
+        {
+            return _state;
+        }
+        
+		public Scene GetCurrentLevel()
+		{
+			return _currentLevel;
+		}
+        
+		public SaveManager GetSaveManager()
+		{
+			return _saveManager;
+		}
+    }
 } // namespace Possession
