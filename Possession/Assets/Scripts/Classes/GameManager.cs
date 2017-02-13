@@ -15,6 +15,7 @@ namespace Possession {
 		private static object _lock = new object();
         private List<string> _levelList = new List<string>();
         private Scene _currentLevel;
+        private Scene _loaderScene;
         private Player _player;
 		private Camera _camera;
 
@@ -82,6 +83,7 @@ namespace Possession {
 		private void Init () {
 			_instance.RetrieveLevels ();
 
+            _loaderScene = SceneManager.GetSceneByName("GameLoaderScene");
 		}
 
 		private void RetrieveLevels () {
@@ -141,6 +143,11 @@ namespace Possession {
         public Scene GetScene(string sceneName)
         {
             return SceneManager.GetSceneByName(sceneName);
+        }
+
+        public Scene GetLoaderScene()
+        {
+            return _loaderScene;
         }
 
         public void SetState(State state)
