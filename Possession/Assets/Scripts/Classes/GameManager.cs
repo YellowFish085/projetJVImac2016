@@ -85,7 +85,9 @@ namespace Possession {
 
 		private void Init () {
             RetrieveLevels ();
-            _loaderScene = SceneManager.GetSceneByName("GameLoaderScene");
+            GameObject rootNode = GameObject.Find("RootNode");
+            _loaderScene = rootNode.scene;
+
 			_state = State.MAIN_MENU;
 			_instance.RetrieveLevels ();
 			_saveManager = new SaveManager ();
