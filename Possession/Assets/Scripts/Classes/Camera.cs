@@ -11,7 +11,6 @@ public class Camera : MonoBehaviour
 
     private Vector3 offset;
     private Vector3 targetCamPos = new Vector3(0, 0, 0);
-    //private field : type // TODO
 
     void Start ()
 	{

@@ -13,9 +13,9 @@ namespace Possession {
 		private State _state;
 		private static GameManager _instance;
 		private static object _lock = new object();
-        //private Hashtable _levelList = new Hashtable();
         private List<string> _levelList = new List<string>();
         private Scene _currentLevel;
+        private Scene _loaderScene;
         private Player _player;
 		private Camera _camera;
 		private SaveManager _saveManager;
@@ -84,11 +84,12 @@ namespace Possession {
 		}
 
 		private void Init () {
-			_state = State.IN_GAME;
+            RetrieveLevels ();
+            _loaderScene = SceneManager.GetSceneByName("GameLoaderScene");
+			_state = State.MAIN_MENU;
 			_instance.RetrieveLevels ();
 			_saveManager = new SaveManager ();
 			InitFromSaveManager ();
-
 		}
 
 		private void InitFromSaveManager () {
@@ -105,24 +106,16 @@ namespace Possession {
 
 		private void RetrieveLevels () {
             int i = 0;
-            /*
-            Debug.Log("SceneManager.sceneCount : " + SceneManager.sceneCount);
-            for(int j = 0; j < SceneManager.sceneCount; j++)
-                Debug.Log("-Scene Name : " + SceneManager.GetSceneAt(j).name + " -- " + SceneManager.GetSceneAt(j).isLoaded);
-            */
             foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
             {
                 if (S.enabled)
                 {
                     string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
                     name = name.Substring(0, name.Length - 6);
-                    Debug.Log("sceneName = " + name);
                     _levelList.Add(name);
                     ++i;
                 }
             }
-
-            Debug.Log("List levels size : " + _levelList.Count);
 		}
 
         /* Scene Managment */
@@ -169,7 +162,22 @@ namespace Possession {
         {
             return SceneManager.GetSceneByName(sceneName);
         }
+        
+        public Scene GetLoaderScene()
+        {
+            return _loaderScene;
+        }
 
+        public void SetState(State state)
+        {
+            _state = state;
+        }
+
+        public State GetState()
+        {
+            return _state;
+        }
+        
 		public Scene GetCurrentLevel()
 		{
 			return _currentLevel;
@@ -179,17 +187,5 @@ namespace Possession {
 		{
 			return _saveManager;
 		}
-
-		/* State */
-		public void setState(State state)
-		{
-			_state = state;
-		}
-
-		public State getState()
-		{
-			return _state;
-		}
-		/* ----- */
     }
 } // namespace Possession

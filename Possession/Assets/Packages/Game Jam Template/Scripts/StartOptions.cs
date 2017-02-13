@@ -36,7 +36,7 @@ public class StartOptions : MonoBehaviour {
 		//Set time.timescale to 0, this will cause animations and physics to stop updating
 		Time.timeScale = 0;
 		// Update GameManager state
-		GameManager.Instance.setState (GameManager.State.MAIN_MENU);
+		GameManager.Instance.SetState (GameManager.State.MAIN_MENU);
 	}
 
 
@@ -127,7 +127,7 @@ public class StartOptions : MonoBehaviour {
 		//Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed
 		Time.timeScale = 1;
 		// Update GameManager state
-		GameManager.Instance.setState (GameManager.State.IN_GAME);
+		GameManager.Instance.SetState (GameManager.State.IN_GAME);
 	}
 
 

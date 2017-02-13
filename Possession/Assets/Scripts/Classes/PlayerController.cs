@@ -5,18 +5,13 @@ using Possession;
 
 public class PlayerController : MonoBehaviour {
     public ZombieMovement activeZombie;
-
-    private void Awake()
-    {
-        if (!activeZombie)
-        {
-            Debug.LogError("You need to set an active Zombie");
-        }
-    }
+    public GameObject scientist;
 
     // Update is called once per frame
     void Update () {
-		if (GameManager.Instance.getState() == GameManager.State.PAUSE || GameManager.Instance.getState() == GameManager.State.MAIN_MENU)
+        GameManager.State currentState = GameManager.Instance.GetState();
+
+        if (currentState == GameManager.State.PAUSE || currentState == GameManager.State.MAIN_MENU)
 		{
 			return;
 		}

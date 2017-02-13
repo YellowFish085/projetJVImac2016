@@ -6,8 +6,8 @@ public class GamePreLoader : MonoBehaviour {
 
     public string initialScene;
 
-	void Awake () {
-		GameManager gm = GameManager.Instance;
+    void Awake () {
+        GameManager gm = GameManager.Instance;
         gm.LoadScene(initialScene);
         gm.SetCurrentLevel(initialScene);
     }
