@@ -152,6 +152,11 @@ namespace Possession {
         {
             return SceneManager.GetSceneByName(sceneName);
         }
+
+		public Scene GetCurrentLevel()
+		{
+			return _currentLevel;
+		}
         /* --------------- */
 
 		/* State */
