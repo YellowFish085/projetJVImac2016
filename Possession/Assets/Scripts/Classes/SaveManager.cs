@@ -5,11 +5,11 @@ using System.IO;
 
 namespace Possession
 {
-	public class SaveManager : MonoBehaviour {
+	public class SaveManager  {
 
 		public string currentLevelName;
 
-		void Start () {
+		public SaveManager () {
 			
 			Debug.Log (GetCurrentLevelName ());
 		}
