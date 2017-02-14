@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour {
         GameManager.State currentState = GameManager.Instance.GetState();
 
         if (currentState == GameManager.State.PAUSE || currentState == GameManager.State.MAIN_MENU)
-		{
-			return;
-		}
+        {
+            return;
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
