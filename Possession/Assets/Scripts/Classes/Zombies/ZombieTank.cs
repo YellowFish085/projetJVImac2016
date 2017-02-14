@@ -24,7 +24,7 @@ public class ZombieTank : MonoBehaviour {
 
 	public enum Direction { Left, Right };
 	private Direction _targetedDirection;
-	private Time _timeOnStart;
+	private float _timeOnStart;
 
 	public float chargeSpeed;
 
