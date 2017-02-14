@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
-    public GameObject player; // TODO: remove and remplace player by GameManger::player::Actors::BasePantin.
     public float smoothingMove = 5f;
     public float smoothingMoveEnd = 0.5f;
     public float deltaXToCurrent = 0f;
     public float deltaYToCurrent = 4f;
 
+    private GameObject target;
     private Vector3 offset;
     private Vector3 targetCamPos = new Vector3(0, 0, 0);
-
-    void Start ()
-	{
-        offset = new Vector3(deltaXToCurrent, deltaYToCurrent, (transform.position.z - player.transform.position.z));
-    }
 	
 	void FixedUpdate()
 	{
-        Vector3 newTargetCamPos = player.transform.position + offset;
+        Vector3 newTargetCamPos = target.transform.position + offset;
         this.MoveCamera(newTargetCamPos);       
     }
 
     public void SetPosition(Vector3 pos)
     {
         this.MoveCamera(pos);
+    }
+
+    public void SetTarget(GameObject newTarget)
+    {
+        target = newTarget;
+        offset = new Vector3(deltaXToCurrent, deltaYToCurrent, (transform.position.z - target.transform.position.z));
     }
 
     // TODO
