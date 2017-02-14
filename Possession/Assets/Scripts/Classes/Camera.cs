@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraMovement : MonoBehaviour
+public class Camera : MonoBehaviour
 {
-    private GameObject target;
+    public GameObject player; // TODO: remove and remplace player by GameManger::player::Actors::BasePantin.
     public float smoothingMove = 5f;
     public float smoothingMoveEnd = 0.5f;
     public float deltaXToCurrent = 0f;
@@ -14,12 +14,12 @@ public class CameraMovement : MonoBehaviour
 
     void Start ()
 	{
-        this.UpdateTarget();
+        offset = new Vector3(deltaXToCurrent, deltaYToCurrent, (transform.position.z - player.transform.position.z));
     }
 	
 	void FixedUpdate()
 	{
-        Vector3 newTargetCamPos = target.transform.position + offset;
+        Vector3 newTargetCamPos = player.transform.position + offset;
         this.MoveCamera(newTargetCamPos);       
     }
 
@@ -31,12 +31,6 @@ public class CameraMovement : MonoBehaviour
     // TODO
     public void SetShaders()
     { }
-
-    public void UpdateTarget()
-    {
-        target = GameObject.FindObjectOfType<PlayerController>().activeZombie.gameObject;
-        offset = new Vector3(deltaXToCurrent, deltaYToCurrent, (transform.position.z - target.transform.position.z));
-    }
 
     private void MoveCamera(Vector3 newTargetCamPos)
     {
