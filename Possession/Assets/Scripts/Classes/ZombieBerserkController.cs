@@ -12,6 +12,12 @@ public class ZombieBerserkController : MonoBehaviour {
 	//    - carry : can't carry
 
 
+	// Zombie specific actions :
+	// -------------------------
+	//    - Charge : charge something if it can be charged and/or broken
+	//    - DestroyFloor : destroy the floor if it can be broken
+
+
 	public void Charge () {
 	
 	}
