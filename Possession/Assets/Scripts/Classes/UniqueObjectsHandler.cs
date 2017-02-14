@@ -37,9 +37,10 @@ public class UniqueObjectsHandler : MonoBehaviour {
         Transform actors = gameplayNode.transform.Find("Actors");
         GameObject carrier = Instantiate(carrierPrefab, zombie.position, zombie.rotation, actors);
         carrier.name = "Carrier";
+        carrier.tag = "Scientific";// TODO : remove after the carrier realy carries - for collider loader test and save. -- QC
 
         playerControllerNode.GetComponent<PlayerController>().activeZombie = carrier.GetComponent<ZombieMovement>();
-
+        GameObject.FindObjectOfType<CameraMovement>().UpdateTarget(); // TODO : remove when playerController observer -- QC
         return true;
     }
 }
