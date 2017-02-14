@@ -28,6 +28,17 @@ public class ZombieMovement : MonoBehaviour {
         }
     }
 
+    public void Action(string combination)
+    {
+        if (grounded)
+        {
+            if(name == "Seductive")
+            {
+                GetComponent<ZombieSeductive>().Seduce();
+            }
+        }
+    }
+
     /// <summary>
     /// Méthode appelée par le PlayerController. 
     /// Le mouvement est fait pour être arcade et pas chiant, aka 0 inertie sauf dans les sauts.
@@ -35,7 +46,7 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
-        Debug.Log("Move");
+        //Debug.Log("Move");
         if (magnitude != 0)
         {
             Flip(magnitude);

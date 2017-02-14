@@ -40,7 +40,7 @@ public class UniqueObjectsHandler : MonoBehaviour {
         carrier.tag = "Scientific";// TODO : remove after the carrier realy carries - for collider loader test and save. -- QC
 
         playerControllerNode.GetComponent<PlayerController>().activeZombie = carrier.GetComponent<ZombieMovement>();
-        GameObject.FindObjectOfType<CameraMovement>().UpdateTarget(); // TODO : remove when playerController observer -- QC
+        //GameObject.FindObjectOfType<CameraMovement>().UpdateTarget(); // TODO : remove when playerController observer -- QC
         return true;
     }
 }
