@@ -32,8 +32,15 @@ public class ZombieTank : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision col) {
-		Destroy (col.gameObject);
-		Debug.Log (col.gameObject.name + " was destroyed");
+
+		if (_isDestroyingTheFloor && col.gameObject.name == "Ground") {
+			Destroy (col.gameObject);
+			Debug.Log (col.gameObject.name + " was destroyed");
+		} else if (_isCharging) {
+			Destroy (col.gameObject);
+			Debug.Log (col.gameObject.name + " was destroyed");
+		}
+			
 
 		// TODO : check if gameObject could be destroyed
 	}
