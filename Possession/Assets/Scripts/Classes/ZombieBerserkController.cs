@@ -32,7 +32,8 @@ public class ZombieBerserkController : MonoBehaviour {
 	}
 
 	public void Charge () {
-		
+		transform.Translate( Time.deltaTime, 0, 0);
+		// TODO : set good direction with speed
 	}
 
 	public void DestroyTheFloor () {
