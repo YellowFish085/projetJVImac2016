@@ -32,14 +32,14 @@ public class ZombieBerserk : MonoBehaviour {
 	}
 
 	public void Charge () {
-		transform.Translate( Time.deltaTime, 0, 0);
+		transform.Translate( Time.deltaTime, 0f, 0f);
 
 		// TODO : - set good direction with speed
 		//        - add animation on start/end
 	}
 
 	public void DestroyTheFloor () {
-		transform.Translate( 0, -Time.deltaTime, 0);
+		transform.Translate( 0f, -Time.deltaTime, 0f);
 
 		// TODO : - keep negative value
 		//        - set good direction with speed
