@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 61147405327693652}
   m_Layer: 0
   m_Name: BaseZombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1096,7 +1096,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881383585763732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.115538985, y: -34.4, z: 45.24488}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4619272557926290}
@@ -1648,6 +1648,7 @@ MonoBehaviour:
   jumpForce: 1300
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
+  active: 1
 --- !u!114 &114530399758030874
 MonoBehaviour:
   m_ObjectHideFlags: 1
