@@ -31,6 +31,10 @@ public class ZombieBerserk : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter (Collision col) {
+		Debug.Log (col.gameObject.name);
+	}
+
 	public void Charge () {
 		transform.Translate( Time.deltaTime, 0f, 0f);
 
