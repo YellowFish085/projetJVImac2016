@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieBerserk : MonoBehaviour {
+public class ZombieTank : MonoBehaviour {
 
 	// Zombie caracteristics :
 	// ----------------------
