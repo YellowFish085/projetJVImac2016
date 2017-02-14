@@ -34,6 +34,8 @@ public class ZombieTank : MonoBehaviour {
 	void OnCollisionEnter (Collision col) {
 		Destroy (col.gameObject);
 		Debug.Log (col.gameObject.name + " was destroyed");
+
+		// TODO : check if gameObject could be destroyed
 	}
 
 	public void Charge () {
