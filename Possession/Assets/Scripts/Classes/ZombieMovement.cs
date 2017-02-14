@@ -7,6 +7,8 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
+    public enum Direction { None, Up, Right, Down, Left };
+
     private bool grounded = false;
     private Transform groundCheck;
 
@@ -28,7 +30,7 @@ public class ZombieMovement : MonoBehaviour {
         }
     }
 
-    public void Action(string combination)
+    public void Action(Direction direction)
     {
         if (grounded)
         {
