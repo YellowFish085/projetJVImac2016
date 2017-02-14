@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeZombie: {fileID: 0}
   scientist: {fileID: 0}
+  maxSwappingDistance: 100
