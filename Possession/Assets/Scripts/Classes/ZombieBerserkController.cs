@@ -22,6 +22,15 @@ public class ZombieBerserkController : MonoBehaviour {
 	private bool _isCharging = false;
 	private bool _isDestroyingTheFloor = false;
 
+	void Update () {
+		if (_isCharging) {
+			Charge ();
+		}
+		else if (_isDestroyingTheFloor) {
+			DestroyTheFloor ();
+		}
+	}
+
 	public void Charge () {
 		
 	}
