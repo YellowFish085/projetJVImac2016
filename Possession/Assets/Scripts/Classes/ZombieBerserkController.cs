@@ -17,12 +17,15 @@ public class ZombieBerserkController : MonoBehaviour {
 	//    - Charge : charge something if it can be charged and/or broken
 	//    - DestroyFloor : destroy the floor if it can be broken
 
+	private bool _isCharging = false;
+	private bool _isDestroyingTheFloor = false;
+
 
 	public void Charge () {
 	
 	}
 
-	public void DestroyFloor () {
+	public void DestroyTheFloor () {
 	
 	}
 }
