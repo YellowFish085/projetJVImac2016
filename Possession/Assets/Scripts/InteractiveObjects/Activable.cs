@@ -14,7 +14,7 @@ namespace InteractiveObjects {
 	public abstract class Activable : MonoBehaviour {
 
 		public uint numberOfSteps = 0;
-		private int maxNumberOfSteps = -1;
+		protected int maxNumberOfSteps = -1;
 
 		public abstract void process (uint stepIdx);
 
