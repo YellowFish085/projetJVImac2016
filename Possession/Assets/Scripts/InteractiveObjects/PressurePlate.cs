@@ -20,21 +20,23 @@ namespace InteractiveObjects {
 		}
 
 		// Increment step on input
-		public void NextStepOnInput() {
+		private void NextStepOnInput() {
 			if(currentStep < this.attachedObject.numberOfSteps) {
 				currentStep++;
 			} else {
 				currentStep = 0;
 			}
+			this.runStep();
 		}
 
 		// Decrement step on input
-		public void PreviousStepOnInput() {
+		private void PreviousStepOnInput() {
 			if(currentStep > 0) {
 				currentStep--;
 			} else {
 				currentStep = this.attachedObject.numberOfSteps;
 			}
+			this.runStep();
 		}
 
 	}
