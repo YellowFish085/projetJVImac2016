@@ -7,6 +7,8 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
+	public enum Direction { None, Up, Right, Down, Left };
+
     [HideInInspector]
     public bool active = true;
 
@@ -33,6 +35,17 @@ public class ZombieMovement : MonoBehaviour {
         }
     }
 
+    public void Action(Direction direction)
+    {
+        if (grounded)
+        {
+            if(name == "Seductive")
+            {
+                GetComponent<ZombieSeductive>().Seduce();
+            }
+        }
+    }
+
     /// <summary>
     /// Méthode appelée par le PlayerController. 
     /// Le mouvement est fait pour être arcade et pas chiant, aka 0 inertie sauf dans les sauts.
@@ -40,7 +53,7 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
-        if (!enabled) return;
+		if (!enabled) return;
 
         if (magnitude != 0)
         {
