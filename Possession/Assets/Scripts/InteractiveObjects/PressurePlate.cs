@@ -18,7 +18,7 @@ namespace InteractiveObjects {
 			currentStep = 0;
 			this.runStep();
 		}
-			
+
 	}
 
 }
