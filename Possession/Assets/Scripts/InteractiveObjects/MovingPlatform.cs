@@ -14,7 +14,8 @@ namespace InteractiveObjects {
 
 		/* Override OnValidate and set defaultValue before to call parent's OnValidate() to allow step creation in *
 		 * unity UI */
-		override public void OnValidate() {
+		override
+		public void OnValidate() {
 			this.defaultValue = GetComponent<Transform> ().position;
 			base.OnValidate ();
 		}
