@@ -40,6 +40,7 @@ public class UniqueObjectsHandler : MonoBehaviour {
 
         playerControllerNode.GetComponent<PlayerController>().activeZombie = carrier.GetComponent<ZombieMovement>();
         GameObject.FindObjectOfType<CameraMovement>().SetTarget(carrier);
+
         return true;
     }
 }
