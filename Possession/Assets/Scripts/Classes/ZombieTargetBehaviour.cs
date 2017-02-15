@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieTargetTraking : MonoBehaviour {
+public class ZombieTargetBehaviour : MonoBehaviour {
 
     public GameObject target;
     
     private bool stop = false;
     private bool collided = false;
     private float offsetX;
+    private bool hitchTo;
     //private float heightObject;
     
     void Start () {
+
+        this.target = GameObject.FindGameObjectsWithTag("Scientist")[0];
+
+        float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
+        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
         //heightObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
     }
 	
@@ -48,7 +54,13 @@ public class ZombieTargetTraking : MonoBehaviour {
         
         float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
 
-        offsetX = (deltaY > heightObject) ? Random.Range(5, 10) : 0;
+        //offsetX = (deltaY > heightObject) ? Random.Range(5, 10) : 0;
+        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+    }
+
+    void HoldOn()
+    {
+
     }
 
 
