@@ -14,10 +14,10 @@ public class ZombieTargetBehaviour : MonoBehaviour {
     
     void Start () {
 
-        this.target = GameObject.FindGameObjectsWithTag("Scientist")[0];
+       /* this.target = GameObject.FindGameObjectsWithTag("Scientist")[0];
 
         float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;*/
         //heightObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
     }
 	
@@ -29,7 +29,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
         //if (Mathf.Abs(directionVector.y) > heightObject)
         if (Mathf.Abs(directionVector.y) > 0)
-            stop = (Mathf.Abs(directionVector.x) <= offsetX) ? true : false;
+            stop = (Mathf.Abs(directionVector.x) <= offsetX);
         else
             stop = collided;
 
@@ -45,7 +45,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        collided = (col.gameObject == target) ? true : false; // Oui! Parce que stop = (col.gameObject == target) ça marche.
+        collided = (col.gameObject == target);
     }
 
     void SetTarget(GameObject newTarget)
