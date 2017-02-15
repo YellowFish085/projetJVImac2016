@@ -13,7 +13,8 @@ namespace InteractiveObjects {
 
 	public abstract class Activable : MonoBehaviour {
 
-		public uint numberOfSteps;
+		public uint numberOfSteps = 0;
+		private int maxNumberOfSteps = -1;
 
 		public abstract void process (uint stepIdx);
 
@@ -27,6 +28,13 @@ namespace InteractiveObjects {
 
 		}
 
+		public int getMaxNumberOfSteps() {
+			return maxNumberOfSteps;
+		}
+
+		public void setMaxNumberOfSteps(int value) {
+			maxNumberOfSteps = value;
+		}
 		virtual public void OnValidate() {
 			
 		}
@@ -36,11 +44,15 @@ namespace InteractiveObjects {
 	public abstract class Activable<T> : Activable {
 
 		protected T defaultValue;
-		public T[] steps;
+		public T[] steps = new T[0];
 
 		override
 		public void OnValidate() {
-			if (numberOfSteps != steps.Length) {
+			if (numberOfSteps != steps.Length || 
+				(maxNumberOfSteps > 0 && numberOfSteps != maxNumberOfSteps)) {
+				if (maxNumberOfSteps > 0 && numberOfSteps != maxNumberOfSteps) {
+					numberOfSteps = (uint) maxNumberOfSteps;
+				}
 				int previousSize = steps.Length;
 				Debug.Log ("Hey dumbass you changed a value right here !");
 				Array.Resize<T>(ref this.steps, (int) numberOfSteps);

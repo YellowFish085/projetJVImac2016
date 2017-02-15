@@ -5,7 +5,7 @@ using UnityEngine;
 namespace InteractiveObjects {
 	/* Example class deriving Interruptor */
 
-	public class PressurePlate : Activator {
+	public class PressurePlate : OnOffActivator {
 			
 		// Run step 1 of attachedObject when object on pressurePlate
 		void OnCollisionEnter2D(Collision2D collision) {
