@@ -1,10 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-
-
 namespace Possession 
 {
-	public class Player : MonoBehaviour
+	public class Player
 	{
 		private bool _available;
 		private GameObject _currentPuppet;
