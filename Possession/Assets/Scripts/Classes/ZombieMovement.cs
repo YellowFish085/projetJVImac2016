@@ -7,6 +7,12 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
+    private float currentSpeed;
+    private float currentJumpForce;
+
+    private float speedWeight = 0;
+    private float jumpWeight = 0;
+
     [HideInInspector]
     public bool active = true;
 
@@ -16,6 +22,8 @@ public class ZombieMovement : MonoBehaviour {
     private void Awake()
     {
         groundCheck = transform.Find("groundCheck");
+        currentSpeed = maxSpeed;
+        currentJumpForce = jumpForce;
     }
 
     private void Update()
@@ -54,14 +62,14 @@ public class ZombieMovement : MonoBehaviour {
 
         if (grounded)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(magnitude * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(magnitude * currentSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.right * magnitude * lateralAirborneAcceleration);
         }
 
-        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > currentSpeed)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
@@ -82,5 +90,17 @@ public class ZombieMovement : MonoBehaviour {
 		Vector3 currentScale = transform.localScale;
 		currentScale.x = Mathf.Sign(lateralAcceleration);
 		transform.localScale = currentScale;
+    }
+
+    public void IncrementSpeedWeight(float increment)
+    {
+        speedWeight += increment;
+        Mathf.Min(Mathf.Max(maxSpeed, currentSpeed + speedWeight), 0);
+    }
+
+    public void IncrementJumpWeight(float increment)
+    {
+        jumpWeight += increment;
+        Mathf.Min(Mathf.Max(maxSpeed, currentJumpForce + jumpWeight), 0);
     }
 }
