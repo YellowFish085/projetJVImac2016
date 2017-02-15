@@ -35,6 +35,7 @@ namespace InteractiveObjects {
 		public void setMaxNumberOfSteps(int value) {
 			maxNumberOfSteps = value;
 		}
+
 		virtual public void OnValidate() {
 			
 		}
@@ -53,8 +54,8 @@ namespace InteractiveObjects {
 				if (maxNumberOfSteps > 0 && numberOfSteps != maxNumberOfSteps) {
 					numberOfSteps = (uint) maxNumberOfSteps;
 				}
+
 				int previousSize = steps.Length;
-				Debug.Log ("Hey dumbass you changed a value right here !");
 				Array.Resize<T>(ref this.steps, (int) numberOfSteps);
 				for (int i = previousSize; i < numberOfSteps; i++) {
 					steps [i] = this.defaultValue;

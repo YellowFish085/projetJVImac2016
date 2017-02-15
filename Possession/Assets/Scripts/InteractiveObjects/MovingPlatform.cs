@@ -6,6 +6,10 @@ namespace InteractiveObjects {
 
 	public class MovingPlatform : Activable<Vector3> {
 
+		void Start() {
+
+		}
+
 		// Update is called once per frame
 		// TODO Animate platform move 
 		void Update () {
@@ -21,7 +25,6 @@ namespace InteractiveObjects {
 
 		override
 		public void process (uint stepIdx) {
-			Debug.Log ("I move my ass to " + steps [stepIdx].x + ", " + steps [stepIdx].y);
 			GetComponent<Transform> ().position = steps [stepIdx];
 		}
 	}

@@ -34,8 +34,7 @@ namespace InteractiveObjects {
 		}
 
 		// Use this when you want to run a step
-		protected void runStep() {
-			Debug.Log ("I run the step " + currentStep);
+		public void runStep() {
 			attachedObject.process(currentStep);
 		}
 	}
