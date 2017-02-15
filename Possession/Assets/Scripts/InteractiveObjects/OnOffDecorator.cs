@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace InteractiveObjects {
 
+	/* Decorator to transform any Activator into a two states OnOffActivator *
+	 * Please follow this steps to create an OnOffActivator with the decorator : *
+	 * 	1. Create the Activable and the Activator and *
+	 * 	2. Attach your Activable to the Activator created on step 1 *
+	 * 	3. Attach OnOffDecorator script to the Activator created on step 1 *
+	 * 	4. Attach the Activator itself to OnOffDecorator's activator attribute *
+	 * 	5. The two steps are set in the activable */
 	public class OnOffDecorator : Activator {
 
 		public Activator activator;

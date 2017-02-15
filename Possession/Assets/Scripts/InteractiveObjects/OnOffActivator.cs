@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace InteractiveObjects {
+
+	/* Generic two states Activator. To create a On/Off Activator you can derive this class */
 	public class OnOffActivator : Activator {
 
 		// Use this for initialization
