@@ -100,12 +100,7 @@ public class PlayerController : MonoBehaviour {
     private void InitZombieSelector()
     {
         zombieSelector = new ZombieSelector(scientist.transform.position, maxSwappingDistance);
-        GameObject firstZombie = zombieSelector.Next();
-
-        if (firstZombie != null)
-        {
-            controlledZombie = firstZombie;
-        }
+        controlledZombie = activeZombie.gameObject;
     }
 
     private void UpdateZombiesAround()
