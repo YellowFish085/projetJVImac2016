@@ -7,22 +7,17 @@ namespace InteractiveObjects {
 
 	public class IncrementalPressurePlate : Activator {
 
-		// Increment step on input
-		private void NextStepOnInput() {
+		// Call NextStep on collision
+		void OnCollisionExit2D(Collision2D collision) {
+			NextStep ();
+		}
+
+		// Increment step
+		private void NextStep() {
 			if(currentStep < this.attachedObject.numberOfSteps) {
 				currentStep++;
 			} else {
 				currentStep = 0;
-			}
-			this.runStep();
-		}
-
-		// Decrement step on input
-		private void PreviousStepOnInput() {
-			if(currentStep > 0) {
-				currentStep--;
-			} else {
-				currentStep = this.attachedObject.numberOfSteps;
 			}
 			this.runStep();
 		}
