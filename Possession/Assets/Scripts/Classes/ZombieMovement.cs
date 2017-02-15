@@ -7,7 +7,7 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
-	public enum Direction { None, Up, Right, Down, Left };
+    public enum Direction { None, Up, Right, Down, Left };
 
     [HideInInspector]
     public bool active = true;
@@ -39,6 +39,7 @@ public class ZombieMovement : MonoBehaviour {
     {
         if (grounded)
         {
+            Debug.Log("Action");
             if(name == "Seductive")
             {
                 GetComponent<ZombieSeductive>().Seduce();
@@ -53,7 +54,8 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
-		if (!enabled) return;
+
+        if (!enabled) return;
 
         if (magnitude != 0)
         {
