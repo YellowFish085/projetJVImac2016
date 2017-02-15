@@ -48,7 +48,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         collided = (col.gameObject == target);
     }
 
-    void SetTarget(GameObject newTarget)
+    public void SetTarget(GameObject newTarget)
     {
         this.target = newTarget;
         

@@ -5,9 +5,12 @@ using UnityEngine;
 public class ZombieSeductive : MonoBehaviour {
 
 	public void Seduce () {
-        foreach (GameObject currentZombie in GetZombiesInBoundaries())
+        List<GameObject> zombies = GetZombiesInBoundaries();
+
+        foreach (GameObject currentZombie in zombies)
         {
-            //currentZombie.GetComponent<ZombieTargetTracking>().SetTarget(this);
+            Debug.Log("Seduce");
+            currentZombie.GetComponent<ZombieTargetBehaviour>().SetTarget(gameObject);
         }
         
 	}
@@ -15,9 +18,11 @@ public class ZombieSeductive : MonoBehaviour {
 	// Update is called once per frame
 	private List<GameObject> GetZombiesInBoundaries () {
         List<GameObject> zombies = new List<GameObject>();
-        foreach (GameObject currentZombie in GameObject.FindGameObjectsWithTag("zombie"))
+        foreach (GameObject currentZombie in GameObject.FindGameObjectsWithTag("Zombie"))
         {
-            if(Vector3.Distance(currentZombie.transform.position, transform.position) < 30)
+            if(Vector3.Distance(currentZombie.transform.position, transform.position) < 30 
+                && currentZombie.GetComponent<ZombieSeductive>() == null
+                && (currentZombie.name != "Carrier"))
             {
                 zombies.Add(currentZombie);
             }

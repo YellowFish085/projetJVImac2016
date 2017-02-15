@@ -1074,7 +1074,7 @@ Prefab:
     - target: {fileID: 114128287936823962, guid: cbf36876c3a1e6b4ba1167daeb14116e,
         type: 2}
       propertyPath: initialScene
-      value: Scene Test
+      value: Seduce test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbf36876c3a1e6b4ba1167daeb14116e, type: 2}
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76633b6e96c335942b24346056d3e485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scientistPrefab: {fileID: 1881383585763732, guid: 6bbd33e117ea98048938f0226c85a3d4,
+  scientistPrefab: {fileID: 1174500128792838, guid: 79ee3fe8290002b4a908dc8f6bdddd31,
     type: 2}
   carrierPrefab: {fileID: 1881383585763732, guid: 6bbd33e117ea98048938f0226c85a3d4,
     type: 2}

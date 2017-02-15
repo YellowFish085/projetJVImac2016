@@ -39,6 +39,7 @@ public class ZombieMovement : MonoBehaviour {
     {
         if (grounded)
         {
+            Debug.Log("Action");
             if(name == "Seductive")
             {
                 GetComponent<ZombieSeductive>().Seduce();
@@ -53,12 +54,8 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
-<<<<<<< HEAD
-        //Debug.Log("Move");
-=======
         if (!enabled) return;
-
->>>>>>> refs/remotes/origin/dev
+        
         if (magnitude != 0)
         {
             Flip(magnitude);
