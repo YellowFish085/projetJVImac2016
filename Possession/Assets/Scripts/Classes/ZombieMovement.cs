@@ -31,6 +31,9 @@ public class ZombieMovement : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
         }
+
+
+			
     }
 
     /// <summary>
@@ -72,12 +75,12 @@ public class ZombieMovement : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = new Vector2(30, GetComponent<Rigidbody2D>().velocity.y);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 
-    private void Flip(float lateralAcceleration)
+    public void Flip(float lateralAcceleration)
     {
 		Vector3 currentScale = transform.localScale;
 		currentScale.x = Mathf.Sign(lateralAcceleration);
