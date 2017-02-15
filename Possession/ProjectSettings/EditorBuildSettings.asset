@@ -17,3 +17,7 @@ EditorBuildSettings:
     path: Assets/_Scene/Sample_loader/scene_4.unity
   - enabled: 1
     path: Assets/_Scene/Sample_loader/Scene_Test_Loader.unity
+  - enabled: 1
+    path: Assets/_Scene/test_victor/GameLoaderScene_victor.unity
+  - enabled: 1
+    path: Assets/_Scene/test_victor/swap.unity

@@ -7,7 +7,10 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
-    public enum Direction { None, Up, Right, Down, Left };
+	public enum Direction { None, Up, Right, Down, Left };
+
+    [HideInInspector]
+    public bool active = true;
 
     private bool grounded = false;
     private Transform groundCheck;
@@ -24,6 +27,8 @@ public class ZombieMovement : MonoBehaviour {
 
     public void Jump()
     {
+        if (!enabled) return;
+
         if (grounded)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
@@ -48,7 +53,8 @@ public class ZombieMovement : MonoBehaviour {
     /// <param name="magnitude">Axe du stick/bouton pressé</param>
     public void Move(float magnitude)
     {
-        //Debug.Log("Move");
+		if (!enabled) return;
+
         if (magnitude != 0)
         {
             Flip(magnitude);

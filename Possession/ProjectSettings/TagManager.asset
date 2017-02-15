@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Scientific
+  - Zombie
+  - Scientist
   layers:
   - Default
   - TransparentFX
