@@ -55,7 +55,7 @@ public class ZombieTank : MonoBehaviour {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject + " was destroyed");
 			_isDestroyingTheFloor = false;
-		} else if (_isCharging && col.gameObject.tag != "Zombie" && col.gameObject.tag != "Scientist") {
+		} else if (_isCharging && col.gameObject.tag == "DestructibleObject") {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject.name + " was destroyed");
 			_isCharging = false;
