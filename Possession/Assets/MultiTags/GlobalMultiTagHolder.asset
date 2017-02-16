@@ -24,3 +24,5 @@ MonoBehaviour:
     ID: 0
   - Name: Wall
     ID: 0
+  - Name: DestructibleObject
+    ID: 0
