@@ -46,24 +46,24 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Action");
             if (Input.GetAxis("Vertical") > 0) {
-                activeZombie.Action(ZombieMovement.Direction.Up);
+                activeZombie.Action(Direction.Up);
             }
 
             else if (Input.GetAxis("Horizontal") > 0) {
-                activeZombie.Action(ZombieMovement.Direction.Right);
+                activeZombie.Action(Direction.Right);
             }
 
             else if (Input.GetAxis("Vertical") < 0) {
-                activeZombie.Action(ZombieMovement.Direction.Down);
+                activeZombie.Action(Direction.Down);
             }
 
             else if (Input.GetAxis("Horizontal") < 0) {
-                activeZombie.Action(ZombieMovement.Direction.Left);
+                activeZombie.Action(Direction.Left);
             }
 
             else
             {
-                activeZombie.Action(ZombieMovement.Direction.None);
+                activeZombie.Action(Direction.None);
             }
         }
 

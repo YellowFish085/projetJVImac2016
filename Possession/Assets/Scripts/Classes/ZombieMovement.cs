@@ -7,8 +7,6 @@ public class ZombieMovement : MonoBehaviour {
     public float lateralAirborneAcceleration;
     public float maxSpeed;
 
-    public enum Direction { None, Up, Right, Down, Left };
-
     [HideInInspector]
     public bool active = true;
 
@@ -37,14 +35,20 @@ public class ZombieMovement : MonoBehaviour {
 
     public void Action(Direction direction)
     {
-        if (grounded)
+        Debug.Log("Action");
+
+        if(name == "Seductive")
         {
-            Debug.Log("Action");
-            if(name == "Seductive")
-            {
-                GetComponent<ZombieSeductive>().Seduce();
-            }
+            GetComponent<ZombieSeductive>().Seduce();
         }
+
+		else if (GetComponent<ZombieTank> ()){
+			if (direction == Direction.Left || direction == Direction.Right || direction == Direction.None) {
+				GetComponent<ZombieTank> ().Charge (direction);
+			} else if (direction == Direction.Down) {
+				GetComponent<ZombieTank> ().DestroyTheFloor ();
+			}
+		}
     }
 
     /// <summary>
@@ -89,7 +93,15 @@ public class ZombieMovement : MonoBehaviour {
 
     private bool IsGrounded()
     {
-        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, groundCheck.position);
+        if (hit.collider)
+        {
+            return hit.collider.gameObject.HasTag("Ground");
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void Flip(float lateralAcceleration)
