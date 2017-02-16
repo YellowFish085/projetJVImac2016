@@ -49,9 +49,7 @@ public class ZombieMovement : MonoBehaviour {
     public void Move(float magnitude)
     {
         if (!enabled) return;
-
-        Debug.Log("Move.currentSpeed = " + currentSpeed);
-        Debug.Log("Move.velocity = " + magnitude * currentSpeed);
+        
         if (magnitude != 0)
         {
             Flip(magnitude);
@@ -96,10 +94,8 @@ public class ZombieMovement : MonoBehaviour {
 
     public void IncrementSpeedWeight(float increment)
     {
-        Debug.Log("increment = " + increment);
         speedWeight += increment;
         currentSpeed = Mathf.Max(Mathf.Min(maxSpeed, maxSpeed + speedWeight), 0);
-        Debug.Log("currentSpeed = " + currentSpeed);
     }
 
     public void IncrementJumpWeight(float increment)
