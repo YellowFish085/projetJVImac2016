@@ -21,7 +21,7 @@ public class ZombieSeductive : MonoBehaviour {
         foreach (GameObject currentZombie in GameObject.FindGameObjectsWithTag("Zombie"))
         {
             if(Vector3.Distance(currentZombie.transform.position, transform.position) < 30 
-                && currentZombie.GetComponent<ZombieSeductive>() == null
+                && !currentZombie.gameObject.HasTag("Seductive")
                 && (currentZombie.name != "Carrier"))
             {
                 zombies.Add(currentZombie);
