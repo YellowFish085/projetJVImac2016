@@ -21,12 +21,20 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
     // Offset if target is up to this.
     private float offsetX = 0;
+
+    // For unactive temporary collision
+    private int oldLayer;
+    private int voidLayer;
+
     //private Vector3 hitchToOffset;
     //private float heightObject;
 
     void Awake () {
         initParent = transform.parent.transform;
+        oldLayer = gameObject.GetComponent<Collider2D>().gameObject.layer;
+        voidLayer = LayerMask.NameToLayer("ZombieTargetBehaviourVoidCollision");
         this.SetTarget(GameObject.Find(targetName));
+        Physics2D.IgnoreLayerCollision(voidLayer, voidLayer);
 
         /*float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
         offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;*/
@@ -95,11 +103,14 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         if(target)
         {
             float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-
-            // TODO : Add unActive Collider
-
+            
+            this.GetComponent<Collider2D>().gameObject.layer = voidLayer;
             //offsetX = (deltaY > heightObject) ? Random.Range(5, 10) : 0;
             offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+        }
+        else
+        {
+            this.GetComponent<Collider2D>().gameObject.layer = oldLayer;
         }
         
     }
