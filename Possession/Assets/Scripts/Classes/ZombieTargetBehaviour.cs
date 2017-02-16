@@ -5,6 +5,7 @@ using UnityEngine;
 public class ZombieTargetBehaviour : MonoBehaviour {
 
     public GameObject target;
+    public string targetName; // TODO : Delete after test
 
     // abs of "penality" value
     private float speedWeight = 15f;
@@ -25,10 +26,10 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
     void Awake () {
         initParent = transform.parent.transform;
-        this.target = GameObject.Find("Carrier");
+        this.SetTarget(GameObject.Find(targetName));
 
-        float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+        /*float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
+        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;*/
         //heightObject = gameObject.GetComponent<Csollider2D>().bounds.size.x;
     }
 	
