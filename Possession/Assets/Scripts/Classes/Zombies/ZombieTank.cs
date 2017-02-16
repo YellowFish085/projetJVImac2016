@@ -50,7 +50,7 @@ public class ZombieTank : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-		if (_isDestroyingTheFloor && col.gameObject.transform.parent.name == "Ground") {
+		if (_isDestroyingTheFloor && col.gameObject.HasTag("DestructibleObject")) {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject + " was destroyed");
 			_isDestroyingTheFloor = false;
