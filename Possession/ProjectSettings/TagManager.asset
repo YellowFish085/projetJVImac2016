@@ -7,7 +7,6 @@ TagManager:
   - Zombie
   - Scientist
   - Seductive
-  - DestructibleObject
   layers:
   - Default
   - TransparentFX
