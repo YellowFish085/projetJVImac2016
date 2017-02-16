@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 717966946}
   - component: {fileID: 717966950}
   - component: {fileID: 717966947}
+  - component: {fileID: 717966952}
   - component: {fileID: 717966951}
   m_Layer: 0
   m_Name: Cube
@@ -287,7 +288,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 717966945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c55b808597a52a4599536873ddd41c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 75ef26f08d5bdd5438b49b32781a5855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedObject: {fileID: 0}
+  activator: {fileID: 717966952}
+--- !u!114 &717966952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 717966945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60727d7992250449e86fe47646cc9eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachedObject: {fileID: 1261332016}
@@ -439,10 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa5756aa1461954e80186030b400e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSteps: 3
+  numberOfSteps: 2
   steps:
-  - {x: 14.44, y: 10.73, z: 2.5585938}
-  - {x: 14.44, y: 27.25, z: 2.5585938}
+  - {x: -3.59, y: 27.25, z: 2.5585938}
   - {x: -3.59, y: 27.25, z: 2.5585938}
 --- !u!23 &1261332017
 MeshRenderer:
