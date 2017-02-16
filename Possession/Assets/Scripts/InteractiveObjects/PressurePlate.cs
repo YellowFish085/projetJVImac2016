@@ -9,8 +9,18 @@ namespace InteractiveObjects {
 			
 		// Run step 1 of attachedObject when object on pressurePlate
 		void OnCollisionEnter2D(Collision2D collision) {
-			currentStep = 1;
-			this.runStep();
+			var contactPoint = collision.contacts[0].point;
+
+			if (contactPoint.y >= GetComponent<Transform>().position.y
+				&& collision.gameObject.GetComponent<Transform>().position.x > GetComponent<Transform>().position.x - GetComponent<Collider2D>().bounds.size.x / 2
+				&& collision.gameObject.GetComponent<Transform>().position.x < GetComponent<Transform>().position.x + GetComponent<Collider2D>().bounds.size.x / 2)
+			{
+				Debug.Log ("Collision from top !");
+				Debug.Log ("Collision point = " + contactPoint);
+				Debug.Log ("Plate point = " + GetComponent<Transform>().position.y);
+				currentStep = 1;
+				this.runStep ();
+			}
 		}
 
 		// Run step 0 of attachedObject when object out of pressurePlate
