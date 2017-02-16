@@ -93,7 +93,15 @@ public class ZombieMovement : MonoBehaviour {
 
     private bool IsGrounded()
     {
-        return Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, groundCheck.position);
+        if (hit.collider)
+        {
+            return hit.collider.gameObject.HasTag("Ground");
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void Flip(float lateralAcceleration)
