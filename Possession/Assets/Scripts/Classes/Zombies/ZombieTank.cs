@@ -21,40 +21,41 @@ public class ZombieTank : MonoBehaviour {
 
 	private bool _isCharging = false;
 	private bool _isDestroyingTheFloor = false;
+	private bool _isDestroyingTheFloorAnim = false;
 
-	public enum Direction { Left, Right };
 	private Direction _targetedDirection;
 	private float _timeOnStart;
 
 	public float chargeSpeed;
+	public float destroyTheFloorIntensity;
 
 	void Update () {
-
-		if( (Time.time - _timeOnStart) > 2*1000f) {
-			_isCharging = false;
-			_isDestroyingTheFloor = false;
-		}
-
 
 		if (_isCharging) {
 			Vector2 rgVelocity = GetComponent<Rigidbody2D> ().velocity;
 			if (_targetedDirection == Direction.Left) {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2(chargeSpeed, rgVelocity.y);
-			} else if (_targetedDirection == Direction.Right) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2(-chargeSpeed, rgVelocity.y);
+			} else if (_targetedDirection == Direction.Right) {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2(chargeSpeed, rgVelocity.y);
 			}
 		}
-		else if (_isDestroyingTheFloor) {
-			transform.Translate( 0f, Time.deltaTime, 0f);
+		else if (_isDestroyingTheFloorAnim) {
+			GetComponent<Rigidbody2D> ().velocity = new Vector2(GetComponent<Rigidbody2D> ().velocity.x, destroyTheFloorIntensity);
+		}
+
+		if( (Time.time - _timeOnStart) > 0.5f) {
+			_isCharging = false;
+			_isDestroyingTheFloorAnim = false;
 		}
 	}
 
-	void OnCollisionEnter (Collision col) {
-		if (_isDestroyingTheFloor && col.gameObject.name == "Ground") {
+	void OnCollisionEnter2D (Collision2D col) {
+		Debug.Log (col.gameObject.transform.parent.name);
+		if (_isDestroyingTheFloor && col.gameObject.transform.parent.name == "Ground") {
 			Destroy (col.gameObject);
-			Debug.Log (col.gameObject.name + " was destroyed");
+			Debug.Log (col.gameObject + " was destroyed");
 			_isDestroyingTheFloor = false;
-		} else if (_isCharging) {
+		} else if (_isCharging && col.gameObject.tag != "Zombie" && col.gameObject.tag != "Scientist") {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject.name + " was destroyed");
 			_isCharging = false;
@@ -64,7 +65,15 @@ public class ZombieTank : MonoBehaviour {
 	public void Charge (Direction direction) {
 		if (!_isCharging && !_isDestroyingTheFloor) {
 			_isCharging = true;
-			_targetedDirection = direction;
+			if (direction == Direction.None) {
+				if(transform.lossyScale.x < 0) {
+					_targetedDirection = Direction.Left;
+				} else {
+					_targetedDirection = Direction.Right;
+				}
+			} else {
+				_targetedDirection = direction;
+			}
 			_timeOnStart = Time.time;
 		}
 	}
@@ -72,7 +81,7 @@ public class ZombieTank : MonoBehaviour {
 	public void DestroyTheFloor () {
 		if (!_isDestroyingTheFloor && !_isCharging) {
 			_isDestroyingTheFloor = true;
-			_timeOnStart = Time.time;
+			_isDestroyingTheFloorAnim = true;
 		}
 	}
 }

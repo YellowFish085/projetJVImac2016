@@ -730,9 +730,10 @@ GameObject:
   - component: {fileID: 50209558167114738}
   - component: {fileID: 114199349154691228}
   - component: {fileID: 61147405327693652}
+  - component: {fileID: 114834401618935096}
   m_Layer: 0
   m_Name: BaseZombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1096,7 +1097,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881383585763732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.115538985, y: -34.4, z: 45.24488}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4619272557926290}
@@ -1648,6 +1649,7 @@ MonoBehaviour:
   jumpForce: 1300
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
+  active: 1
 --- !u!114 &114530399758030874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1659,6 +1661,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17583d4c5fb7b1d4f9faf4083569db1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114834401618935096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881383585763732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6f013247d246241a77e67e73c1aaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!137 &137194878133856356
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
