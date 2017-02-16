@@ -1675,9 +1675,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1c22f5408c9a74f851f06bcbe7bb23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 1300
-  lateralAirborneAcceleration: 94.27
-  maxSpeed: 20
+  jumpForce: 1600
+  lateralAirborneAcceleration: 300
+  maxSpeed: 40
   active: 1
 --- !u!114 &114239839301935600
 MonoBehaviour:
