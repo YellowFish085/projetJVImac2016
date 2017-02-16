@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 33010783}
   - component: {fileID: 33010782}
   - component: {fileID: 33010781}
+  - component: {fileID: 33010784}
   m_Layer: 8
   m_Name: CubeToBeDestroyedBis
   m_TagString: DestructibleObject
@@ -174,6 +175,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33010779}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &33010784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33010779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localTagList:
+  - Name: DestrucibleObject
+    ID: 0
 --- !u!1 &437550252
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +320,7 @@ GameObject:
   - component: {fileID: 729450876}
   - component: {fileID: 729450875}
   - component: {fileID: 729450874}
+  - component: {fileID: 729450877}
   m_Layer: 8
   m_Name: CubeToBeDestroyed
   m_TagString: DestructibleObject
@@ -377,6 +393,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 729450872}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &729450877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 729450872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localTagList:
+  - Name: DestrucibleObject
+    ID: 0
 --- !u!1 &746237891
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +633,7 @@ GameObject:
   - component: {fileID: 1706001120}
   - component: {fileID: 1706001118}
   - component: {fileID: 1706001121}
+  - component: {fileID: 1706001119}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -654,6 +685,20 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &1706001119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706001116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localTagList:
+  - Name: Ground
+    ID: 0
 --- !u!33 &1706001120
 MeshFilter:
   m_ObjectHideFlags: 0
