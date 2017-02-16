@@ -22,5 +22,5 @@ MonoBehaviour:
     ID: 0
   - Name: Ground
     ID: 0
-  - Name: DestrucibleObject
+  - Name: DestructibleObject
     ID: 0
