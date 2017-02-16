@@ -21,6 +21,8 @@ public class ZombieNinja : MonoBehaviour {
 	private bool isAgainstWall;
 	private float _jumpForce;
 	private float lastDir;
+	private RaycastHit2D wallHit;
+	private string latestWall;
 
 	private void Awake(){
 		wallCheck = transform.Find("wallCheck");
@@ -30,23 +32,31 @@ public class ZombieNinja : MonoBehaviour {
 	public void WallJump() {
 		if (IsAgainstWall () && !GetComponent<ZombieMovement>().IsGrounded()) {
 
-			float dir = Mathf.Sign (wallCheck.position.x - transform.position.x);
+			if (wallHit.collider.name != latestWall) {
 
-			GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(-dir*_jumpForce*3, _jumpForce));
-			GetComponent<ZombieMovement>().Flip(-dir);
+				latestWall = wallHit.collider.name;
+				float dir = Mathf.Sign (wallCheck.position.x - transform.position.x);
+				GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+				GetComponent<Rigidbody2D>().AddForce(new Vector2(-dir*_jumpForce*3, _jumpForce));
+				GetComponent<ZombieMovement>().Flip(-dir);
+			}
+
 		}
 	}
 
 	private void Update()
 	{
 		isAgainstWall = IsAgainstWall ();
-
+		if (GetComponent<ZombieMovement> ().IsGrounded ())
+			latestWall = null;
 	}
 
 	private bool IsAgainstWall()
 	{
-		return Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Wall"));
+		
+		wallHit = Physics2D.Linecast (transform.position, wallCheck.position, 1 << LayerMask.NameToLayer ("Wall"));
+		return wallHit;
+
 	}
 		
 }
