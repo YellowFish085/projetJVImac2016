@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 33010784}
   m_Layer: 8
   m_Name: CubeToBeDestroyedBis
-  m_TagString: DestructibleObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localTagList:
-  - Name: DestrucibleObject
+  - Name: DestructibleObject
     ID: 0
 --- !u!1 &437550252
 GameObject:
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 729450877}
   m_Layer: 8
   m_Name: CubeToBeDestroyed
-  m_TagString: DestructibleObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localTagList:
-  - Name: DestrucibleObject
+  - Name: DestructibleObject
     ID: 0
 --- !u!1 &746237891
 GameObject:
@@ -648,7 +648,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1706001116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -2.4, z: 8.9}
+  m_LocalPosition: {x: 0, y: -2.4, z: 8.9}
   m_LocalScale: {x: 217.93, y: 4.01608, z: 52.57}
   m_Children: []
   m_Father: {fileID: 437550253}
@@ -698,6 +698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localTagList:
   - Name: Ground
+    ID: 0
+  - Name: DestructibleObject
     ID: 0
 --- !u!33 &1706001120
 MeshFilter:
