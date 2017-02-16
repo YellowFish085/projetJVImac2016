@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4655cdf20e6457ea426ba121929201, type: 3}
+  m_Name: GlobalMultiTagHolder
+  m_EditorClassIdentifier: 
+  GlobalTagList:
+  - Name: 456e656d79
+    ID: 0
+  - Name: 526564
+    ID: 0
+  - Name: 4f72616e6765
+    ID: 0
+  - Name: 68656c6c6f
+    ID: 0
+  - Name: Ground
+    ID: 0
+  - Name: Wall
+    ID: 0

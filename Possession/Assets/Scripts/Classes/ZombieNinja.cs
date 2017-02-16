@@ -18,6 +18,7 @@ public class ZombieNinja : MonoBehaviour {
 
 
 	private Transform wallCheck;
+	private Transform guyCheck;
 	private bool isAgainstWall;
 	private float _jumpForce;
 	private float lastDir;
@@ -26,12 +27,12 @@ public class ZombieNinja : MonoBehaviour {
 
 	private void Awake(){
 		wallCheck = transform.Find("wallCheck");
+		guyCheck = transform.Find("guyCheck");
 		_jumpForce = GetComponent<ZombieMovement>().jumpForce;
 	}
 
 	public void WallJump() {
 		if (IsAgainstWall () && !GetComponent<ZombieMovement>().IsGrounded()) {
-
 			if (wallHit.collider.name != latestWall) {
 
 				latestWall = wallHit.collider.name;
@@ -54,8 +55,15 @@ public class ZombieNinja : MonoBehaviour {
 	private bool IsAgainstWall()
 	{
 		
-		wallHit = Physics2D.Linecast (transform.position, wallCheck.position, 1 << LayerMask.NameToLayer ("Wall"));
-		return wallHit;
+		wallHit = Physics2D.Linecast(guyCheck.position, wallCheck.position);
+		if (wallHit.collider)
+		{
+			return wallHit.collider.gameObject.HasTag ("Wall");
+		}
+		else
+		{
+			return false;
+		}
 
 	}
 		
