@@ -6,10 +6,12 @@ public class ZombieCannibal : MonoBehaviour {
 
     private GameObject target;
     private bool locked = false;
+    private ZombieTargetBehaviour targetBehaviour;
 
 	// Use this for initialization
 	void Start () {
-	    	
+        targetBehaviour = gameObject.GetComponent<ZombieTargetBehaviour>();
+        target = GameObject.FindObjectOfType<UniqueObjectsHandler>().GetComponent<PlayerController>().gameObject;
 	}
 	
 	// Update is called once per frame
