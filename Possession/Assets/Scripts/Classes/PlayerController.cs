@@ -114,8 +114,7 @@ public class PlayerController : MonoBehaviour {
 
 		foreach(GameObject z in zombies)
 		{
-			Debug.Log (z);
-			scientist.GetComponentInChildren<BillBoard> ().addSelectable();
+			scientist.GetComponentInChildren<BillBoard> ().addSelectable(z);
 		}
 
         //TODO (Victor) : cache camera to avoid fetching
