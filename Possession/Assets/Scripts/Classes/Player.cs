@@ -1,14 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
-
-
 namespace Possession 
 {
-	public class Player : MonoBehaviour
+	public class Player
 	{
 		private bool _available;
-		private GameObject _currentPuppet;
 
-		//TODO : implement proxy functions to send input to current puppet
-	}
+        public enum State { SWAPPING, CONTROLLING }
+
+        private State state;
+
+        public Player()
+        {
+            state = State.CONTROLLING;
+            _available = true;
+        }
+
+        public State GetState()
+        {
+            return state;
+        }
+
+        public void SetState(State state)
+        {
+            this.state = state;
+        }
+    }
 }
