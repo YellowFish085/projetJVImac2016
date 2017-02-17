@@ -26,22 +26,15 @@ public class ZombieTargetBehaviour : MonoBehaviour {
     private int oldLayer;
     private int voidLayer;
 
-    //private Vector3 hitchToOffset;
-    //private float heightObject;
-
     void Awake () {
         initParent = transform.parent.transform;
         oldLayer = gameObject.GetComponent<Collider2D>().gameObject.layer;
         voidLayer = LayerMask.NameToLayer("ZombieTargetBehaviourVoidCollision");
-        this.SetTarget(GameObject.Find(targetName));
+        
         Physics2D.IgnoreLayerCollision(voidLayer, voidLayer);
-
-        /*float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;*/
-        //heightObject = gameObject.GetComponent<Csollider2D>().bounds.size.x;
+        this.SetTarget(GameObject.Find(targetName)); //TODO : Remove after test.
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
         if (target)
@@ -62,38 +55,33 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
     private void FollowTarget()
     {
-        Vector3 targetPosition = target.transform.position;
-        Vector3 thisPosition = gameObject.transform.position;
-        Vector3 directionVector = targetPosition - thisPosition;
+        Vector3 directionVector = target.transform.position - gameObject.transform.position;
         if (!gripped)
         {
-            //if (Mathf.Abs(directionVector.y) > heightObject)
             if (Mathf.Abs(directionVector.y) > 0)
                 stop = (Mathf.Abs(directionVector.x) <= offsetX);
             else
                 stop = gripped;
 
+            float direction = 0;
             if (!stop)
-            {
-                float direction = Mathf.Sign(directionVector.x);
-                gameObject.GetComponent<ZombieMovement>().Move(direction);
-            }
-            else if (stop)
-                gameObject.GetComponent<ZombieMovement>().Move(0);
+                direction = Mathf.Sign(directionVector.x);
+
+            gameObject.GetComponent<ZombieMovement>().Move(direction);
         }
         else
         {
-            if(directionVector.y > 0)
+            if(directionVector.y > 0) // if target jump
             {
-                float step = gameObject.GetComponent<ZombieMovement>().maxSpeed * Time.deltaTime;
+                float step = gameObject.GetComponent<ZombieMovement>().jumpForce * Time.deltaTime;
                 gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, localPosition, step);
             }
             else
+            {
+                gameObject.GetComponent<ZombieMovement>().Move(0);
                 gameObject.transform.localPosition = localPosition;
-
-            //Debug.Log("LocalPosition = " + gameObject.transform.localPosition);
+            }            
         }
-       
     }
 
     public void SetTarget(GameObject newTarget)
@@ -105,14 +93,10 @@ public class ZombieTargetBehaviour : MonoBehaviour {
             float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
             
             this.GetComponent<Collider2D>().gameObject.layer = voidLayer;
-            //offsetX = (deltaY > heightObject) ? Random.Range(5, 10) : 0;
             offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
         }
         else
-        {
             this.GetComponent<Collider2D>().gameObject.layer = oldLayer;
-        }
-        
     }
 
     public bool GetGripped()
@@ -126,12 +110,8 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
         gameObject.transform.SetParent(target.transform);
         localPosition = gameObject.transform.localPosition;
-
-        Debug.Log("LocalPosition = " + gameObject.transform.localPosition);
-        //hitchToOffset = gameObject.transform.localPosition - target.transform.localPosition;
         var zombieMovementComponent = target.GetComponent<ZombieMovement>();
-        Debug.Log("Grab it");
-        //Debug.Log("gameObject.transform.localPosition = " + thisTargetPoint + " -- target.transform.localPosition = " + targetPoint);
+
         zombieMovementComponent.IncrementSpeedWeight(-speedWeight);
         zombieMovementComponent.IncrementJumpWeight(-jumpWeight);
     }
@@ -141,6 +121,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         gripped = false;
         gameObject.transform.SetParent(initParent);
         var zombieMovementComponent = target.GetComponent<ZombieMovement>();
+
         zombieMovementComponent.IncrementSpeedWeight(speedWeight);
         zombieMovementComponent.IncrementJumpWeight(jumpWeight);
     }
