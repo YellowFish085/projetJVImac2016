@@ -104,6 +104,11 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             activeZombie = controlledZombie.GetComponent<ZombieMovement>();
+
+            var zombieTargetBehaviour = activeZombie.GetComponent<ZombieTargetBehaviour>();
+            if (zombieTargetBehaviour)
+                zombieTargetBehaviour.SetTarget(null);
+
             zombieSelector = null;
             SetToControlling();
         }
