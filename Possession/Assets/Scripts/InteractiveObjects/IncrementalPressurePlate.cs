@@ -9,7 +9,14 @@ namespace InteractiveObjects {
 
 		// Call NextStep on collision
 		void OnCollisionEnter2D(Collision2D collision) {
-			NextStep ();
+			var contactPoint = collision.contacts[0].point;
+
+			if (contactPoint.y >= GetComponent<Transform> ().position.y
+			    && collision.gameObject.GetComponent<Transform> ().position.x > GetComponent<Transform> ().position.x - GetComponent<Collider2D> ().bounds.size.x / 2
+			    && collision.gameObject.GetComponent<Transform> ().position.x < GetComponent<Transform> ().position.x + GetComponent<Collider2D> ().bounds.size.x / 2) 
+			{
+				NextStep ();
+			}
 		}
 
 		// Increment step
