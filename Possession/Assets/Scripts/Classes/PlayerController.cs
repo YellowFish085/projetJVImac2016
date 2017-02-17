@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             activeZombie.Jump();
+
+			// TODO change this hack into a clean design pattern asap
+			var zombieNinja = activeZombie.gameObject.GetComponent<ZombieNinja>();
+			if (zombieNinja) {
+				zombieNinja.WallJump ();
+			}
         }
 
         if (Input.GetButtonDown("Fire1"))

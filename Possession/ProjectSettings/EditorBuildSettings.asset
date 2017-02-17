@@ -28,4 +28,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scene/test_pedro/GameLoaderScene_pedro.unity
   - enabled: 1
+    path: Assets/_Scene/test_lucas/GameLoaderScene.unity
+  - enabled: 1
+    path: Assets/_Scene/test_lucas/walljump.unity
+  - enabled: 1
     path: Assets/_Scene/test_pedro/Tanktest.unity
