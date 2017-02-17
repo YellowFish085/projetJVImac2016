@@ -40,31 +40,19 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             activeZombie.Jump();
+
+			// TODO change this hack into a clean design pattern asap
+			var zombieNinja = activeZombie.gameObject.GetComponent<ZombieNinja>();
+			if (zombieNinja) {
+				zombieNinja.WallJump ();
+			}
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Action");
-            if (Input.GetAxis("Vertical") > 0) {
-                activeZombie.Action(Direction.Up);
-            }
 
-            else if (Input.GetAxis("Horizontal") > 0) {
-                activeZombie.Action(Direction.Right);
-            }
-
-            else if (Input.GetAxis("Vertical") < 0) {
-                activeZombie.Action(Direction.Down);
-            }
-
-            else if (Input.GetAxis("Horizontal") < 0) {
-                activeZombie.Action(Direction.Left);
-            }
-
-            else
-            {
-                activeZombie.Action(Direction.None);
-            }
+            activeZombie.Action(ComputeDirection());
         }
 
         float h = Input.GetAxisRaw("Horizontal");
@@ -74,6 +62,26 @@ public class PlayerController : MonoBehaviour {
         {
             SetToSwapping();
         }
+    }
+
+    private Direction ComputeDirection()
+    {
+        float hDir = Input.GetAxis("Horizontal");
+        float vDir = Input.GetAxis("Vertical");
+
+        if(Mathf.Abs(hDir) > Mathf.Abs(vDir))
+        {
+            return hDir > 0 ? Direction.Right : Direction.Left; //Made by Lucas Horand aka Luhof Le Grand
+        }
+        else if(Mathf.Abs(hDir) < Mathf.Abs(vDir))
+        {
+            return vDir > 0 ? Direction.Up : Direction.Down;
+        }
+        else
+        {
+            return Direction.None;
+        }
+
     }
 
     private void Swapping()
@@ -132,4 +140,5 @@ public class PlayerController : MonoBehaviour {
     {
         zombieSelector.Update();
     }
+
 }
