@@ -27,3 +27,10 @@ EditorBuildSettings:
     path: Assets/_Scene/Scene_test_QC/scene_test_2.unity
   - enabled: 1
     path: Assets/_Scene/Scene_test_QC/Scene_test_main_Loader.unity
+    path: Assets/_Scene/test_corentin/Seduce test.unity
+  - enabled: 1
+    path: Assets/_Scene/test_corentin/GameLoaderScene_corentin.unity
+  - enabled: 1
+    path: Assets/_Scene/test_pedro/GameLoaderScene_pedro.unity
+  - enabled: 1
+    path: Assets/_Scene/test_pedro/Tanktest.unity

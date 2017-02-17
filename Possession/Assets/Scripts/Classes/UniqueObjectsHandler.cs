@@ -39,6 +39,7 @@ public class UniqueObjectsHandler : MonoBehaviour {
         carrier.name = "Carrier";
 
         playerControllerNode.GetComponent<PlayerController>().activeZombie = carrier.GetComponent<ZombieMovement>();
+
         Debug.Assert(GameObject.FindObjectOfType<CameraMovement>(), "No prefab \"Main Camera\" in the RootNode");
         GameObject.FindObjectOfType<CameraMovement>().SetTarget(carrier);
         
