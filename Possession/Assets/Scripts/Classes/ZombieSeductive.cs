@@ -10,7 +10,10 @@ public class ZombieSeductive : MonoBehaviour {
         foreach (GameObject currentZombie in zombies)
         {
             Debug.Log("Seduce");
-            currentZombie.GetComponent<ZombieTargetBehaviour>().SetTarget(gameObject);
+            if (currentZombie.GetComponent<ZombieTargetBehaviour>())
+            {
+                currentZombie.GetComponent<ZombieTargetBehaviour>().SetTarget(gameObject);
+            }
         }
         
 	}
