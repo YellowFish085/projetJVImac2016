@@ -4,6 +4,7 @@ using Possession;
 public class PlayerController : MonoBehaviour {
     public ZombieMovement activeZombie;
     public GameObject scientist;
+	public GameObject wheel;
     public float maxSwappingDistance = 100f;
 
     private GameObject controlledZombie = null;
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButtonDown("Swap"))
         {
+			
             controlledZombie = zombieSelector.Next();
 
             //TODO (Victor) : cache camera to avoid fetching
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour {
 
     private void SetToSwapping()
     {
+		scientist.GetComponentInChildren<BillBoard>().enableDrawCircle();
         activeZombie.active = false;
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour {
 
     private void SetToControlling()
     {
+		scientist.GetComponentInChildren<BillBoard>().disableDrawCircle();
         activeZombie.active = true;
         player.SetState(Player.State.CONTROLLING);
 
