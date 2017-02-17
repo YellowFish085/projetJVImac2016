@@ -726,7 +726,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4322061951176382}
   - component: {fileID: 95865827986893280}
-  - component: {fileID: 114530399758030874}
   - component: {fileID: 50209558167114738}
   - component: {fileID: 114199349154691228}
   - component: {fileID: 61147405327693652}
@@ -1632,7 +1631,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114199349154691228
@@ -1644,35 +1643,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd1c22f5408c9a74f851f06bcbe7bb23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   jumpForce: 1300
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
   active: 1
---- !u!114 &114530399758030874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881383585763732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17583d4c5fb7b1d4f9faf4083569db1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114834401618935096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881383585763732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6f013247d246241a77e67e73c1aaa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!137 &137194878133856356
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

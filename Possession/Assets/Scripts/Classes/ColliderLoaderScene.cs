@@ -11,16 +11,17 @@ namespace Possession
     {
         public GameObject levelObject;
 
-        public string tagToVerify = "Scientist";
+        //public string nameToVerify = "Scientist";
+        public string nameToVerify = "Carrier";
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.tag == tagToVerify)
+            if (col.gameObject.name == nameToVerify)
             {
                 GameManager gm = GameManager.Instance;
                 var levelComponent = levelObject.GetComponent<Level>();
                 gm.SetCurrentLevel(levelComponent.GetNameCurrentName());
-                //gm.GetSaveManager().Save(); // TODO : uncommented after merge save branch.
+                gm.GetSaveManager().Save(); // TODO : uncommented after merge save branch.
 
                 string nextNameScene = levelComponent.nextLevel;
                 string previousNameScene = levelComponent.previousLevel;

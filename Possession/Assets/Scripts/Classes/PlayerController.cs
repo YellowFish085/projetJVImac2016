@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Possession;
 
 public class PlayerController : MonoBehaviour {
@@ -10,26 +8,28 @@ public class PlayerController : MonoBehaviour {
 
     private GameObject controlledZombie = null;
     private ZombieSelector zombieSelector;
+    private Player player;
 
-    // TODO (Victor) : potentiellement découpler dans la classe Player
-    enum PlayerState { SWAPPING, CONTROLLING }
-
-    private PlayerState playerState = PlayerState.CONTROLLING;
+    private void Awake()
+    {
+        player = new Player();
+    }
 
     // Update is called once per frame
     void Update () {
-        GameManager.State currentState = GameManager.Instance.GetState();
+        GameManager.State gameState = GameManager.Instance.GetState();
+        Player.State playerState = player.GetState();
 
-        if (currentState == GameManager.State.PAUSE || currentState == GameManager.State.MAIN_MENU)
+        if (gameState == GameManager.State.PAUSE || gameState == GameManager.State.MAIN_MENU)
         {
             return;
         }
 
-        if (playerState == PlayerState.CONTROLLING)
+        if (playerState == Player.State.CONTROLLING)
         {
             Controlling();
         }
-        else if (playerState == PlayerState.SWAPPING)
+        else if (playerState == Player.State.SWAPPING)
         {
             Swapping();
         }
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour {
     private void SetToSwapping()
     {
         activeZombie.active = false;
-        playerState = PlayerState.SWAPPING;
+        player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
 
         //TODO (Victor) : cache camera to avoid fetching
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour {
     private void SetToControlling()
     {
         activeZombie.active = true;
-        playerState = PlayerState.CONTROLLING;
+        player.SetState(Player.State.CONTROLLING);
 
         //TODO (Victor) : cache camera to avoid fetching
         CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
@@ -131,12 +131,7 @@ public class PlayerController : MonoBehaviour {
     private void InitZombieSelector()
     {
         zombieSelector = new ZombieSelector(scientist.transform.position, maxSwappingDistance);
-        GameObject firstZombie = zombieSelector.Next();
-
-        if (firstZombie != null)
-        {
-            controlledZombie = firstZombie;
-        }
+        controlledZombie = activeZombie.gameObject;
     }
 
     private void UpdateZombiesAround()
