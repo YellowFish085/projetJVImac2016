@@ -5,62 +5,126 @@ using UnityEngine;
 public class ZombieTargetBehaviour : MonoBehaviour {
 
     public GameObject target;
-    
+    public string targetName; // TODO : Delete after test
+
+    // abs of "penality" value
+    private float speedWeight = 15f;
+    private float jumpWeight = 15f;
+
+    // initial parent for switch beetween parent of the different scene
+    private Transform initParent;
+    private Vector3 localPosition;
+
+    // Boolean step
     private bool stop = false;
-    private bool collided = false;
-    private float offsetX;
-    private bool hitchTo;
-    //private float heightObject;
-    
-    void Start () {
+    private bool gripped = false;
 
-       /* this.target = GameObject.FindGameObjectsWithTag("Scientist")[0];
+    // Offset if target is up to this.
+    private float offsetX = 0;
 
-        float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;*/
-        //heightObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
+    // For unactive temporary collision
+    private int oldLayer;
+    private int voidLayer;
+
+    void Awake () {
+        initParent = transform.parent.transform;
+        oldLayer = gameObject.GetComponent<Collider2D>().gameObject.layer;
+        voidLayer = LayerMask.NameToLayer("ZombieTargetBehaviourVoidCollision");
+        
+        Physics2D.IgnoreLayerCollision(voidLayer, voidLayer);
+        this.SetTarget(GameObject.Find(targetName)); //TODO : Remove after test.
     }
 	
-	// Update is called once per frame
-	void Update () {
-        Vector3 targetPosition = target.transform.position;
-        Vector3 thisPosition = gameObject.transform.position;
-        Vector3 directionVector = targetPosition - thisPosition;
-
-        //if (Mathf.Abs(directionVector.y) > heightObject)
-        if (Mathf.Abs(directionVector.y) > 0)
-            stop = (Mathf.Abs(directionVector.x) <= offsetX);
-        else
-            stop = collided;
-
-        if (!stop)
-        {
-            float direction = Mathf.Sign(directionVector.x);
-            gameObject.GetComponent<ZombieMovement>().Move(direction);
-        }
-        else if(stop)
-            gameObject.GetComponent<ZombieMovement>().Move(0);
-
+	void Update ()
+    {
+        if (target)
+            FollowTarget();
     }
 
-    private void OnCollisionStay2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        collided = (col.gameObject == target);
+        if(col.gameObject == target)
+            GrabTarget();
+    }
+
+    /*private void OnCollisionExit2D(Collision2D col)
+    {
+        if(col.gameObject == target)
+            UngrabTarget();
+    }*/
+
+    private void FollowTarget()
+    {
+        Vector3 directionVector = target.transform.position - gameObject.transform.position;
+        if (!gripped)
+        {
+            if (Mathf.Abs(directionVector.y) > 0)
+                stop = (Mathf.Abs(directionVector.x) <= offsetX);
+            else
+                stop = gripped;
+
+            float direction = 0;
+            if (!stop)
+                direction = Mathf.Sign(directionVector.x);
+
+            gameObject.GetComponent<ZombieMovement>().Move(direction);
+        }
+        else
+        {
+            if(directionVector.y > 0) // if target jump
+            {
+                float step = gameObject.GetComponent<ZombieMovement>().jumpForce * Time.deltaTime;
+                gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, localPosition, step);
+            }
+            else
+            {
+                gameObject.transform.localPosition = localPosition;
+            }            
+        }
     }
 
     public void SetTarget(GameObject newTarget)
     {
         this.target = newTarget;
         
-        float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
+        if(target)
+        {
+            float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
 
-        //offsetX = (deltaY > heightObject) ? Random.Range(5, 10) : 0;
-        offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+            gameObject.GetComponent<ZombieMovement>().Move(0);
+
+            this.GetComponent<Collider2D>().gameObject.layer = voidLayer;
+            offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
+        }
+        else
+            this.GetComponent<Collider2D>().gameObject.layer = oldLayer;
     }
 
-    void HoldOn()
+    public bool GetGripped()
     {
+        return gripped;
+    }
+    
+    private void GrabTarget()
+    {
+        gripped = true;
 
+        gameObject.transform.SetParent(target.transform);
+        localPosition = gameObject.transform.localPosition;
+        var zombieMovementComponent = target.GetComponent<ZombieMovement>();
+
+        zombieMovementComponent.IncrementSpeedWeight(-speedWeight);
+        zombieMovementComponent.IncrementJumpWeight(-jumpWeight);
+    }
+
+    private void UngrabTarget()
+    {
+        gripped = false;
+        gameObject.transform.SetParent(initParent);
+        var zombieMovementComponent = target.GetComponent<ZombieMovement>();
+
+        zombieMovementComponent.IncrementSpeedWeight(speedWeight);
+        zombieMovementComponent.IncrementJumpWeight(jumpWeight);
     }
 
 
