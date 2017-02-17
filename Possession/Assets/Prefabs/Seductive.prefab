@@ -1670,7 +1670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localTagList: []
+  localTagList:
+  - Name: Seductive
+    ID: 0
 --- !u!114 &114606380744519726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1683,6 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetName: 
 --- !u!114 &114916224603397574
 MonoBehaviour:
   m_ObjectHideFlags: 1
