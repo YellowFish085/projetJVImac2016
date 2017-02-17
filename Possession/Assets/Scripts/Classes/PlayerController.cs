@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Possession;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
     public ZombieMovement activeZombie;
@@ -71,16 +72,15 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         activeZombie.Move(h);
 
-        if (Input.GetButtonDown("Swap"))
-        {
-            SetToSwapping();
-        }
+		if (Input.GetButtonDown ("Swap")) {
+			SetToSwapping ();
+		}
     }
 
     private void Swapping()
     {
         UpdateZombiesAround();
-        if (Input.GetButtonDown("Cancel"))
+		if (Input.GetButtonDown("Cancel") || Input.GetButtonUp("Swap"))
         {
             SetToControlling();
         }
@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour {
             CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
             camera.SetTarget(controlledZombie.gameObject);
         }
+
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -109,6 +110,13 @@ public class PlayerController : MonoBehaviour {
         activeZombie.active = false;
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
+		IEnumerable<GameObject> zombies = zombieSelector.GetZombiesAround();
+
+		foreach(GameObject z in zombies)
+		{
+			Debug.Log (z);
+			scientist.GetComponentInChildren<BillBoard> ().addSelectable();
+		}
 
         //TODO (Victor) : cache camera to avoid fetching
         CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();

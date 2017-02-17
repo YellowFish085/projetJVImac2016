@@ -6,6 +6,7 @@ public class BillBoard : MonoBehaviour {
 
 	private Camera _camera;
 	private bool drawCircle;
+	public GameObject crossMark;
 
 	void Awake (){
 		_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>() ;
@@ -24,5 +25,10 @@ public class BillBoard : MonoBehaviour {
 
 	public void disableDrawCircle(){
 		drawCircle = false;
+	}
+
+	public void addSelectable(){
+		GameObject go = Instantiate(crossMark, transform.position, transform.rotation);
+		Debug.Log (go.transform.position);
 	}
 }
