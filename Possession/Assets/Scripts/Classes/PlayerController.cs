@@ -42,6 +42,31 @@ public class PlayerController : MonoBehaviour {
             activeZombie.Jump();
         }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("Action");
+            if (Input.GetAxis("Vertical") > 0) {
+                activeZombie.Action(Direction.Up);
+            }
+
+            else if (Input.GetAxis("Horizontal") > 0) {
+                activeZombie.Action(Direction.Right);
+            }
+
+            else if (Input.GetAxis("Vertical") < 0) {
+                activeZombie.Action(Direction.Down);
+            }
+
+            else if (Input.GetAxis("Horizontal") < 0) {
+                activeZombie.Action(Direction.Left);
+            }
+
+            else
+            {
+                activeZombie.Action(Direction.None);
+            }
+        }
+
         float h = Input.GetAxisRaw("Horizontal");
         activeZombie.Move(h);
 

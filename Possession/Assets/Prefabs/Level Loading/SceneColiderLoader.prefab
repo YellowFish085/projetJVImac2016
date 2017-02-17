@@ -107,4 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelObject: {fileID: 0}
-  tagToVerify: Scientific
+  tagToVerify: Scientist

@@ -129,7 +129,6 @@ namespace Possession {
                 return;
             }
             _currentLevel = SceneManager.GetSceneByName(sceneName);
-            Debug.Log("Current Scene : " + _currentLevel.name);
         }
 
         public void LoadScene(string sceneName)
@@ -139,8 +138,7 @@ namespace Possession {
                 Debug.Log("WARNING: you try to LOAD a scene, but you don't give the scene's name");
                 return;
             }
-
-            Debug.Log("Load = " + sceneName);
+            
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (!sceneToLoad.isLoaded)
                 SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -153,8 +151,7 @@ namespace Possession {
                 Debug.Log("WARNING: you try to UNLOAD a scene, but you don't give the scene's name");
                 return;
             }
-
-            Debug.Log("Unload = " + sceneName);
+            
             Scene sceneToLoad = SceneManager.GetSceneByName(sceneName);
             if (sceneToLoad.isLoaded)
                 SceneManager.UnloadSceneAsync(sceneName);

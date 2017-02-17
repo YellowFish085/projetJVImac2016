@@ -11,7 +11,7 @@ namespace Possession
     {
         public GameObject levelObject;
 
-        public string tagToVerify = "Scientific";
+        public string tagToVerify = "Scientist";
 
         void OnTriggerEnter2D(Collider2D col)
         {
