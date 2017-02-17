@@ -26,10 +26,12 @@ namespace InteractiveObjects {
 		}
 
 		void OnValidate() {
-			if (this.activator != null && this.activator.attachedObject != null) {
-				if (this.activator.attachedObject.getMaxNumberOfSteps() != 2) {
-					this.activator.attachedObject.setMaxNumberOfSteps(2);
-					this.activator.attachedObject.OnValidate ();
+			foreach (var attachedObject in this.activator.attachedObjects) {
+				if (this.activator != null && attachedObject != null) {
+					if (attachedObject.getMaxNumberOfSteps () != 2) {
+						attachedObject.setMaxNumberOfSteps (2);
+						attachedObject.OnValidate ();
+					}
 				}
 			}
 		}

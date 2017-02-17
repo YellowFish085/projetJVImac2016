@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace InteractiveObjects {
 	public abstract class Activator : MonoBehaviour {
 
 		protected uint currentStep = 0;
-		public Activable attachedObject = null;
+		public Activable[] attachedObjects = null;
 
 		// Use this for initialization
 		void Start () {
@@ -25,17 +25,23 @@ namespace InteractiveObjects {
 			
 		}
 
-		void attach(Activable item) {
-			this.attachedObject = item;
-		}
-
-		void detach() {
-			this.attachedObject = null;
+		void OnValidate() {
+			if (attachedObjects != null) {
+				foreach (var attachedObject in attachedObjects) {
+					if (attachedObject != null) {
+						attachedObject.setMaxNumberOfSteps (-1);
+					}
+				}
+			}
 		}
 
 		// Use this when you want to run a step
 		public void runStep() {
-			attachedObject.process(currentStep);
+			foreach (var attachedObject in attachedObjects) {
+				if (currentStep < attachedObject.numberOfSteps) {
+					attachedObject.process (currentStep);
+				}
+			}
 		}
 	}
 

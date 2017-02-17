@@ -56,6 +56,7 @@ namespace InteractiveObjects {
 				}
 
 				int previousSize = steps.Length;
+
 				Array.Resize<T>(ref this.steps, (int) numberOfSteps);
 				for (int i = previousSize; i < numberOfSteps; i++) {
 					steps [i] = this.defaultValue;

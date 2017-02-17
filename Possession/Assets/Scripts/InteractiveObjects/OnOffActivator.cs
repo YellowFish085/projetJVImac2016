@@ -18,10 +18,14 @@ namespace InteractiveObjects {
 		}
 
 		void OnValidate() {
-			if (this.attachedObject != null) {
-				if (attachedObject.getMaxNumberOfSteps() != 2) {
-					attachedObject.setMaxNumberOfSteps(2);
-					attachedObject.OnValidate ();
+			if (attachedObjects != null) {
+				foreach (var attachedObject in attachedObjects) {
+					if (attachedObject != null) {
+						if (attachedObject.getMaxNumberOfSteps () != 2) {
+							attachedObject.setMaxNumberOfSteps (2);
+							attachedObject.OnValidate ();
+						}
+					}
 				}
 			}
 		}
