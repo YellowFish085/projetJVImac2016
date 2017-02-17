@@ -47,11 +47,11 @@ public class ZombieTargetBehaviour : MonoBehaviour {
             GrabTarget();
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    /*private void OnCollisionExit2D(Collision2D col)
     {
         if(col.gameObject == target)
             UngrabTarget();
-    }
+    }*/
 
     private void FollowTarget()
     {
@@ -78,7 +78,6 @@ public class ZombieTargetBehaviour : MonoBehaviour {
             }
             else
             {
-                gameObject.GetComponent<ZombieMovement>().Move(0);
                 gameObject.transform.localPosition = localPosition;
             }            
         }
@@ -91,7 +90,9 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         if(target)
         {
             float deltaY = Mathf.Abs(target.transform.position.y - gameObject.transform.position.y);
-            
+
+            gameObject.GetComponent<ZombieMovement>().Move(0);
+
             this.GetComponent<Collider2D>().gameObject.layer = voidLayer;
             offsetX = (deltaY > 0) ? Random.Range(5, 10) : 0;
         }
