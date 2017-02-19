@@ -8,6 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scene/Scene Test.unity
   - enabled: 1
+    path: Assets/_Scene/test_chris/GameLoaderScene_chris.unity
+  - enabled: 1
+    path: Assets/_Scene/test_chris/PressurePlate_test.unity
+  - enabled: 1
     path: Assets/_Scene/Sample_loader/scene_1.unity
   - enabled: 1
     path: Assets/_Scene/Sample_loader/scene_2.unity
