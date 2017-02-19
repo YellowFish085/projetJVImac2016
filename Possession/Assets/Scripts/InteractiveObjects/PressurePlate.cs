@@ -8,23 +8,16 @@ namespace InteractiveObjects {
 	public class PressurePlate : OnOffActivator {
 			
 		// Run step 1 of attachedObject when object on pressurePlate
-		void OnCollisionEnter2D(Collision2D collision) {
-			var contactPoint = collision.contacts[0].point;
-
-			if (contactPoint.y >= GetComponent<Transform>().position.y
-				&& collision.gameObject.GetComponent<Transform>().position.x > GetComponent<Transform>().position.x - GetComponent<Collider2D>().bounds.size.x / 2
-				&& collision.gameObject.GetComponent<Transform>().position.x < GetComponent<Transform>().position.x + GetComponent<Collider2D>().bounds.size.x / 2)
-			{
-				Debug.Log ("Collision from top !");
-				Debug.Log ("Collision point = " + contactPoint);
-				Debug.Log ("Plate point = " + GetComponent<Transform>().position.y);
+		void OnTriggerEnter2D(Collider2D collision) {
+				var elementCollide = collision.gameObject;
+				var newElementPositionY = GetComponent<Collider2D>().bounds.max.y;
+				var newElementPositionX = GetComponent<Collider2D> ().bounds.center.x;
 				currentStep = 1;
 				this.runStep ();
-			}
 		}
 
 		// Run step 0 of attachedObject when object out of pressurePlate
-		void OnCollisionExit2D(Collision2D collision) {
+		void OnTriggerExit2D(Collider2D collision) {
 			currentStep = 0;
 			this.runStep();
 		}
