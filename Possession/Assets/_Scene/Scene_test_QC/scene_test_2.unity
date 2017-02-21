@@ -401,7 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecce5af941fbd0e4fb19121ad0a3d99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionDistance: 5
+  frontDetectionDistance: 25
+  backDetectionDistance: 5
+  viewAngle: 90
+  deltaDetection: 10
 --- !u!114 &461354883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  targetName: Carrier
+  targetName: 
 --- !u!1001 &1027940553
 Prefab:
   m_ObjectHideFlags: 0

@@ -85,7 +85,8 @@ public class ZombieTargetBehaviour : MonoBehaviour {
 
     public void SetTarget(GameObject newTarget)
     {
-        this.target = newTarget;
+        if(!gripped || newTarget == null)
+            this.target = newTarget;
         
         if(target)
         {

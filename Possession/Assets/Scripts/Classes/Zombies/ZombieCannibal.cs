@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class ZombieCannibal : MonoBehaviour
 {
-    public float detectionDistance = 25;
+    public float frontDetectionDistance = 25;
+    public float backDetectionDistance = 5;
+    public float viewAngle = 90;
+    public int deltaDetection = 10;
 //    private GameObject target;
     private bool locked = false;
     private ZombieTargetBehaviour targetBehaviour;
-    private RaycastHit2D hit;
+    private ZombieMovement zombieMovement;
+    //private RaycastHit2D hit;
     private float heightObject;
+    private float widthObject;
+    private RaycastHit2D hit;
 
     void Start ()
     {
         heightObject = gameObject.GetComponent<Collider2D>().bounds.size.y;
+        widthObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
         targetBehaviour = gameObject.GetComponent<ZombieTargetBehaviour>();
+        zombieMovement = gameObject.GetComponent<ZombieMovement>();
         //        this.SetTarget(GameObject.FindObjectOfType<UniqueObjectsHandler>().GetComponent<PlayerController>().gameObject);
         //        target = GameObject.FindObjectOfType<UniqueObjectsHandler>().GetComponent<PlayerController>().gameObject;
     }
@@ -22,20 +30,45 @@ public class ZombieCannibal : MonoBehaviour
     void Update ()
     {
         Debug.Log("Update");
-        //GameObject target = targetBehaviour.target.gameObject;
-        //float currentDistance = Vector3.Distance(target.transform.position, transform.position);
-        //if (currentDistance <= detectionDistance)
-        float direction = Mathf.Sign(Vector2.right.x - 2 * transform.right.x); // to retrive the direction cause transform.forward doesn't work, because there is a rotation on the gameobject (I think)
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y + heightObject);
-        Vector2 target = new Vector2(5 * transform.localScale.x, 0);
-        hit = Physics2D.Raycast(origin, target);
-        if (hit.collider != null)
+        if(!targetBehaviour.GetGripped())
+        {
+            //PlayerController playerController = (PlayerController)FindObjectOfType(typeof(PlayerController));
+            //GameObject currentZombie = playerController.activeZombie.gameObject;
+            Vector2 raycastOrigin = new Vector2(transform.position.x + zombieMovement.GetDirection() * widthObject, transform.position.y + heightObject);
+            checkFront(raycastOrigin);
+            checkBack(raycastOrigin);
+        }
+    }
+
+    private void checkFront(Vector2 raycastOrigin)
+    {
+        Vector2 viewDirection = new Vector2(frontDetectionDistance * zombieMovement.GetDirection(), 0);
+        int stepAngle = (int)(viewAngle / deltaDetection);
+        for (int i = -stepAngle / 2; i <= stepAngle / 2; i++)
+        {
+            Vector2 target = Quaternion.Euler(0, 0, i * deltaDetection) * viewDirection;
+            hit = Physics2D.Raycast(raycastOrigin, target);
+            if (hit.collider != null && hit.collider.gameObject.tag == "Zombie")
+            {
+                float distance = Mathf.Abs(hit.point.x - transform.position.x);
+                if (distance < frontDetectionDistance)
+                    targetBehaviour.SetTarget(hit.collider.gameObject);
+            }
+            Debug.DrawRay(raycastOrigin, target);
+        }
+    }
+
+    private void checkBack(Vector2 raycastOrigin)
+    {
+        Vector2 viewDirection = new Vector2(backDetectionDistance * -1 * zombieMovement.GetDirection(), 0);
+        hit = Physics2D.Raycast(raycastOrigin, viewDirection);
+        if (hit.collider != null && hit.collider.gameObject.tag == "Zombie")
         {
             float distance = Mathf.Abs(hit.point.x - transform.position.x);
-            Debug.Log("COLLID = " + distance);
+            if (distance < frontDetectionDistance)
+                targetBehaviour.SetTarget(hit.collider.gameObject);
         }
-
-        Debug.DrawRay(origin, target);
+        Debug.DrawRay(raycastOrigin, viewDirection);
     }
 
     /*private new void SetTarget(GameObject newTarget)
