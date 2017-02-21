@@ -141,9 +141,4 @@ public class PlayerController : MonoBehaviour {
     {
         zombieSelector.Update();
     }
-    
-    public GameObject GetControlledZombie()
-    {
-        return controlledZombie;
-    }
 }
