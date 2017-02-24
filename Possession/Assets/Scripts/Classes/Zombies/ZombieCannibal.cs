@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ZombieCannibal : MonoBehaviour
 {
-    public float frontDetectionDistance = 25;
-    public float backDetectionDistance = 5;
+    public float frontDetectionDistance = 25; // View far distance 
+    public float backDetectionDistance = 10; // Detection distance to back (equivalente of hearing)
     public float viewAngle = 90;
     public int deltaDetection = 10;
+
+    public string zombieTagToVerify = "Zombie";
     
     private ZombieTargetBehaviour targetBehaviour;
     private ZombieMovement zombieMovement;
@@ -29,20 +31,17 @@ public class ZombieCannibal : MonoBehaviour
         widthObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
         targetBehaviour = gameObject.GetComponent<ZombieTargetBehaviour>();
         zombieMovement = gameObject.GetComponent<ZombieMovement>();
-        //        this.SetTarget(GameObject.FindObjectOfType<UniqueObjectsHandler>().GetComponent<PlayerController>().gameObject);
-        //        target = GameObject.FindObjectOfType<UniqueObjectsHandler>().GetComponent<PlayerController>().gameObject;
     }
 
     void Update ()
     {
-        Debug.Log("Update");
         if(!targetBehaviour.GetGripped())
         {
             Vector2 raycastOrigin = new Vector2(transform.position.x + zombieMovement.GetDirection() * widthObject, transform.position.y + heightObject);
             checkFront(raycastOrigin);
 
-            //raycastOrigin = new Vector2(transform.position.x, transform.position.y + heightObject);
-            //checkBack(raycastOrigin);
+            raycastOrigin = new Vector2(transform.position.x, transform.position.y + heightObject);
+            checkBack(raycastOrigin);
         }
     }
 
@@ -60,7 +59,7 @@ public class ZombieCannibal : MonoBehaviour
 
             RaycastHit2D[] rayHits = Physics2D.RaycastAll(raycastOrigin, target, frontDetectionDistance);
 
-            GameObject tmpTargetGM = CheckRayCast(rayHits, minDist);
+            GameObject tmpTargetGM = this.CheckRayCast(rayHits, minDist);
             if (tmpTargetGM)
                 targetGM = tmpTargetGM;
 
@@ -74,22 +73,17 @@ public class ZombieCannibal : MonoBehaviour
 
     private void checkBack(Vector2 raycastOrigin)
     {
-        /*Vector2 backDirection = backDetectionDistance * -1 * zombieMovement.GetDirection() * Vector2.right;
-        hit = Physics2D.Raycast(raycastOrigin, backDirection);
-        Debug.Log("backDirection = " + backDirection);
-        if (hit.collider != null && hit.collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
-        {
-            float distance = Mathf.Abs(hit.point.x - transform.position.x);
-            Debug.Log("distance = " + distance);
-            if (distance < backDetectionDistance)
-                targetBehaviour.SetTarget(hit.collider.gameObject);
-        }
-        Debug.DrawRay(raycastOrigin, backDirection);*/
+        Vector2 backDirection = backDetectionDistance * -1 * zombieMovement.GetDirection() * Vector2.right;
+        RaycastHit2D[] rayHits = Physics2D.RaycastAll(raycastOrigin, backDirection, backDetectionDistance);
+        GameObject targetGM = this.CheckRayCast(rayHits);
+        if (targetGM)
+            targetBehaviour.SetTarget(targetGM);
+
+        Debug.DrawRay(raycastOrigin, backDirection);
     }
 
-    private GameObject CheckRayCast(RaycastHit2D[] rayHits, float minDist)
+    private GameObject CheckRayCast(RaycastHit2D[] rayHits, float minDist = Single.MaxValue)
     {
-        Debug.Log("CHECKRAYCAST = " + this.name);
         GameObject targetGM = null;
         for (int j = 0; j < rayHits.Length; ++j)
         {
@@ -97,7 +91,7 @@ public class ZombieCannibal : MonoBehaviour
             if (distance < minDist && rayHits[j].collider.gameObject.layer != voidLayer)
             {
                 minDist = distance;
-                if (rayHits[j].collider != null && rayHits[j].collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
+                if (rayHits[j].collider != null && rayHits[j].collider.gameObject.tag == zombieTagToVerify) // TODO : probably change the tag with the evolution
                     targetGM = rayHits[j].collider.gameObject;
             }
         }
