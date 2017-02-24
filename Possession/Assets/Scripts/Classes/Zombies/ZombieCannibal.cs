@@ -14,7 +14,6 @@ public class ZombieCannibal : MonoBehaviour
     private ZombieMovement zombieMovement;
     private float heightObject;
     private float widthObject;
-    private RaycastHit2D hit;
 
     private int voidLayer;
 
@@ -53,39 +52,29 @@ public class ZombieCannibal : MonoBehaviour
         int stepAngle = (int)(viewAngle / deltaDetection);
 
         GameObject targetGM = null;
-        bool hitATarget = false;
         // Re-code of the Physics2D.Raycast cause doesn't work with ground layer when use ignore a layer. 
         for (int i = -stepAngle / 2; i <= stepAngle / 2; i++)
         {
             float minDist = Single.MaxValue;
             Vector2 target = Quaternion.Euler(0, 0, i * deltaDetection) * viewDirection;
+
             RaycastHit2D[] rayHits = Physics2D.RaycastAll(raycastOrigin, target, frontDetectionDistance);
-            for (int j = 0; j < rayHits.Length; ++j)
-            {
-                float distance = Mathf.Abs(rayHits[j].point.x - transform.position.x);
-                if (distance < minDist && rayHits[j].collider.gameObject.layer != voidLayer)
-                {
-                    minDist = distance;
-                    Debug.Log("rayHits[" + j + "] = " + rayHits[j].collider.gameObject.layer);
-                    if (rayHits[j].collider != null && rayHits[j].collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
-                    {
-                        hitATarget = true;
-                        targetGM = rayHits[j].collider.gameObject;
-                    }
-                }
-            }
+
+            GameObject tmpTargetGM = CheckRayCast(rayHits, minDist);
+            if (tmpTargetGM)
+                targetGM = tmpTargetGM;
 
             Debug.DrawRay(raycastOrigin, target);
         }
 
-        if (hitATarget)
+        if (targetGM)
             targetBehaviour.SetTarget(targetGM);
                 
     }
 
     private void checkBack(Vector2 raycastOrigin)
     {
-        Vector2 backDirection = backDetectionDistance * -1 * zombieMovement.GetDirection() * Vector2.right;
+        /*Vector2 backDirection = backDetectionDistance * -1 * zombieMovement.GetDirection() * Vector2.right;
         hit = Physics2D.Raycast(raycastOrigin, backDirection);
         Debug.Log("backDirection = " + backDirection);
         if (hit.collider != null && hit.collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
@@ -95,6 +84,23 @@ public class ZombieCannibal : MonoBehaviour
             if (distance < backDetectionDistance)
                 targetBehaviour.SetTarget(hit.collider.gameObject);
         }
-        Debug.DrawRay(raycastOrigin, backDirection);
+        Debug.DrawRay(raycastOrigin, backDirection);*/
+    }
+
+    private GameObject CheckRayCast(RaycastHit2D[] rayHits, float minDist)
+    {
+        Debug.Log("CHECKRAYCAST = " + this.name);
+        GameObject targetGM = null;
+        for (int j = 0; j < rayHits.Length; ++j)
+        {
+            float distance = Mathf.Abs(rayHits[j].point.x - transform.position.x);
+            if (distance < minDist && rayHits[j].collider.gameObject.layer != voidLayer)
+            {
+                minDist = distance;
+                if (rayHits[j].collider != null && rayHits[j].collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
+                    targetGM = rayHits[j].collider.gameObject;
+            }
+        }
+        return targetGM;
     }
 }
