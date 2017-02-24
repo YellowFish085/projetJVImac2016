@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieTargetBehaviour : MonoBehaviour {
 
-    public GameObject target;
+    public GameObject target = null;
     public string targetName; // TODO : Delete after test
 
     // abs of "penality" value
@@ -46,13 +46,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         if(col.gameObject == target)
             GrabTarget();
     }
-
-    /*private void OnCollisionExit2D(Collision2D col)
-    {
-        if(col.gameObject == target)
-            UngrabTarget();
-    }*/
-
+    
     private void FollowTarget()
     {
         Vector3 directionVector = target.transform.position - gameObject.transform.position;
@@ -86,7 +80,18 @@ public class ZombieTargetBehaviour : MonoBehaviour {
     public void SetTarget(GameObject newTarget)
     {
         if(!gripped || newTarget == null)
+        {
+            if(!newTarget && gripped)
+            {
+                ZombieLife targetLifeComponent = target.GetComponent<ZombieLife>();
+                if(targetLifeComponent)
+                    targetLifeComponent.RemoveAssailent(this.gameObject);
+
+                UngrabTarget();
+            }
+
             this.target = newTarget;
+        }
         
         if(target)
         {
@@ -101,6 +106,11 @@ public class ZombieTargetBehaviour : MonoBehaviour {
             this.GetComponent<Collider2D>().gameObject.layer = oldLayer;
     }
 
+    public GameObject GetTarget()
+    {
+        return target;
+    }
+
     public bool GetGripped()
     {
         return gripped;
@@ -109,6 +119,8 @@ public class ZombieTargetBehaviour : MonoBehaviour {
     private void GrabTarget()
     {
         gripped = true;
+
+        target.GetComponent<ZombieLife>().AddAssailant(this.gameObject);
 
         gameObject.transform.SetParent(target.transform);
         localPosition = gameObject.transform.localPosition;

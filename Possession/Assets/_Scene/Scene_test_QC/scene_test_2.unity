@@ -376,6 +376,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetName: 
+--- !u!114 &35152601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 35152599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!1001 &66196733
 Prefab:
   m_ObjectHideFlags: 0
@@ -514,6 +526,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetName: Carrier
+--- !u!114 &151616308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 151616306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!1001 &175438662
 Prefab:
   m_ObjectHideFlags: 0
@@ -561,6 +585,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4393424666580062, guid: 57c58730e8c908f418a78d25bb26e26a,
     type: 2}
   m_PrefabInternal: {fileID: 175438662}
+--- !u!1 &175438664 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1918848744798234, guid: 57c58730e8c908f418a78d25bb26e26a,
+    type: 2}
+  m_PrefabInternal: {fileID: 175438662}
+--- !u!114 &175438665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175438664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!1 &225373528
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +715,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetName: Carrier
+--- !u!114 &1027940557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027940555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!1 &1077863266
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +998,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1258718641038582, guid: 44516d5543f115a45aa9b747ac6dd57d, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44516d5543f115a45aa9b747ac6dd57d, type: 2}
@@ -1205,6 +1258,10 @@ Prefab:
     - target: {fileID: 1258718641038582, guid: 44516d5543f115a45aa9b747ac6dd57d, type: 2}
       propertyPath: m_Name
       value: ZombieCannibal (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258718641038582, guid: 44516d5543f115a45aa9b747ac6dd57d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44516d5543f115a45aa9b747ac6dd57d, type: 2}
