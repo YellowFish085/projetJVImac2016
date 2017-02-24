@@ -22,7 +22,8 @@ public class ZombieSelector
         var zombies = GetZombiesAround();
         foreach(GameObject z in zombies)
         {
-            buffer.PushBack(z);
+            if(!z.HasTag("Cannibal"))
+                buffer.PushBack(z);
         }
     }
 
