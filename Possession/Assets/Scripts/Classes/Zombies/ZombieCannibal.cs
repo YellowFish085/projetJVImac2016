@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,21 +51,36 @@ public class ZombieCannibal : MonoBehaviour
     {
         Vector2 viewDirection = new Vector2(frontDetectionDistance * zombieMovement.GetDirection(), 0);
         int stepAngle = (int)(viewAngle / deltaDetection);
+
+        GameObject targetGM = null;
+        bool hitATarget = false;
+        // Re-code of the Physics2D.Raycast cause doesn't work with ground layer when use ignore a layer. 
         for (int i = -stepAngle / 2; i <= stepAngle / 2; i++)
         {
+            float minDist = Single.MaxValue;
             Vector2 target = Quaternion.Euler(0, 0, i * deltaDetection) * viewDirection;
-            hit = Physics2D.Raycast(raycastOrigin, target, frontDetectionDistance, voidLayer);
-            // BUG IGNOR GROUND --> NOT GOOD.
-            if (hit.collider != null && hit.collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
+            RaycastHit2D[] rayHits = Physics2D.RaycastAll(raycastOrigin, target, frontDetectionDistance);
+            for (int j = 0; j < rayHits.Length; ++j)
             {
-                Debug.Log(gameObject.name + " -- " + hit.collider.gameObject.layer);
-                Debug.Log("HIT");
-                float distance = Mathf.Abs(hit.point.x - transform.position.x);
-                if (distance < frontDetectionDistance)
-                    targetBehaviour.SetTarget(hit.collider.gameObject);
+                float distance = Mathf.Abs(rayHits[j].point.x - transform.position.x);
+                if (distance < minDist && rayHits[j].collider.gameObject.layer != voidLayer)
+                {
+                    minDist = distance;
+                    Debug.Log("rayHits[" + j + "] = " + rayHits[j].collider.gameObject.layer);
+                    if (rayHits[j].collider != null && rayHits[j].collider.gameObject.tag == "Zombie") // TODO : probably change the tag with the evolution
+                    {
+                        hitATarget = true;
+                        targetGM = rayHits[j].collider.gameObject;
+                    }
+                }
             }
+
             Debug.DrawRay(raycastOrigin, target);
         }
+
+        if (hitATarget)
+            targetBehaviour.SetTarget(targetGM);
+                
     }
 
     private void checkBack(Vector2 raycastOrigin)
