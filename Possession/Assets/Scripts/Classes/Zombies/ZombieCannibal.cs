@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ZombieCannibal : MonoBehaviour
 {
+    public float power = 1;
     public float frontDetectionDistance = 25; // View far distance 
     public float backDetectionDistance = 10; // Detection distance to back (equivalente of hearing)
     public float viewAngle = 90;
@@ -36,13 +37,24 @@ public class ZombieCannibal : MonoBehaviour
 
     void Update ()
     {
-        if(!targetBehaviourComponent.GetGripped())
+        if (!targetBehaviourComponent.GetGripped())
         {
             Vector2 raycastOrigin = new Vector2(transform.position.x + zombieMovementComponent.GetDirection() * widthObject, transform.position.y + heightObject);
             checkFront(raycastOrigin);
 
             raycastOrigin = new Vector2(transform.position.x, transform.position.y + heightObject);
             checkBack(raycastOrigin);
+        }
+        else
+        {
+            Debug.Log("Attaque");
+            GameObject target = targetBehaviourComponent.GetTarget();
+            ZombieLife targetLifeComponent = target.GetComponent<ZombieLife>();
+            if(targetLifeComponent.IsAlive())
+            {
+                float step = -power * Time.deltaTime;
+                targetLifeComponent.IncrementLife(step);
+            } 
         }
     }
 
@@ -67,7 +79,8 @@ public class ZombieCannibal : MonoBehaviour
             Debug.DrawRay(raycastOrigin, target);
         }
 
-        this.SetTarget(targetGM);        
+        if(targetGM)
+            this.SetTarget(targetGM);        
     }
 
     private void checkBack(Vector2 raycastOrigin)
@@ -76,7 +89,8 @@ public class ZombieCannibal : MonoBehaviour
         RaycastHit2D[] rayHits = Physics2D.RaycastAll(raycastOrigin, backDirection, backDetectionDistance);
         GameObject targetGM = this.CheckRayCast(rayHits);
 
-        this.SetTarget(targetGM);
+        if(targetGM)
+            this.SetTarget(targetGM);
 
         Debug.DrawRay(raycastOrigin, backDirection);
     }
@@ -101,10 +115,10 @@ public class ZombieCannibal : MonoBehaviour
         return targetGM;
     }
 
-    private void SetTarget(GameObject target)
+    public void SetTarget(GameObject target)
     {
-        if (!target)
-            return;
+        /*if (!target)
+            return;*/
 
         targetBehaviourComponent.SetTarget(target);
         this.GetComponent<Collider2D>().gameObject.layer = itsLayer;
