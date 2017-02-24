@@ -29,8 +29,8 @@ public class ZombieTargetBehaviour : MonoBehaviour {
     void Awake () {
         initParent = transform.parent.transform;
         oldLayer = gameObject.GetComponent<Collider2D>().gameObject.layer;
-        voidLayer = LayerMask.NameToLayer("VoidCollision");
-
+        voidLayer = LayerMask.NameToLayer("ZombieTargetBehaviourVoidCollision");
+        
         Physics2D.IgnoreLayerCollision(voidLayer, voidLayer);
         this.SetTarget(GameObject.Find(targetName)); //TODO : Remove after test.
     }
