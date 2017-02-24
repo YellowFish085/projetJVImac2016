@@ -1662,7 +1662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localTagList: []
+  localTagList:
+  - Name: Cannibal
+    ID: 0
 --- !u!114 &114333647123905638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1674,8 +1676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecce5af941fbd0e4fb19121ad0a3d99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 1
   frontDetectionDistance: 25
-  backDetectionDistance: 5
+  backDetectionDistance: 10
   viewAngle: 90
   deltaDetection: 10
   zombieTagToVerify: Zombie
