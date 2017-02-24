@@ -205,9 +205,10 @@ GameObject:
   - component: {fileID: 61580605694457424}
   - component: {fileID: 114333647123905638}
   - component: {fileID: 114647953917832786}
+  - component: {fileID: 114333060119329420}
   m_Layer: 0
   m_Name: ZombieCannibal
-  m_TagString: Cannibal
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1650,6 +1651,18 @@ MonoBehaviour:
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
   active: 1
+--- !u!114 &114333060119329420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258718641038582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5812814b7685642dbad1c7b3dd6e5abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localTagList: []
 --- !u!114 &114333647123905638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1665,6 +1678,7 @@ MonoBehaviour:
   backDetectionDistance: 5
   viewAngle: 90
   deltaDetection: 10
+  zombieTagToVerify: Zombie
 --- !u!114 &114647953917832786
 MonoBehaviour:
   m_ObjectHideFlags: 1
