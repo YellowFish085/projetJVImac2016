@@ -22,7 +22,7 @@ public class ZombieSelector
         var zombies = GetZombiesAround();
         foreach(GameObject z in zombies)
         {
-            if(!z.HasTag("Cannibal"))
+            if (!z.HasTag("Cannibal"))
                 buffer.PushBack(z);
         }
     }
@@ -32,7 +32,8 @@ public class ZombieSelector
         var zombiesToAdd = GetZombiesAround().Except(buffer);
         foreach (GameObject z in zombiesToAdd)
         {
-            buffer.PushBack(z);
+            if (!z.HasTag("Cannibal"))
+                buffer.PushBack(z);
         }
     }
 
