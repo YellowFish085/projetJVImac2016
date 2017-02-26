@@ -52,7 +52,7 @@ public class ZombieTargetBehaviour : MonoBehaviour {
         Vector3 directionVector = target.transform.position - gameObject.transform.position;
         if (!gripped)
         {
-            if (Mathf.Abs(directionVector.y) > 0)
+            if (Mathf.Abs(directionVector.y) >= 0)
                 stop = (Mathf.Abs(directionVector.x) <= offsetX);
             else
                 stop = gripped;

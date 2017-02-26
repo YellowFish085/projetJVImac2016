@@ -19,16 +19,13 @@ public class ZombieCannibal : MonoBehaviour
     private float widthObject;
 
     private int itsLayer;
-
-    private void Awake()
+    
+    void Start ()
     {
         itsLayer = LayerMask.NameToLayer("CannibalLayer");
         this.GetComponent<Collider2D>().gameObject.layer = itsLayer;
         Physics2D.IgnoreLayerCollision(itsLayer, itsLayer);
-    }
 
-    void Start ()
-    {
         heightObject = gameObject.GetComponent<Collider2D>().bounds.size.y;
         widthObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
         targetBehaviourComponent = gameObject.GetComponent<ZombieTargetBehaviour>();
@@ -40,10 +37,13 @@ public class ZombieCannibal : MonoBehaviour
         if (!targetBehaviourComponent.GetGripped())
         {
             Vector2 raycastOrigin = new Vector2(transform.position.x + zombieMovementComponent.GetDirection() * widthObject, transform.position.y + heightObject);
-            checkFront(raycastOrigin);
+            bool res = checkFront(raycastOrigin);
 
-            raycastOrigin = new Vector2(transform.position.x, transform.position.y + heightObject);
-            checkBack(raycastOrigin);
+            if(!res)
+            {
+                raycastOrigin = new Vector2(transform.position.x, transform.position.y + heightObject);
+                checkBack(raycastOrigin);
+            }            
         }
         else
         {
@@ -58,7 +58,7 @@ public class ZombieCannibal : MonoBehaviour
         }
     }
 
-    private void checkFront(Vector2 raycastOrigin)
+    private bool checkFront(Vector2 raycastOrigin)
     {
         Vector2 viewDirection = new Vector2(frontDetectionDistance * zombieMovementComponent.GetDirection(), 0);
         int stepAngle = (int)(viewAngle / deltaDetection);
@@ -80,7 +80,11 @@ public class ZombieCannibal : MonoBehaviour
         }
 
         if(targetGM)
-            this.SetTarget(targetGM);        
+        {
+            this.SetTarget(targetGM);
+            return true;     
+        }
+        return false;
     }
 
     private void checkBack(Vector2 raycastOrigin)

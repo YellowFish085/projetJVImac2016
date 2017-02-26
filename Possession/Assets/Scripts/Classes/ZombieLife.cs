@@ -31,7 +31,7 @@ public class ZombieLife : MonoBehaviour {
         for(int i = assailants.Count - 1; i >= 0; --i)
         {
             ZombieCannibal zCannibal = assailants[i].GetComponent<ZombieCannibal>();
-            if (!zCannibal)
+            if (!zCannibal) //Si cannibal
             {
                 ZombieTargetBehaviour zTargetBehaviour = assailants[i].GetComponent<ZombieTargetBehaviour>();
                 zTargetBehaviour.SetTarget(null);

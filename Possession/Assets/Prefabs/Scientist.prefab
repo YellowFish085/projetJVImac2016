@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 50639580806227144}
   - component: {fileID: 114153619306134372}
   - component: {fileID: 61547231036120604}
+  - component: {fileID: 114826179337489154}
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Scientist
@@ -1648,6 +1649,18 @@ MonoBehaviour:
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
   active: 1
+--- !u!114 &114826179337489154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174500128792838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!137 &137899155968979350
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

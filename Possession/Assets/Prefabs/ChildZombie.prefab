@@ -249,6 +249,8 @@ GameObject:
   - component: {fileID: 50167725233703638}
   - component: {fileID: 114014544953521046}
   - component: {fileID: 61502906544761580}
+  - component: {fileID: 114839187730999166}
+  - component: {fileID: 114579015717228056}
   m_Layer: 0
   m_Name: ChildZombie
   m_TagString: Zombie
@@ -1660,6 +1662,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17583d4c5fb7b1d4f9faf4083569db1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114579015717228056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271982494267248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
+--- !u!114 &114839187730999166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271982494267248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6f013247d246241a77e67e73c1aaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetName: 
 --- !u!137 &137840115676674330
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
