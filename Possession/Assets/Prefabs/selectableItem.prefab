@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4988990080780568}
   - component: {fileID: 114351682125148586}
+  - component: {fileID: 114510900670401952}
   m_Layer: 0
   m_Name: selectableItem
   m_TagString: Untagged
@@ -82,6 +83,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localTagList: []
+--- !u!114 &114510900670401952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502708018967502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a087abb3a534ca4b97117c9527e72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referencedZombie: {fileID: 0}
 --- !u!212 &212372869895801004
 SpriteRenderer:
   m_ObjectHideFlags: 1

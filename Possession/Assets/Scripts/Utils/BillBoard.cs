@@ -19,6 +19,10 @@ public class BillBoard : MonoBehaviour {
 	void Update () {
 		GetComponent<SpriteRenderer>().enabled = drawCircle;
 		transform.LookAt (transform.position + _camera.transform.rotation * Vector3.forward, _camera.transform.rotation * Vector3.up);
+		if (Input.GetMouseButtonDown (0)) {
+			RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			Debug.Log (hit.collider);
+		}
 	}
 
 	public void enableDrawCircle(){
@@ -34,10 +38,14 @@ public class BillBoard : MonoBehaviour {
 		Vector3 offset = zombie.transform.position - transform.position;
 		offset.Normalize ();
 		offset *= 10;
-		Debug.Log (offset);
-		GameObject go = Instantiate(crossMark, transform.position+offset, transform.rotation);
-		crossMarks.Add (go);
+		Vector3 newPosition = transform.position + offset;
+		newPosition.Set(newPosition.x, newPosition.y, transform.position.z);
 
+
+		GameObject go = Instantiate(crossMark, newPosition, transform.rotation);
+		Debug.Log(zombie.GetComponent<ZombieMovement>());
+		go.GetComponent<checkMark>().referencedZombie = zombie.GetComponent<ZombieMovement> ();
+		crossMarks.Add (go);
 	}
 
 	public void deleteSelectables(){
@@ -45,4 +53,5 @@ public class BillBoard : MonoBehaviour {
 			Destroy (cross);
 		}
 	}
+
 }
