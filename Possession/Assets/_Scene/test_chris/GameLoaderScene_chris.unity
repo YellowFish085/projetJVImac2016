@@ -1074,7 +1074,7 @@ Prefab:
     - target: {fileID: 114128287936823962, guid: cbf36876c3a1e6b4ba1167daeb14116e,
         type: 2}
       propertyPath: initialScene
-      value: Activator test
+      value: PressurePlate_test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbf36876c3a1e6b4ba1167daeb14116e, type: 2}
