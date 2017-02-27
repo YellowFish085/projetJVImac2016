@@ -761,6 +761,8 @@ GameObject:
   - component: {fileID: 114199349154691228}
   - component: {fileID: 61147405327693652}
   - component: {fileID: 114239839301935600}
+  - component: {fileID: 114252486012704820}
+  - component: {fileID: 114529525187588238}
   m_Layer: 0
   m_Name: NinjaZombie
   m_TagString: Zombie
@@ -1719,6 +1721,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7ef9ffe9f104361b00e9c9e84564e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114252486012704820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881383585763732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
+--- !u!114 &114529525187588238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881383585763732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6f013247d246241a77e67e73c1aaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetName: 
 --- !u!114 &114530399758030874
 MonoBehaviour:
   m_ObjectHideFlags: 1

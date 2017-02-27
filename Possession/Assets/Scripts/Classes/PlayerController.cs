@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Possession;
 
 public class PlayerController : MonoBehaviour {
@@ -145,5 +146,4 @@ public class PlayerController : MonoBehaviour {
     {
         zombieSelector.Update();
     }
-
 }
