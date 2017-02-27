@@ -19,10 +19,7 @@ namespace InteractiveObjects {
 		void Update () {
 			float step = speed * Time.deltaTime;
 			currentRotation = Vector3.Lerp (currentRotation, destination, step);
-			Debug.Log ("Current rotation = " + currentRotation);
-			Debug.Log ("Destination rotation = " + destination);
 			transform.rotation = Quaternion.Euler (currentRotation);
-			Debug.Log ("transform rotation = " + transform.rotation);
 		}
 
 		/* Override OnValidate and set defaultValue before to call parent's OnValidate() to allow step creation in *

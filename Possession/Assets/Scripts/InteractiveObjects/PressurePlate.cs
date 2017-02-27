@@ -15,9 +15,6 @@ namespace InteractiveObjects {
 				&& collision.gameObject.GetComponent<Transform>().position.x > GetComponent<Transform>().position.x - GetComponent<Collider2D>().bounds.size.x / 2
 				&& collision.gameObject.GetComponent<Transform>().position.x < GetComponent<Transform>().position.x + GetComponent<Collider2D>().bounds.size.x / 2)
 			{
-				Debug.Log ("Collision from top !");
-				Debug.Log ("Collision point = " + contactPoint);
-				Debug.Log ("Plate point = " + GetComponent<Transform>().position.y);
 				currentStep = 1;
 				this.runStep ();
 			}

@@ -12,14 +12,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
   - Water
   - UI
-  - 
-  - 
   - Ground
   - VoidCollision
   - CannibalLayer
+  - ZombieTargetBehaviourVoidCollision
   - 
   - 
   - 
