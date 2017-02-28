@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scientistPrefab: {fileID: 1881383585763732, guid: 6bbd33e117ea98048938f0226c85a3d4,
     type: 2}
-  carrierPrefab: {fileID: 1881383585763732, guid: 97b700aed4cac4749ae8f9d31ba0cbb1,
+  carrierPrefab: {fileID: 1062770193795058, guid: 9beb797b052dbd546baaed6a7ff61998,
     type: 2}
   gameplayNode: {fileID: 1602840469}
   playerControllerNode: {fileID: 1318028333}
