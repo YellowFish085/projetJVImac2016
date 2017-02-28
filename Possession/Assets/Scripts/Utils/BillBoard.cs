@@ -60,7 +60,7 @@ public class BillBoard : MonoBehaviour {
 
             if (Input.GetButtonDown("Jump"))
             {
-                playerController.activeZombie = selectedCm.GetComponent<checkMark>().referencedZombie;
+                playerController.activeZombie = selectedCm.GetComponent<CheckMark>().referencedZombie;
                 playerController.SetToControlling();
             }
         }
@@ -72,16 +72,16 @@ public class BillBoard : MonoBehaviour {
         Gizmos.DrawLine(transform.position, transform.position + joystick_direction);
     }
 
-    public void enableDrawCircle(){
+    public void EnableDrawCircle(){
 		drawCircle = true; 
 	}
 
-	public void disableDrawCircle(){
+	public void DisableDrawCircle(){
 		drawCircle = false;
-		deleteSelectables ();
+		DeleteSelectables ();
 	}
 
-	public void addSelectable(GameObject zombie){
+	public void AddSelectable(GameObject zombie){
 		Vector3 offset = zombie.transform.position - transform.position;
 		offset.Normalize ();
 		offset *= 10; //radius of the circle
@@ -90,11 +90,11 @@ public class BillBoard : MonoBehaviour {
 
 
 		GameObject go = Instantiate(crossMark, newPosition, transform.rotation);
-		go.GetComponent<checkMark>().referencedZombie = zombie.GetComponent<ZombieMovement> ();
+		go.GetComponent<CheckMark>().referencedZombie = zombie.GetComponent<ZombieMovement> ();
 		crossMarks.Add (go);
 	}
 
-	public void deleteSelectables(){
+	public void DeleteSelectables(){
 		foreach (GameObject cross in crossMarks) {
 			Destroy (cross);
 		}

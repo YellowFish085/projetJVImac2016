@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class checkMark : MonoBehaviour {
+public class CheckMark : MonoBehaviour {
 
 	public ZombieMovement referencedZombie;
 

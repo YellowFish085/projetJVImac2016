@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 
     public void SetToSwapping()
     {
-		scientist.GetComponentInChildren<BillBoard>().enableDrawCircle();
+		scientist.GetComponentInChildren<BillBoard>().EnableDrawCircle();
         activeZombie.active = false;
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour {
 
 		foreach(GameObject z in zombies)
 		{
-			scientist.GetComponentInChildren<BillBoard> ().addSelectable(z);
+			scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
 		}
 
         //TODO (Victor) : cache camera to avoid fetching
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour {
 
     public void SetToControlling()
     {
-		scientist.GetComponentInChildren<BillBoard>().disableDrawCircle();
+		scientist.GetComponentInChildren<BillBoard>().DisableDrawCircle();
         activeZombie.active = true;
         player.SetState(Player.State.CONTROLLING);
 
