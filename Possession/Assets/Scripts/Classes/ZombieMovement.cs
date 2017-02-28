@@ -19,11 +19,14 @@ public class ZombieMovement : MonoBehaviour {
     private bool grounded = false;
     private Transform groundCheck;
 
+    private int direction;
+
     private void Awake()
     {
         groundCheck = transform.Find("groundCheck");
         currentSpeed = maxSpeed;
         currentJumpForce = jumpForce;
+        direction = (int)Mathf.Sign(transform.localScale.x);
     }
 
     private void Update()
@@ -39,9 +42,6 @@ public class ZombieMovement : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
         }
-
-
-			
     }
 
     public void Action(Direction direction)
@@ -120,6 +120,7 @@ public class ZombieMovement : MonoBehaviour {
 		Vector3 currentScale = transform.localScale;
 		currentScale.x = Mathf.Sign(lateralAcceleration);
 		transform.localScale = currentScale;
+        direction = (int)Mathf.Sign(transform.localScale.x);
     }
 
     public void IncrementSpeedWeight(float increment)
@@ -132,5 +133,10 @@ public class ZombieMovement : MonoBehaviour {
     {
         jumpWeight += increment;
         currentJumpForce = Mathf.Max(Mathf.Min(maxSpeed, jumpForce + jumpWeight), 0);
+    }
+
+    public int GetDirection()
+    {
+        return direction;
     }
 }

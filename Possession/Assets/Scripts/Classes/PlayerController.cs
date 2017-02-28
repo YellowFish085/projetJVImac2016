@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Possession;
 
 public class PlayerController : MonoBehaviour {
@@ -104,6 +105,11 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             activeZombie = controlledZombie.GetComponent<ZombieMovement>();
+
+            var zombieTargetBehaviour = activeZombie.GetComponent<ZombieTargetBehaviour>();
+            if (zombieTargetBehaviour)
+                zombieTargetBehaviour.SetTarget(null);
+
             zombieSelector = null;
             SetToControlling();
         }
@@ -140,5 +146,4 @@ public class PlayerController : MonoBehaviour {
     {
         zombieSelector.Update();
     }
-
 }

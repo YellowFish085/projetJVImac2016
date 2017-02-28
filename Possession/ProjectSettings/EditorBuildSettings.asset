@@ -8,7 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scene/Scene Test.unity
   - enabled: 1
+    path: Assets/_Scene/test_chris/GameLoaderScene_chris.unity
+  - enabled: 1
+    path: Assets/_Scene/test_chris/PressurePlate_test.unity
+  - enabled: 1
     path: Assets/_Scene/Sample_loader/scene_1.unity
+  - enabled: 1
+    path: Assets/_Scene/test_chris/Activator test.unity
+  - enabled: 1
+    path: Assets/_Scene/test_chris/GameLoaderScene_chris.unity
   - enabled: 1
     path: Assets/_Scene/Sample_loader/scene_2.unity
   - enabled: 1
@@ -23,6 +31,8 @@ EditorBuildSettings:
     path: Assets/_Scene/test_victor/swap.unity
   - enabled: 1
     path: Assets/_Scene/Scene_test_QC/scene_test_1.unity
+  - enabled: 1
+    path: Assets/_Scene/test_corentin/Seduce test.unity
   - enabled: 1
     path: Assets/_Scene/Scene_test_QC/scene_test_2.unity
   - enabled: 1
