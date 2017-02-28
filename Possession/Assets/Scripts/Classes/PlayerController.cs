@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("Action");
             if (Input.GetAxis("Vertical") > 0) {
                 activeZombie.Action(Direction.Up);
             }
@@ -82,24 +81,6 @@ public class PlayerController : MonoBehaviour {
         UpdateZombiesAround();
 		if (Input.GetButtonDown("Cancel") || Input.GetButtonUp("Swap"))
         {
-            SetToControlling();
-        }
-
-        if (Input.GetButtonDown("Swap"))
-        {
-			
-            controlledZombie = zombieSelector.Next();
-
-            //TODO (Victor) : cache camera to avoid fetching
-            CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
-            camera.SetTarget(controlledZombie.gameObject);
-        }
-
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            activeZombie = controlledZombie.GetComponent<ZombieMovement>();
-            zombieSelector = null;
             SetToControlling();
         }
     }
