@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void SetToSwapping()
+    public void SetToSwapping()
     {
 		scientist.GetComponentInChildren<BillBoard>().enableDrawCircle();
         activeZombie.active = false;
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         camera.SetTarget(scientist);
     }
 
-    private void SetToControlling()
+    public void SetToControlling()
     {
 		scientist.GetComponentInChildren<BillBoard>().disableDrawCircle();
         activeZombie.active = true;
