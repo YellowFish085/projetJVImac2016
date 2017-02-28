@@ -110,6 +110,10 @@ MonoBehaviour:
   localTagList:
   - Name: DestructibleObject
     ID: 0
+  - Name: Wall
+    ID: 0
+  - Name: Ground
+    ID: 0
 --- !u!251 &251557216713189946
 PlatformEffector2D:
   m_ObjectHideFlags: 1
