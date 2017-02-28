@@ -108,8 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localTagList:
-  - Name: DestructibleObject
-    ID: 0
   - Name: Wall
     ID: 0
   - Name: Ground
