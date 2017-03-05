@@ -96,6 +96,12 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Swap"))
         {
             controlledZombie = zombieSelector.Next();
+            if (zombieSelector.GetNbZombie() == 1 && controlledZombie.name == "Scientist")
+            {
+                GameManager gm = GameManager.Instance;
+                gm.ResetLevel();
+                return;
+            }
 
             //TODO (Victor) : cache camera to avoid fetching
             CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
@@ -121,12 +127,20 @@ public class PlayerController : MonoBehaviour {
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
 
+        // Reset if no zombies (1 -> only scientist in buffer)
+        if (zombieSelector.GetNbZombie() == 1)
+        {
+            GameManager gm = GameManager.Instance;
+            gm.ResetLevel();
+            return;
+        }
+
         //TODO (Victor) : cache camera to avoid fetching
         CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
         camera.SetTarget(scientist);
     }
 
-    private void SetToControlling()
+    public void SetToControlling()
     {
         activeZombie.active = true;
         player.SetState(Player.State.CONTROLLING);
