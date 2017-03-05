@@ -55,7 +55,7 @@ public class ZombieSelector
 
     }
 
-    public int GetNbZombie()
+    public int GetZombiesAmount()
     {
         return buffer.Size;
     }
