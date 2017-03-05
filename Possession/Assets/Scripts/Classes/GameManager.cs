@@ -121,6 +121,25 @@ namespace Possession {
 		}
 
         /* Scene Managment */
+        public void ResetLevel()
+        {
+            GameObject go = GameObject.Find("Scientist");
+            Destroy(go);
+            go = GameObject.Find("Carrier");
+            Destroy(go);
+
+            Level[] loadedLevels = GameObject.FindObjectsOfType<Level>();
+            foreach(Level loadedLevel in loadedLevels)
+            {
+                UnloadScene(loadedLevel.GetNameCurrentName());
+            }
+
+            LoadScene(_currentLevel.name);
+
+            PlayerController player = GameManager.FindObjectOfType<PlayerController>();
+            player.SetToControlling();
+        }
+
         public void SetCurrentLevel(string sceneName)
         {
             if (String.IsNullOrEmpty(sceneName))
