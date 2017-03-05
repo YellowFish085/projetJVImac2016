@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Swap"))
         {
             controlledZombie = zombieSelector.Next();
-            if (zombieSelector.GetNbZombie() == 1 && controlledZombie.name == "Scientist")
+            if (zombieSelector.GetZombiesAmount() == 1)
             {
                 GameManager gm = GameManager.Instance;
                 gm.ResetLevel();
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
         InitZombieSelector();
 
         // Reset if no zombies (1 -> only scientist in buffer)
-        if (zombieSelector.GetNbZombie() == 1)
+        if (zombieSelector.GetZombiesAmount() == 1)
         {
             GameManager gm = GameManager.Instance;
             gm.ResetLevel();
