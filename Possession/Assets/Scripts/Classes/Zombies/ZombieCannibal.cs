@@ -47,14 +47,13 @@ public class ZombieCannibal : MonoBehaviour
         }
         else
         {
-            Debug.Log("Attaque");
             GameObject target = targetBehaviourComponent.GetTarget();
             ZombieLife targetLifeComponent = target.GetComponent<ZombieLife>();
             if(targetLifeComponent.IsAlive())
             {
                 float step = -power * Time.deltaTime;
                 targetLifeComponent.IncrementLife(step);
-            } 
+            }
         }
     }
 

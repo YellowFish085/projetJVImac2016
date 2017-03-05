@@ -39,6 +39,12 @@ public class ZombieLife : MonoBehaviour {
             else
                 zCannibal.SetTarget(null);
         }
+        PlayerController playerController = GameObject.FindObjectOfType<UniqueObjectsHandler>().playerControllerNode.GetComponent<PlayerController>();
+        ZombieMovement currentZombie = playerController.activeZombie;
+
+        if (this.gameObject == currentZombie.gameObject)
+            playerController.SetToSwapping();
+
         Destroy(this.gameObject);
     }
 

@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void SetToSwapping()
+    public void SetToSwapping()
     {
         activeZombie.active = false;
         player.SetState(Player.State.SWAPPING);
