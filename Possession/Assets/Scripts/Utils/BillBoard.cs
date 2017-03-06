@@ -85,8 +85,9 @@ public class BillBoard : MonoBehaviour {
 	}
 
 	public void AddSelectable(GameObject zombie){
-		Vector3 offset = zombie.transform.position - transform.position;
-		offset.Normalize ();
+        Vector3 offset = zombie.transform.position - transform.position;
+        offset.Set(offset.x, offset.y, 0);
+        offset.Normalize ();
 		offset *= circleRadius; //radius of the circle
 		Vector3 newPosition = transform.position + offset;
 		newPosition.Set(newPosition.x, newPosition.y, transform.position.z);
