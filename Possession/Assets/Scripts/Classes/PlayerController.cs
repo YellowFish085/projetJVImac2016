@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
         //TODO (Victor) : cache camera to avoid fetching
-        CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        CameraMovement camera = Camera.main.GetComponent<CameraMovement>();
         camera.SetTarget(scientist);
     }
 
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour {
         player.SetState(Player.State.CONTROLLING);
 
         //TODO (Victor) : cache camera to avoid fetching
-        CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        CameraMovement camera = Camera.main.GetComponent<CameraMovement>();
         camera.SetTarget(activeZombie.gameObject);
     }
 
