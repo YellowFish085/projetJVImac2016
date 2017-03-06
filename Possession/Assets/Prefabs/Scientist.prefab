@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 50639580806227144}
   - component: {fileID: 114153619306134372}
   - component: {fileID: 61547231036120604}
+  - component: {fileID: 114826179337489154}
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Scientist
@@ -1437,7 +1438,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1174500128792838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 824.0153, y: 606.7445, z: -1492.0454}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4884010316573616}
@@ -1708,7 +1709,7 @@ MonoBehaviour:
   lateralAirborneAcceleration: 94.27
   maxSpeed: 20
   active: 1
---- !u!114 &114741684724195850
+--- !u!114 &114826179337489154
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
