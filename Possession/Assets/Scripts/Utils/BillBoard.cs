@@ -24,7 +24,7 @@ public class BillBoard : MonoBehaviour {
     public Vector3 joystick_direction;
 
     void Awake () {
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _camera = Camera.main.GetComponent<Camera>();
         drawCircle = false;
 
         playerController = GameObject.Find("Management/PlayerController").GetComponent<PlayerController>();
