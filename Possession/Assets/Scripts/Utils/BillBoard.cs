@@ -19,6 +19,9 @@ public class BillBoard : MonoBehaviour {
     [Range(-1f, 1f)]
     public float joystick_y = 0f;
 
+    [Range(1f, 20f)]
+    public float circleRadius = 9f;
+
     public Vector3 joystick_direction;
 
     void Awake () {
@@ -40,13 +43,14 @@ public class BillBoard : MonoBehaviour {
             y = joystick_y;
         } else
         {
+            //TODO (Victor 03/03) : tester avec une manette
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
         }
 
         joystick_direction = new Vector3(x, y, 0);
         joystick_direction.Normalize();
-        joystick_direction *= 10;
+        joystick_direction *= circleRadius;
 
         Vector3 point = transform.position + joystick_direction;
 
@@ -64,6 +68,7 @@ public class BillBoard : MonoBehaviour {
         }
 	}
 
+    // Debug gizmo qui dessine la ligne vers le checkmark sélectionné
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
@@ -82,7 +87,7 @@ public class BillBoard : MonoBehaviour {
 	public void AddSelectable(GameObject zombie){
 		Vector3 offset = zombie.transform.position - transform.position;
 		offset.Normalize ();
-		offset *= 10; //radius of the circle
+		offset *= circleRadius; //radius of the circle
 		Vector3 newPosition = transform.position + offset;
 		newPosition.Set(newPosition.x, newPosition.y, transform.position.z);
 
