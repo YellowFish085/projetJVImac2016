@@ -22,3 +22,11 @@ MonoBehaviour:
     ID: 0
   - Name: Ground
     ID: 0
+  - Name: Wall
+    ID: 0
+  - Name: Seductive
+    ID: 0
+  - Name: DestructibleObject
+    ID: 0
+  - Name: Cannibal
+    ID: 0

@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 50937843472187442}
   - component: {fileID: 114844200310185604}
   - component: {fileID: 61029216130526656}
+  - component: {fileID: 114047390196284692}
   m_Layer: 0
   m_Name: Carrier
   m_TagString: Zombie
@@ -1189,7 +1190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062770193795058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -78.63556, y: 1.7466674, z: 0.91426086}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4358461263636596}
@@ -1633,6 +1634,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114047390196284692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062770193795058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!114 &114844200310185604
 MonoBehaviour:
   m_ObjectHideFlags: 1

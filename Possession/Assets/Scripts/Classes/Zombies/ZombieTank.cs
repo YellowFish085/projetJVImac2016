@@ -50,15 +50,17 @@ public class ZombieTank : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-		Debug.Log (col.gameObject.transform.parent.name);
-		if (_isDestroyingTheFloor && col.gameObject.transform.parent.name == "Ground") {
+		if (_isDestroyingTheFloor && col.gameObject.HasTag ("DestructibleObject")) {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject + " was destroyed");
 			_isDestroyingTheFloor = false;
-		} else if (_isCharging && col.gameObject.tag != "Zombie" && col.gameObject.tag != "Scientist") {
+		} else if (_isCharging && col.gameObject.HasTag ("DestructibleObject")) {
 			Destroy (col.gameObject);
 			Debug.Log (col.gameObject.name + " was destroyed");
 			_isCharging = false;
+		} else {
+			_isCharging = false;
+			_isDestroyingTheFloor = false;
 		}
 	}
 
