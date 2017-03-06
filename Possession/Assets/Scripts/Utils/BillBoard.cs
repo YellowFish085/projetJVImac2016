@@ -6,8 +6,8 @@ public class BillBoard : MonoBehaviour {
 
 	private Camera _camera;
 	private bool drawCircle;
-	public GameObject crossMark;
-	private List<GameObject> crossMarks = new List<GameObject>();
+	public GameObject checkmark;
+	private List<GameObject> checkmarks = new List<GameObject>();
 
     private PlayerController playerController;
 
@@ -54,11 +54,18 @@ public class BillBoard : MonoBehaviour {
 
         Vector3 point = transform.position + joystick_direction;
 
-        if(crossMarks.Count > 0 && joystick_direction != Vector3.zero)
+        // Reset checkmarks scales
+        checkmarks.ForEach((cm) => cm.transform.localScale = new Vector3(1,1,1));
+
+        if (checkmarks.Count > 0 && joystick_direction != Vector3.zero)
         {
-            GameObject selectedCm = crossMarks.Aggregate(
+            // Select the checkmark that is the closest to the vector (center of circle) to (joystick direction)
+            GameObject selectedCm = checkmarks.Aggregate(
                 (c, d) => Vector3.Distance(c.transform.position, point) < Vector3.Distance(d.transform.position, point) ? c : d
             );
+
+            // Upscale the selected checkmark
+            selectedCm.transform.localScale = new Vector3(1.5f, 1.5f, 1);
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -92,16 +99,15 @@ public class BillBoard : MonoBehaviour {
 		Vector3 newPosition = transform.position + offset;
 		newPosition.Set(newPosition.x, newPosition.y, transform.position.z);
 
-
-		GameObject go = Instantiate(crossMark, newPosition, transform.rotation);
+		GameObject go = Instantiate(checkmark, newPosition, transform.rotation);
 		go.GetComponent<CheckMark>().referencedZombie = zombie.GetComponent<ZombieMovement> ();
-		crossMarks.Add (go);
+		checkmarks.Add (go);
 	}
 
 	public void DeleteSelectables(){
-		foreach (GameObject cross in crossMarks) {
+		foreach (GameObject cross in checkmarks) {
 			Destroy (cross);
 		}
-        crossMarks.Clear();
+        checkmarks.Clear();
 	}
 }
