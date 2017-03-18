@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using CircularBuffer;
 
 public class BillBoard : MonoBehaviour {
 
 	private Camera _camera;
 	private bool drawCircle;
-	public GameObject crossMark;
-	private List<GameObject> crossMarks = new List<GameObject>();
+	public GameObject checkmark;
+	private List<GameObject> checkmarks = new List<GameObject>();
 
     private PlayerController playerController;
 
@@ -20,6 +18,9 @@ public class BillBoard : MonoBehaviour {
     public float joystick_x = 0f;
     [Range(-1f, 1f)]
     public float joystick_y = 0f;
+
+    [Range(1f, 20f)]
+    public float circleRadius = 9f;
 
     public Vector3 joystick_direction;
 
@@ -42,21 +43,29 @@ public class BillBoard : MonoBehaviour {
             y = joystick_y;
         } else
         {
+            //TODO (Victor 03/03) : tester avec une manette
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
         }
 
         joystick_direction = new Vector3(x, y, 0);
         joystick_direction.Normalize();
-        joystick_direction *= 10;
+        joystick_direction *= circleRadius;
 
         Vector3 point = transform.position + joystick_direction;
 
-        if(crossMarks.Count > 0 && joystick_direction != Vector3.zero)
+        // Reset checkmarks scales
+        checkmarks.ForEach((cm) => cm.transform.localScale = new Vector3(1,1,1));
+
+        if (checkmarks.Count > 0 && joystick_direction != Vector3.zero)
         {
-            GameObject selectedCm = crossMarks.Aggregate(
+            // Select the checkmark that is the closest to the vector (center of circle) to (joystick direction)
+            GameObject selectedCm = checkmarks.Aggregate(
                 (c, d) => Vector3.Distance(c.transform.position, point) < Vector3.Distance(d.transform.position, point) ? c : d
             );
+
+            // Upscale the selected checkmark
+            selectedCm.transform.localScale = new Vector3(1.5f, 1.5f, 1);
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -66,6 +75,7 @@ public class BillBoard : MonoBehaviour {
         }
 	}
 
+    // Debug gizmo qui dessine la ligne vers le checkmark sélectionné
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
@@ -82,22 +92,22 @@ public class BillBoard : MonoBehaviour {
 	}
 
 	public void AddSelectable(GameObject zombie){
-		Vector3 offset = zombie.transform.position - transform.position;
-		offset.Normalize ();
-		offset *= 10; //radius of the circle
+        Vector3 offset = zombie.transform.position - transform.position;
+        offset.Set(offset.x, offset.y, 0);
+        offset.Normalize ();
+		offset *= circleRadius; //radius of the circle
 		Vector3 newPosition = transform.position + offset;
 		newPosition.Set(newPosition.x, newPosition.y, transform.position.z);
 
-
-		GameObject go = Instantiate(crossMark, newPosition, transform.rotation);
+		GameObject go = Instantiate(checkmark, newPosition, transform.rotation);
 		go.GetComponent<CheckMark>().referencedZombie = zombie.GetComponent<ZombieMovement> ();
-		crossMarks.Add (go);
+		checkmarks.Add (go);
 	}
 
 	public void DeleteSelectables(){
-		foreach (GameObject cross in crossMarks) {
+		foreach (GameObject cross in checkmarks) {
 			Destroy (cross);
 		}
-        crossMarks.Clear();
+        checkmarks.Clear();
 	}
 }
