@@ -103,20 +103,20 @@ public class PlayerController : MonoBehaviour {
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
 		IEnumerable<GameObject> zombies = zombieSelector.GetZombiesAround();
-        /*if (zombieSelector.GetZombiesAmount() == 1)
+        if (zombieSelector.GetZombiesAmount() == 0)
         {
             GameManager gm = GameManager.Instance;
             gm.ResetLevel();
             return;
-        }*/
+        }
 
         foreach (GameObject z in zombies)
 		{
 			scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
 		}
-
-        // Reset if no zombies (1 -> only scientist in buffer)
-        if (zombieSelector.GetZombiesAmount() == 1)
+        
+        // Deuxième vérife au cas où un pantin soit mort entre temps (oui ça peut arriver)
+        if (zombieSelector.GetZombiesAmount() == 0)
         {
             GameManager gm = GameManager.Instance;
             gm.ResetLevel();
