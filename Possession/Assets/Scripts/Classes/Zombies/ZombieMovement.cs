@@ -46,8 +46,6 @@ public class ZombieMovement : MonoBehaviour {
 
     public void Action(Direction direction)
     {
-        Debug.Log("Action");
-
         if(name == "Seductive")
         {
             GetComponent<ZombieSeductive>().Seduce();

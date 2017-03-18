@@ -60,7 +60,7 @@ public class ZombieSelector
         return buffer.Size;
     }
 
-    private IEnumerable<GameObject> GetZombiesAround()
+    public IEnumerable<GameObject> GetZombiesAround()
     {
         return GameObject.FindGameObjectsWithTag("Zombie").Where(InDistance);
     }

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Possession;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
     public ZombieMovement activeZombie;
     public GameObject scientist;
+	public GameObject wheel;
     public float maxSwappingDistance = 100f;
 
     private GameObject controlledZombie = null;
@@ -59,10 +61,9 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         activeZombie.Move(h);
 
-        if (Input.GetButtonDown("Swap"))
-        {
-            SetToSwapping();
-        }
+		if (Input.GetButtonDown ("Swap")) {
+			SetToSwapping ();
+		}
     }
 
     private Direction ComputeDirection()
@@ -88,44 +89,31 @@ public class PlayerController : MonoBehaviour {
     private void Swapping()
     {
         UpdateZombiesAround();
-        if (Input.GetButtonDown("Cancel"))
+
+		if (Input.GetButtonDown("Cancel") || Input.GetButtonUp("Swap"))
         {
-            SetToControlling();
-        }
-
-        if (Input.GetButtonDown("Swap"))
-        {
-            controlledZombie = zombieSelector.Next();
-            if (zombieSelector.GetZombiesAmount() == 1)
-            {
-                GameManager gm = GameManager.Instance;
-                gm.ResetLevel();
-                return;
-            }
-
-            //TODO (Victor) : cache camera to avoid fetching
-            CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
-            camera.SetTarget(controlledZombie.gameObject);
-        }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            activeZombie = controlledZombie.GetComponent<ZombieMovement>();
-
-            var zombieTargetBehaviour = activeZombie.GetComponent<ZombieTargetBehaviour>();
-            if (zombieTargetBehaviour)
-                zombieTargetBehaviour.SetTarget(null);
-
-            zombieSelector = null;
             SetToControlling();
         }
     }
 
     public void SetToSwapping()
     {
+		scientist.GetComponentInChildren<BillBoard>().EnableDrawCircle();
         activeZombie.active = false;
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
+		IEnumerable<GameObject> zombies = zombieSelector.GetZombiesAround();
+        /*if (zombieSelector.GetZombiesAmount() == 1)
+        {
+            GameManager gm = GameManager.Instance;
+            gm.ResetLevel();
+            return;
+        }*/
+
+        foreach (GameObject z in zombies)
+		{
+			scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
+		}
 
         // Reset if no zombies (1 -> only scientist in buffer)
         if (zombieSelector.GetZombiesAmount() == 1)
@@ -136,17 +124,18 @@ public class PlayerController : MonoBehaviour {
         }
 
         //TODO (Victor) : cache camera to avoid fetching
-        CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        CameraMovement camera = Camera.main.GetComponent<CameraMovement>();
         camera.SetTarget(scientist);
     }
 
     public void SetToControlling()
     {
+		scientist.GetComponentInChildren<BillBoard>().DisableDrawCircle();
         activeZombie.active = true;
         player.SetState(Player.State.CONTROLLING);
 
         //TODO (Victor) : cache camera to avoid fetching
-        CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        CameraMovement camera = Camera.main.GetComponent<CameraMovement>();
         camera.SetTarget(activeZombie.gameObject);
     }
 
