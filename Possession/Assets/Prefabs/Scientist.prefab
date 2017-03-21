@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 50639580806227144}
   - component: {fileID: 114153619306134372}
   - component: {fileID: 61547231036120604}
-  - component: {fileID: 114826179337489154}
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Scientist
@@ -716,7 +715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4867089288469686}
   - component: {fileID: 212884615528350756}
-  - component: {fileID: 114741684724195850}
+  - component: {fileID: 114826179337489154}
   m_Layer: 0
   m_Name: circle
   m_TagString: Untagged
@@ -1720,7 +1719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916fabbdc82a84321881bd3b1fc48477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossMark: {fileID: 1502708018967502, guid: bdc7a7d54a1824ee8ae2a71ec5b3174c, type: 2}
+  checkmark: {fileID: 0}
+  debug: 0
+  joystick_x: 0
+  joystick_y: 0
+  circleRadius: 9
+  joystick_direction: {x: 0, y: 0, z: 0}
 --- !u!137 &137899155968979350
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
