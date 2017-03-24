@@ -28,6 +28,10 @@ public class BillBoard : MonoBehaviour {
         _camera = Camera.main.GetComponent<Camera>();
         drawCircle = false;
 
+        if (!checkmark) {
+            checkmark = Resources.Load("selectableItem") as GameObject;
+        }
+
         playerController = GameObject.Find("Management/PlayerController").GetComponent<PlayerController>();
     }
 
