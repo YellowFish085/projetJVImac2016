@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Possession;
 
 public class ZombieLife : MonoBehaviour {
 
@@ -39,6 +40,18 @@ public class ZombieLife : MonoBehaviour {
             else
                 zCannibal.SetTarget(null);
         }
+        PlayerController playerController = GameObject.FindObjectOfType<UniqueObjectsHandler>().playerControllerNode.GetComponent<PlayerController>();
+        ZombieMovement currentZombie = playerController.activeZombie;
+
+        if(this.name == "Scientist")
+        {
+            GameManager gm = GameManager.Instance;
+            gm.ResetLevel();
+            return;
+        }
+        else if (this.gameObject == currentZombie.gameObject)
+            playerController.SetToSwapping();
+
         Destroy(this.gameObject);
     }
 

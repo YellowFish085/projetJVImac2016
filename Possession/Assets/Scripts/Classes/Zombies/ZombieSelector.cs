@@ -47,12 +47,17 @@ public class ZombieSelector
         {
             GameObject tmp = buffer.Front();
             buffer.PopFront();
-            if (InDistance(tmp))
+            if (tmp && InDistance(tmp))
                 zombie = tmp;
         }
         buffer.PushBack(zombie);
         return zombie;
 
+    }
+
+    public int GetZombiesAmount()
+    {
+        return buffer.Size;
     }
 
     public IEnumerable<GameObject> GetZombiesAround()

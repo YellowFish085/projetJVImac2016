@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour {
     private void Swapping()
     {
         UpdateZombiesAround();
+
 		if (Input.GetButtonDown("Cancel") || Input.GetButtonUp("Swap"))
         {
             SetToControlling();
@@ -102,11 +103,25 @@ public class PlayerController : MonoBehaviour {
         player.SetState(Player.State.SWAPPING);
         InitZombieSelector();
 		IEnumerable<GameObject> zombies = zombieSelector.GetZombiesAround();
+        if (zombieSelector.GetZombiesAmount() == 0)
+        {
+            GameManager gm = GameManager.Instance;
+            gm.ResetLevel();
+            return;
+        }
 
-		foreach(GameObject z in zombies)
+        foreach (GameObject z in zombies)
 		{
 			scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
 		}
+        
+        // Deuxième vérife au cas où un pantin soit mort entre temps (oui ça peut arriver)
+        if (zombieSelector.GetZombiesAmount() == 0)
+        {
+            GameManager gm = GameManager.Instance;
+            gm.ResetLevel();
+            return;
+        }
 
         //TODO (Victor) : cache camera to avoid fetching
         CameraMovement camera = Camera.main.GetComponent<CameraMovement>();
