@@ -35,6 +35,7 @@ public class ZombieMovement : MonoBehaviour {
     private void Update()
     {
         grounded = IsGrounded();
+		anim.SetFloat ("FallForce", GetComponent<Rigidbody2D> ().velocity.y);
     }
 
     public void Jump()
@@ -109,9 +110,6 @@ public class ZombieMovement : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Linecast(transform.position, groundCheck.position);
         if (hit.collider)
         {
-			if(hit.collider.gameObject.HasTag("Ground")) {
-				Debug.Log("on floor");
-			}
             return hit.collider.gameObject.HasTag("Ground");
         }
         else
