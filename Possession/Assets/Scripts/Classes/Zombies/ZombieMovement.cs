@@ -13,6 +13,8 @@ public class ZombieMovement : MonoBehaviour {
     private float speedWeight = 0;
     private float jumpWeight = 0;
 
+	private Animator anim;
+
     [HideInInspector]
     public bool active = true;
 
@@ -23,6 +25,7 @@ public class ZombieMovement : MonoBehaviour {
 
     private void Awake()
     {
+		anim = GetComponent <Animator> ();
         groundCheck = transform.Find("groundCheck");
         currentSpeed = maxSpeed;
         currentJumpForce = jumpForce;
@@ -93,6 +96,7 @@ public class ZombieMovement : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
+		anim.SetFloat ("WalkSpeed",  Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
     }
 
     private void StopX()
@@ -105,6 +109,9 @@ public class ZombieMovement : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Linecast(transform.position, groundCheck.position);
         if (hit.collider)
         {
+			if(hit.collider.gameObject.HasTag("Ground")) {
+				Debug.Log("on floor");
+			}
             return hit.collider.gameObject.HasTag("Ground");
         }
         else
