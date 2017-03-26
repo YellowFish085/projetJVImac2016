@@ -40,13 +40,20 @@ public class ZombieMovement : MonoBehaviour {
 
     public void Jump()
     {
-        if (!enabled) return;
+		if (!enabled) return;
 
         if (grounded)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+			StartCoroutine (processJump ());
         }
     }
+
+	public IEnumerator processJump() {
+		Debug.Log("Jump is launch");
+		anim.SetTrigger ("Jump");
+		yield return new WaitForSeconds (0.5f);
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+	}
 
     public void Action(Direction direction)
     {
