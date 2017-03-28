@@ -9,3 +9,13 @@ EditorBuildSettings:
     path: Assets/_Scene/test_victor/GameLoaderScene_victor.unity
   - enabled: 1
     path: Assets/_Scene/test_victor/swap.unity
+  - enabled: 1
+    path: Assets/_Scene/Scene_test_QC/scene_test_1.unity
+  - enabled: 1
+    path: Assets/_Scene/Scene_test_QC/scene_test_2.unity
+  - enabled: 1
+    path: Assets/_Scene/Scene_test_QC/Scene_test_main_Loader.unity
+  - enabled: 1
+    path: Assets/_Scene/FINAL/GameLoaderScene.unity
+  - enabled: 1
+    path: Assets/_Scene/FINAL/Level_1.unity
