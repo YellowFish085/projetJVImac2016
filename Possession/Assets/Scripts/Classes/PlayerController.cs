@@ -117,7 +117,8 @@ public class PlayerController : MonoBehaviour {
 
         foreach (GameObject z in zombies)
 		{
-			scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
+            if(!z.gameObject.HasTag("Cannibal"))
+			    scientist.GetComponentInChildren<BillBoard> ().AddSelectable(z);
 		}
         
         // Deuxième vérife au cas où un pantin soit mort entre temps (oui ça peut arriver)
