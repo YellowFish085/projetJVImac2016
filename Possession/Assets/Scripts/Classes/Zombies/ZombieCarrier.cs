@@ -4,40 +4,60 @@ using UnityEngine;
 
 public class ZombieCarrier : MonoBehaviour {
 
-    GameObject scientist;
+    public float minDistToCarry = 10;
+
+    private GameObject scientist;
 
     // initial parent for switch beetween parent of the different scene
     private Transform initialScientistParent;
-    static private Vector3 localPosition = new Vector3(0, 1, 0);
+    static private Vector3 localPosition;
 
     // verif contact with scientist
-    private bool contactScientist = false;
+    private bool canCarry = false;
     private bool carry = false;
     
 
     // Use this for initialization
     void Start () {
         scientist = GameObject.FindGameObjectWithTag("Scientist");
+        localPosition = new Vector3(-2, 2, 0);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		/*if(!carry && contactScientist)
+        if(!carry)
+            VerifDistance();
+        else
+            scientist.transform.localPosition = localPosition;
+        /*if(!carry && contactScientist)
         {
             c
         }*/
-	}
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
-        contactScientist = col.gameObject.name == "Scientist";
+        canCarry = col.gameObject.name == "Scientist";
     }
 
     public void Carry()
     {
-        if(contactScientist)
+        if(canCarry && !carry)
         {
-            gameObject.transform.SetParent(scientist.transform);
-            localPosition = gameObject.transform.localPosition;
+            initialScientistParent = scientist.transform.parent;
+            scientist.transform.SetParent(gameObject.transform);
+            scientist.transform.localPosition = localPosition;
+            carry = true;
         }
+        else if(carry)
+        {
+            scientist.transform.SetParent(initialScientistParent);
+            carry = false;
+        }
+    }
+
+    private void VerifDistance()
+    {
+        float distance = Mathf.Abs(scientist.transform.position.x - transform.position.x);
+        canCarry = (distance <= minDistToCarry);
     }
 }
