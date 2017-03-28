@@ -13,6 +13,8 @@ public class ZombieMovement : MonoBehaviour {
     private float speedWeight = 0;
     private float jumpWeight = 0;
 
+	private Animator anim;
+
     [HideInInspector]
     public bool active = true;
 
@@ -23,6 +25,7 @@ public class ZombieMovement : MonoBehaviour {
 
     private void Awake()
     {
+		anim = GetComponent <Animator> ();
         groundCheck = transform.Find("groundCheck");
         currentSpeed = maxSpeed;
         currentJumpForce = jumpForce;
@@ -32,17 +35,25 @@ public class ZombieMovement : MonoBehaviour {
     private void Update()
     {
         grounded = IsGrounded();
+		anim.SetFloat ("FallForce", GetComponent<Rigidbody2D> ().velocity.y);
     }
 
     public void Jump()
     {
-        if (!enabled) return;
+		if (!enabled) return;
 
         if (grounded)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+			StartCoroutine (processJump ());
         }
     }
+
+	public IEnumerator processJump() {
+		Debug.Log("Jump is launch");
+		anim.SetTrigger ("Jump");
+		yield return new WaitForSeconds (0.5f);
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+	}
 
     public void Action(Direction direction)
     {
@@ -93,6 +104,7 @@ public class ZombieMovement : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
+		anim.SetFloat ("WalkSpeed",  Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
     }
 
     private void StopX()
