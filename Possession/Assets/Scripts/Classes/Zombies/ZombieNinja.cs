@@ -29,7 +29,14 @@ public class ZombieNinja : MonoBehaviour {
 		wallCheck = transform.Find("wallCheck");
 		guyCheck = transform.Find("guyCheck");
 		_jumpForce = GetComponent<ZombieMovement>().jumpForce;
-	}
+
+        var model = transform.FindChild("Cylinder_000_Cylinder_001");
+        var material = model.GetComponent<SkinnedMeshRenderer>().material;
+
+        Texture nTex = Resources.Load("zombieTextures/ninja") as Texture;
+
+        material.SetTexture("_MainTex", nTex);
+    }
 
 	public void WallJump() {
 		if (IsAgainstWall () && !GetComponent<ZombieMovement>().IsGrounded()) {

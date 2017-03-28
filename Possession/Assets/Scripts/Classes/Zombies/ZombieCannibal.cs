@@ -30,6 +30,13 @@ public class ZombieCannibal : MonoBehaviour
         widthObject = gameObject.GetComponent<Collider2D>().bounds.size.x;
         targetBehaviourComponent = gameObject.GetComponent<ZombieTargetBehaviour>();
         zombieMovementComponent = gameObject.GetComponent<ZombieMovement>();
+
+        var model = transform.FindChild("Cylinder_000_Cylinder_001");
+        var material = model.GetComponent<SkinnedMeshRenderer>().material;
+
+        Texture nTex = Resources.Load("zombieTextures/cannibal") as Texture;
+
+        material.SetTexture("_MainTex", nTex);
     }
 
     void Update ()
