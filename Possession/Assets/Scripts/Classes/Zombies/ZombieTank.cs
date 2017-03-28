@@ -29,7 +29,17 @@ public class ZombieTank : MonoBehaviour {
 	public float chargeSpeed;
 	public float destroyTheFloorIntensity;
 
-	void Update () {
+    private void Awake() {
+        var model = transform.FindChild("Cylinder_000_Cylinder_001");
+        var material = model.GetComponent<SkinnedMeshRenderer>().material;
+
+        Texture nTex = Resources.Load("zombieTextures/tank") as Texture;
+
+        material.SetTexture("_MainTex", nTex);
+        transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+    }
+
+    void Update () {
 
 		if (_isCharging) {
 			Vector2 rgVelocity = GetComponent<Rigidbody2D> ().velocity;

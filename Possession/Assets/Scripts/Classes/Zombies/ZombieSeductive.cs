@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ZombieSeductive : MonoBehaviour {
 
-	public void Seduce () {
+    private void Awake() {
+        var model = transform.FindChild("Cylinder_000_Cylinder_001");
+        var material = model.GetComponent<SkinnedMeshRenderer>().material;
+
+        Texture nTex = Resources.Load("zombieTextures/seductive") as Texture;
+
+        material.SetTexture("_MainTex", nTex);
+    }
+
+    public void Seduce () {
         List<GameObject> zombies = GetZombiesInBoundaries();
 
         foreach (GameObject currentZombie in zombies)
