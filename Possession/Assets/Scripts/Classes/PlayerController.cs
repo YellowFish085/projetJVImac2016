@@ -64,6 +64,11 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown ("Swap")) {
 			SetToSwapping ();
 		}
+
+        if(Input.GetButtonDown("Carry") && activeZombie.GetComponent<ZombieCarrier>())
+        {
+            activeZombie.GetComponent<ZombieCarrier>().Carry();
+        }
     }
 
     private Direction ComputeDirection()
