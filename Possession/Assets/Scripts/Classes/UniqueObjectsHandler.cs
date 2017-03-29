@@ -11,7 +11,8 @@ public class UniqueObjectsHandler : MonoBehaviour {
 
     public bool SetScientist(Transform sci)
     {
-        if (gameplayNode.transform.Find("Actors/Scientist"))
+        //if (gameplayNode.transform.Find("Actors/Scientist"))
+        if(GameObject.FindGameObjectWithTag("Scientist"))
         {
             Debug.Log("Scientist already exists");
             return false;
