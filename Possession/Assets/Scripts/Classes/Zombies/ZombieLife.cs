@@ -43,18 +43,11 @@ public class ZombieLife : MonoBehaviour {
         PlayerController playerController = GameObject.FindObjectOfType<UniqueObjectsHandler>().playerControllerNode.GetComponent<PlayerController>();
         ZombieMovement currentZombie = playerController.activeZombie;
 
-        if(this.name == "Scientist")
+        if(this.name == "Scientist" || this.name == "Carrier")
         {
             GameManager gm = GameManager.Instance;
             gm.ResetLevel();
             return;
-        }
-        else if(this.name == "Carrier")
-        {
-            ZombieCarrier zc = this.GetComponent<ZombieCarrier>();
-            if (zc.GetCarry())
-                zc.Carry();
-            playerController.SetToSwapping();
         }
         else if (this.gameObject == currentZombie.gameObject)
             playerController.SetToSwapping();
