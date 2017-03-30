@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 114606380744519726}
   - component: {fileID: 114432910997404524}
   - component: {fileID: 114486867736567670}
+  - component: {fileID: 114905929645727162}
   m_Layer: 0
   m_Name: Seductive
   m_TagString: Zombie
@@ -1686,6 +1687,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetName: 
+--- !u!114 &114905929645727162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918848744798234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4c25167ae40e6479dc8c5ac1350f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoint: 10
 --- !u!114 &114916224603397574
 MonoBehaviour:
   m_ObjectHideFlags: 1
