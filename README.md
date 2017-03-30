@@ -2,16 +2,3 @@
 
 # Possession
 ###### THE GAME ðŸ•¹
-
-## Pantins
-- Violet : Pantin Seductif
-- Noir : Pantin Ninja
-- Jaune : Pantin Tank
-- Beige at rouge : Pantin Canibale
-
-## Controles
-- shift : changer de pantins
-	- gauche, drote, haut, bas : selectionner un pantin
-	- espace : valider le choix
-- c : porter le scientifique (Pantin Porteur)
-- ctrl : séduire (Pantin Seductif)
