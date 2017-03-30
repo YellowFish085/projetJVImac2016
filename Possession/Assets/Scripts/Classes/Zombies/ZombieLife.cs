@@ -49,6 +49,13 @@ public class ZombieLife : MonoBehaviour {
             gm.ResetLevel();
             return;
         }
+        else if(this.name == "Carrier")
+        {
+            ZombieCarrier zc = this.GetComponent<ZombieCarrier>();
+            if (zc.GetCarry())
+                zc.Carry();
+            playerController.SetToSwapping();
+        }
         else if (this.gameObject == currentZombie.gameObject)
             playerController.SetToSwapping();
 
