@@ -43,7 +43,7 @@ public class ZombieLife : MonoBehaviour {
         PlayerController playerController = GameObject.FindObjectOfType<UniqueObjectsHandler>().playerControllerNode.GetComponent<PlayerController>();
         ZombieMovement currentZombie = playerController.activeZombie;
 
-        if(this.name == "Scientist")
+        if(this.name == "Scientist" || this.name == "Carrier")
         {
             GameManager gm = GameManager.Instance;
             gm.ResetLevel();

@@ -39,6 +39,11 @@ public class ZombieCarrier : MonoBehaviour {
         canCarry = col.gameObject.name == "Scientist";
     }
 
+    public bool GetCarry()
+    {
+        return carry;
+    }
+
     public void Carry()
     {
         if(canCarry && !carry)
