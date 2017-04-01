@@ -84,12 +84,10 @@ namespace Possession {
 		}
 
 		private void Init () {
-            RetrieveLevels ();
             GameObject rootNode = GameObject.Find("RootNode");
             _loaderScene = rootNode.scene;
 
 			_state = State.MAIN_MENU;
-			_instance.RetrieveLevels ();
 			_saveManager = new SaveManager ();
 			InitFromSaveManager ();
 		}
@@ -103,21 +101,6 @@ namespace Possession {
 			}
 
 			// TODO : Improve initialization with more data and do a better verification
-		}
-			
-
-		private void RetrieveLevels () {
-            int i = 0;
-            foreach (UnityEditor.EditorBuildSettingsScene S in UnityEditor.EditorBuildSettings.scenes)
-            {
-                if (S.enabled)
-                {
-                    string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
-                    name = name.Substring(0, name.Length - 6);
-                    _levelList.Add(name);
-                    ++i;
-                }
-            }
 		}
 
         /* Scene Managment */
